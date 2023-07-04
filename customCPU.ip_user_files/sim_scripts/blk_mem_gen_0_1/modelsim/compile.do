@@ -13,6 +13,9 @@ vlog -work xpm -64 -incr -mfcu  -sv \
 vcom -work xpm -64 -93  \
 "/opt/Xilinx/Vivado/2023.1/data/ip/xpm/xpm_VCOMP.vhd" \
 
+vcom -work xil_defaultlib -64 -93  \
+"../../../../customCPU.gen/sources_1/ip/blk_mem_gen_0_1/blk_mem_gen_0_sim_netlist.vhdl" \
+
 
 vlog -work xil_defaultlib \
 "glbl.v"

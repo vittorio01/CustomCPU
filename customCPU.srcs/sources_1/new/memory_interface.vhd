@@ -32,17 +32,23 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity memory_interface is
+  Generic (
+    address_dimension: integer := 64;
+    data_dimension: integer := 32;
+    cache_address_dimension: integer := 16;
+    cache_data_dimension: integer := 32
+  );
   Port (
     instruction_memory_request: in std_logic;
     instruction_memory_ready: out std_logic;
-    instruction_memory_data: out std_logic_vector(7 downto 0);
-    instruction_memory_address: in std_logic_vector (63 downto 0);
+    instruction_memory_data: out std_logic_vector(data_dimension-1 downto 0);
+    instruction_memory_address: in std_logic_vector (address_dimension-1 downto 0);
     
     data_memory_request: in std_logic;
     data_memory_ready: out std_logic;
-    data_memory_data_in:   in std_logic_vector(7 downto 0); 
-    data_memory_data_out:  out std_logic_vector(7 downto 0); 
-    data_memory_address: in std_logic_vector(63 downto 0);
+    data_memory_data_in:   in std_logic_vector(data_dimension-1 downto 0); 
+    data_memory_data_out:  out std_logic_vector(data_dimension-1 downto 0); 
+    data_memory_address: in std_logic_vector(address_dimension-1 downto 0);
     data_memory_direction: in std_logic;
     
     clk: in std_logic;
@@ -56,9 +62,9 @@ architecture Behavioral of memory_interface is
         clka : IN STD_LOGIC;
         ena : IN STD_LOGIC;
         wea : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
-        addra : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-        dina : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
-        douta : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+        addra : IN STD_LOGIC_VECTOR(cache_address_dimension-1 DOWNTO 0);
+        dina : IN STD_LOGIC_VECTOR(cache_data_dimension-1 DOWNTO 0);
+        douta : OUT STD_LOGIC_VECTOR(cache_data_dimension-1 DOWNTO 0)
       );
     end component;
     
@@ -66,9 +72,9 @@ architecture Behavioral of memory_interface is
      
     signal cache_we: std_logic_vector (0 downto 0);
     signal cache_en: std_logic;
-    signal cache_address: std_logic_vector(15 downto 0);
-    signal cache_data_in: std_logic_vector(7 downto 0);
-    signal cache_data_out: std_logic_vector (7 downto 0);
+    signal cache_address: std_logic_vector (cache_address_dimension-1 downto 0);
+    signal cache_data_in: std_logic_vector(cache_data_dimension-1 downto 0);
+    signal cache_data_out: std_logic_vector (cache_data_dimension-1 downto 0);
     signal current_state: state:= wait_request;
 begin
     cache: blk_mem_gen_0 port map (ena => cache_en,clka => clk, wea => cache_we , addra => cache_address, dina => cache_data_in, douta => cache_data_out);
@@ -135,14 +141,14 @@ begin
                 data_memory_ready <= '0';
                 cache_en <= '1';
                 cache_we <= "1";
-                cache_address <= instruction_memory_address(15 downto 0);
+                cache_address <= instruction_memory_address(cache_address_dimension-1 downto 0);
  
             when instruction_fetch_wait =>
                 instruction_memory_ready <= '0';
                 data_memory_ready <= '0';
                 cache_en <= '1';
                 cache_we <= "1";
-                cache_address <= instruction_memory_address(15 downto 0);
+                cache_address <= instruction_memory_address(cache_address_dimension-1 downto 0);
 
                 
             when data_fetch_RDrequest =>
@@ -150,7 +156,7 @@ begin
                 data_memory_ready <= '0';
                 cache_en <= '1';
                 cache_we <= "1";
-                cache_address <= data_memory_address(15 downto 0);
+                cache_address <= data_memory_address(cache_address_dimension-1 downto 0);
 
                 
             when data_fetch_WRrequest =>
@@ -158,7 +164,7 @@ begin
                 data_memory_ready <= '0';
                 cache_en <= '1';
                 cache_we <= "0";
-                cache_address <= data_memory_address(15 downto 0);
+                cache_address <= data_memory_address(cache_address_dimension-1 downto 0);
                 cache_data_in <= data_memory_data_in;
 
                 
@@ -167,7 +173,7 @@ begin
                 data_memory_ready <= '0';
                 cache_en <= '1';
                 cache_we <= "1";
-                cache_address <= data_memory_address(15 downto 0);
+                cache_address <= data_memory_address(cache_address_dimension-1 downto 0);
 
                 
             when data_fetch_WRwait => 
@@ -175,7 +181,7 @@ begin
                 data_memory_ready <= '0';
                 cache_en <= '1';
                 cache_we <= "0";
-                cache_address <= data_memory_address(15 downto 0);
+                cache_address <= data_memory_address(cache_address_dimension-1 downto 0);
                 cache_data_in <= data_memory_data_in;
                 
             when instruction_ready =>

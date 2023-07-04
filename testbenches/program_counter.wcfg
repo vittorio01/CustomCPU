@@ -3,68 +3,84 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="memory_interface_testbench_behav.wdb" id="1">
+      <db_ref path="register_file_testbench_behav.wdb" id="1">
          <top_modules>
-            <top_module name="memory_interface_testbench" />
+            <top_module name="register_file_testbench" />
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="689.001 ns"></ZoomEndTime>
-      <Cursor1Time time="1,000.000 ns"></Cursor1Time>
+      <ZoomEndTime time="356.501 ns"></ZoomEndTime>
+      <Cursor1Time time="218.500 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="260"></NameColumnWidth>
+      <NameColumnWidth column_width="236"></NameColumnWidth>
       <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="12" />
-   <wvobject type="logic" fp_name="/memory_interface_testbench/clk">
+   <WVObjectSize size="16" />
+   <wvobject type="logic" fp_name="/register_file_testbench/clk">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/memory_interface_testbench/reset">
+   <wvobject type="logic" fp_name="/register_file_testbench/reset">
       <obj_property name="ElementShortName">reset</obj_property>
       <obj_property name="ObjectShortName">reset</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/memory_interface_testbench/instruction_memory_request">
-      <obj_property name="ElementShortName">instruction_memory_request</obj_property>
-      <obj_property name="ObjectShortName">instruction_memory_request</obj_property>
+   <wvobject type="logic" fp_name="/register_file_testbench/read_request">
+      <obj_property name="ElementShortName">read_request</obj_property>
+      <obj_property name="ObjectShortName">read_request</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/memory_interface_testbench/instruction_memory_ready">
-      <obj_property name="ElementShortName">instruction_memory_ready</obj_property>
-      <obj_property name="ObjectShortName">instruction_memory_ready</obj_property>
+   <wvobject type="logic" fp_name="/register_file_testbench/write_request">
+      <obj_property name="ElementShortName">write_request</obj_property>
+      <obj_property name="ObjectShortName">write_request</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/memory_interface_testbench/data_memory_request">
-      <obj_property name="ElementShortName">data_memory_request</obj_property>
-      <obj_property name="ObjectShortName">data_memory_request</obj_property>
+   <wvobject type="array" fp_name="/register_file_testbench/address_a">
+      <obj_property name="ElementShortName">address_a[5:0]</obj_property>
+      <obj_property name="ObjectShortName">address_a[5:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/memory_interface_testbench/data_memory_ready">
-      <obj_property name="ElementShortName">data_memory_ready</obj_property>
-      <obj_property name="ObjectShortName">data_memory_ready</obj_property>
+   <wvobject type="array" fp_name="/register_file_testbench/address_b">
+      <obj_property name="ElementShortName">address_b[5:0]</obj_property>
+      <obj_property name="ObjectShortName">address_b[5:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/memory_interface_testbench/data_memory_direction">
-      <obj_property name="ElementShortName">data_memory_direction</obj_property>
-      <obj_property name="ObjectShortName">data_memory_direction</obj_property>
+   <wvobject type="array" fp_name="/register_file_testbench/address_write">
+      <obj_property name="ElementShortName">address_write[5:0]</obj_property>
+      <obj_property name="ObjectShortName">address_write[5:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/memory_interface_testbench/instruction_memory_data">
-      <obj_property name="ElementShortName">instruction_memory_data[7:0]</obj_property>
-      <obj_property name="ObjectShortName">instruction_memory_data[7:0]</obj_property>
+   <wvobject type="array" fp_name="/register_file_testbench/register_a_output">
+      <obj_property name="ElementShortName">register_a_output[31:0]</obj_property>
+      <obj_property name="ObjectShortName">register_a_output[31:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/memory_interface_testbench/instruction_memory_address">
-      <obj_property name="ElementShortName">instruction_memory_address[63:0]</obj_property>
-      <obj_property name="ObjectShortName">instruction_memory_address[63:0]</obj_property>
+   <wvobject type="array" fp_name="/register_file_testbench/register_b_output">
+      <obj_property name="ElementShortName">register_b_output[31:0]</obj_property>
+      <obj_property name="ObjectShortName">register_b_output[31:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/memory_interface_testbench/data_memory_address">
-      <obj_property name="ElementShortName">data_memory_address[63:0]</obj_property>
-      <obj_property name="ObjectShortName">data_memory_address[63:0]</obj_property>
+   <wvobject type="array" fp_name="/register_file_testbench/register_input">
+      <obj_property name="ElementShortName">register_input[31:0]</obj_property>
+      <obj_property name="ObjectShortName">register_input[31:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/memory_interface_testbench/data_memory_data_out">
-      <obj_property name="ElementShortName">data_memory_data_out[7:0]</obj_property>
-      <obj_property name="ObjectShortName">data_memory_data_out[7:0]</obj_property>
+   <wvobject type="logic" fp_name="/register_file_testbench/ready">
+      <obj_property name="ElementShortName">ready</obj_property>
+      <obj_property name="ObjectShortName">ready</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/memory_interface_testbench/data_memory_data_in">
-      <obj_property name="ElementShortName">data_memory_data_in[7:0]</obj_property>
-      <obj_property name="ObjectShortName">data_memory_data_in[7:0]</obj_property>
+   <wvobject type="other" fp_name="/register_file_testbench/registers/current_state">
+      <obj_property name="ElementShortName">current_state</obj_property>
+      <obj_property name="ObjectShortName">current_state</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/register_file_testbench/registers/registers/a">
+      <obj_property name="ElementShortName">a[5:0]</obj_property>
+      <obj_property name="ObjectShortName">a[5:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/register_file_testbench/registers/registers/d">
+      <obj_property name="ElementShortName">d[31:0]</obj_property>
+      <obj_property name="ObjectShortName">d[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/register_file_testbench/registers/registers/dpra">
+      <obj_property name="ElementShortName">dpra[5:0]</obj_property>
+      <obj_property name="ObjectShortName">dpra[5:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/register_file_testbench/registers/registers/we">
+      <obj_property name="ElementShortName">we</obj_property>
+      <obj_property name="ObjectShortName">we</obj_property>
    </wvobject>
 </wave_config>

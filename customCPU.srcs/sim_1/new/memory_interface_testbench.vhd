@@ -37,6 +37,12 @@ end memory_interface_testbench;
 
 architecture Behavioral of memory_interface_testbench is
     component memory_interface is
+      Generic (
+        address_dimension: integer := 64;
+        data_dimension: integer := 32;
+        cache_address_dimension: integer := 16;
+        cache_data_dimension: integer := 32
+        );
       Port (
         instruction_memory_request: in std_logic;
         instruction_memory_ready: out std_logic;
@@ -104,10 +110,14 @@ begin
         instruction_memory_request <= '0';
         wait for 200ns;
         data_memory_request <= '1';
+        instruction_memory_request <= '1';
+        instruction_memory_address <= (4 => '1', others => '0');
         data_memory_address <= (4 => '1',others =>'0');
         data_memory_direction <= '0';
         wait for 80ns;
         data_memory_request <= '0';
+        wait for 100ns;
+        instruction_memory_request <= '0';
         wait for 200ns;
     end process;
 
