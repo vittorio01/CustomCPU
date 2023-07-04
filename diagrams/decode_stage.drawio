@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-07-04T12:18:20.453Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/114.0" etag="dUb2vQp3Yg2xifJvq7qW" version="21.5.2" type="github">
+<mxfile host="app.diagrams.net" modified="2023-07-04T12:36:35.353Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/114.0" etag="EwhvMUpJT6mL96Ko-ybu" version="21.5.2" type="github">
   <diagram name="Pagina-1" id="U87yk9chCkfv6v5MAbVB">
     <mxGraphModel dx="1035" dy="571" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -107,18 +107,6 @@
             <mxPoint x="260" y="544.72" as="sourcePoint" />
             <mxPoint x="438" y="544.72" as="targetPoint" />
           </mxGeometry>
-        </mxCell>
-        <mxCell id="8VNFmCdpikhKCJtVComr-32" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.444;exitY=1.012;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="8VNFmCdpikhKCJtVComr-53">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="190.27999999999997" y="750" as="sourcePoint" />
-            <mxPoint x="190" y="817.24" as="targetPoint" />
-            <Array as="points">
-              <mxPoint x="190" y="890" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="8VNFmCdpikhKCJtVComr-33" value="Ready" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="200" y="860" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="8VNFmCdpikhKCJtVComr-34" value="Sign Extender" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="440" y="430" width="120" height="30" as="geometry" />
