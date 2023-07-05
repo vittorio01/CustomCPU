@@ -59,6 +59,24 @@ architecture Behavioral of fetch_stage_testbench is
       reset: in std_logic
       );
     end component fetch_stage_controller;
+    component memory_interface is
+      Port (
+        instruction_memory_request: in std_logic;
+        instruction_memory_ready: out std_logic;
+        instruction_memory_data: out std_logic_vector(32-1 downto 0);
+        instruction_memory_address: in std_logic_vector (64-1 downto 0);
+        
+        data_memory_request: in std_logic;
+        data_memory_ready: out std_logic;
+        data_memory_data_in:   in std_logic_vector(32-1 downto 0); 
+        data_memory_data_out:  out std_logic_vector(32-1 downto 0); 
+        data_memory_address: in std_logic_vector(64-1 downto 0);
+        data_memory_direction: in std_logic;
+        
+        clk: in std_logic;
+        reset: in std_logic
+      );
+    end component memory_interface;
     signal address_in: std_logic_vector(63 downto 0);
     signal pipeline_step: std_logic;
       
@@ -73,6 +91,19 @@ architecture Behavioral of fetch_stage_testbench is
       
     signal clk: std_logic;
     signal reset: std_logic;
+    
+    signal instruction_memory_request: std_logic;
+    signal instruction_memory_ready: std_logic;
+    signal instruction_memory_data: std_logic_vector(32-1 downto 0);
+    signal instruction_memory_address: std_logic_vector (64-1 downto 0);
+        
+    signal data_memory_request: std_logic;
+    signal data_memory_ready: std_logic;
+    signal data_memory_data_in: std_logic_vector(32-1 downto 0); 
+    signal data_memory_data_out: std_logic_vector(32-1 downto 0); 
+    signal data_memory_address: std_logic_vector(64-1 downto 0);
+    signal data_memory_direction: std_logic;
+    
 
 begin
     fetch_stage: fetch_stage_controller port map (
@@ -88,7 +119,27 @@ begin
         instruction_out => instruction_out
     );
     address_in <= new_address;
+    memory: memory_interface port map (
+        clk => clk,
+        reset => reset,
+        instruction_memory_request => instruction_memory_request,
+        instruction_memory_ready => instruction_memory_ready,
+        instruction_memory_data => instruction_memory_data,
+        instruction_memory_address => instruction_memory_address,
+        
+        data_memory_request => data_memory_request,
+        data_memory_ready => data_memory_ready,
+        data_memory_data_in => data_memory_data_in,
+        data_memory_data_out => data_memory_data_out,
+        data_memory_address => data_memory_address,
+        data_memory_direction => data_memory_direction
+    );
+    instruction_memory_request <= instruction_request;
+    instruction_ready <= instruction_memory_ready;
+    instruction_in <= instruction_memory_data;
+    instruction_memory_address <= address_in;
     
+   data_memory_request <='0';
     process is
     begin
         clk <= '1';
@@ -102,7 +153,6 @@ begin
     begin 
         reset <= '0';
         pipeline_step <='0';
-        instruction_ready<='0';
         wait for 40ns;
         reset <= '1';
      
@@ -110,12 +160,7 @@ begin
             pipeline_step <='1';
             wait for 20ns;
             pipeline_step <= '0';
-            wait for 80ns;
-            instruction_ready<='1';
-            instruction_in <= (4=>'1', others =>'0');
-            wait for 40ns;
-            instruction_ready <= '0';
-            wait for 60ns;
+            wait for 100ns;
         end loop;
         
     end process;

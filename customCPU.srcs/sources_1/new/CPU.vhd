@@ -90,6 +90,27 @@ architecture Behavioral of CPU is
         reset: in std_logic
       );
     end component memory_interface;
+    component decode_stage is
+      Port (
+        instruction_in: in std_logic_vector(31 downto 0);
+        register_a: out std_logic_vector(31 downto 0);
+        register_b: out std_logic_vector(31 downto 0);
+        register_dest: out std_logic_vector(4 downto 0);
+        immediate_operand:  out std_logic_vector(31 downto 0);
+        alu_control: out std_logic_vector(4 downto 0);
+        instruction_type: out std_logic_vector(3 downto 0);
+        
+        decode_stage_ready: out std_logic; 
+        pipeline_step: in std_logic;
+        
+        register_writeback_address: in std_logic_vector(4 downto 0);
+        register_writeback_data: in std_logic_vector(31 downto 0);
+        register_writeback_request: in std_logic;
+        
+        clk: in std_logic; 
+        reset: in std_logic
+      );
+    end component decode_stage;
     signal instruction_memory_request: std_logic;
     signal instruction_memory_ready: std_logic;
     signal instruction_memory_data: std_logic_vector(data_dimension-1 downto 0);
@@ -113,6 +134,22 @@ architecture Behavioral of CPU is
       
     signal fetch_new_address: std_logic_Vector(address_dimension-1 downto 0);
     signal fetch_instruction_out: std_logic_vector(data_dimension-1 downto 0);
+    
+    signal decode_instruction_in: std_logic_vector(31 downto 0):=(others => '0');
+    signal decode_register_a: std_logic_vector(31 downto 0);
+    signal decode_register_b: std_logic_vector(31 downto 0);
+    signal decode_register_dest: std_logic_vector(4 downto 0);
+    signal decode_immediate_operand: std_logic_vector(31 downto 0);
+    signal decode_alu_control: std_logic_vector(4 downto 0);
+    signal decode_instruction_type: std_logic_vector(3 downto 0);
+        
+    signal decode_stage_ready: std_logic; 
+    signal decode_pipeline_step: std_logic;
+        
+    signal decode_register_writeback_address: std_logic_vector(4 downto 0);
+    signal decode_register_writeback_data: std_logic_vector(31 downto 0);
+    signal decode_register_writeback_request: std_logic;
+    
       
 begin
     fetch_stage: fetch_stage_controller port map (
@@ -142,6 +179,26 @@ begin
         data_memory_address => data_memory_address,
         data_memory_direction => data_memory_direction
     );
+    decode: decode_stage port map (
+        instruction_in =>decode_instruction_in,
+        register_a=>decode_register_a,
+        register_b=>decode_register_b,
+        register_dest=>decode_register_dest,
+        immediate_operand=>decode_immediate_operand,
+        alu_control=>decode_alu_control,
+        instruction_type=>decode_instruction_type,
+        
+        decode_stage_ready=>decode_stage_ready,
+        pipeline_step=>decode_pipeline_step,
+        
+        register_writeback_address=>decode_register_writeback_address,
+        register_writeback_data=>decode_register_writeback_data,
+        register_writeback_request=>decode_register_writeback_request,
+        
+        clk=>clk,
+        reset=>reset
+    );
+    
     fetch_address_in<=fetch_new_address;
     instruction_memory_request <= fetch_instruction_request;
     instruction_memory_address <= fetch_new_address;
@@ -150,14 +207,18 @@ begin
     
     data_memory_request <= '0';
     data_memory_direction <= '0';
+    decode_register_writeback_request<='0';
+    decode_instruction_in <= fetch_instruction_out;
     
     process (clk) is 
     begin 
         if (rising_edge(clk)) then
-            if (fetch_stage_ready='1') then
+            if (fetch_stage_ready='1' and decode_stage_ready='1') then
                 fetch_pipeline_step <= '1';
+                decode_pipeline_step <= '1';
             else 
                 fetch_pipeline_step <= '0';
+                decode_pipeline_step <= '0';
             end if;
         end if;
     end process;

@@ -55,11 +55,12 @@
 
 //----------- Begin Cut here for INSTANTIATION Template ---// INST_TAG
 register_array your_instance_name (
-  .a(a),        // input wire [5 : 0] a
+  .a(a),        // input wire [4 : 0] a
   .d(d),        // input wire [31 : 0] d
-  .dpra(dpra),  // input wire [5 : 0] dpra
+  .dpra(dpra),  // input wire [4 : 0] dpra
   .clk(clk),    // input wire clk
   .we(we),      // input wire we
+  .i_ce(i_ce),  // input wire i_ce
   .spo(spo),    // output wire [31 : 0] spo
   .dpo(dpo)    // output wire [31 : 0] dpo
 );

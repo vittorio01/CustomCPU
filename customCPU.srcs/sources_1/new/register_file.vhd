@@ -36,14 +36,15 @@ entity register_file is
     clk: in std_logic;
     reset: in std_logic;
     
-    address_a: in std_logic_vector (5 downto 0);
-    address_b: in std_logic_vector (5 downto 0);
-    address_write: in std_logic_vector (5 downto 0);
+    address_a: in std_logic_vector (4 downto 0);
+    address_b: in std_logic_vector (4 downto 0);
+    address_write: in std_logic_vector (4 downto 0);
     
     register_a_output: out std_logic_vector (31 downto 0);
     register_b_output: out std_logic_vector (31 downto 0);
     register_input: in std_logic_vector (31 downto 0);
     
+    enable: in std_logic;
     read_request: in std_logic;
     write_request: in std_logic;
     ready: out std_logic
@@ -54,24 +55,25 @@ architecture Behavioral of register_file is
     
 component register_array is
   PORT (
-    a : IN STD_LOGIC_VECTOR(5 DOWNTO 0);
+    a : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
     d : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
-    dpra : IN STD_LOGIC_VECTOR(5 DOWNTO 0);
+    dpra : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
     clk : IN STD_LOGIC;
     we : IN STD_LOGIC;
     spo : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
-    dpo : OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
+    dpo : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    i_ce: in std_logic
   );
   end component register_array;
   signal register_array_enable: std_logic;
-  signal register_array_address_a: std_logic_vector(5 downto 0):= (others => '0');
-  signal register_array_address_b: std_logic_vector(5 downto 0):= (others => '0');
+  signal register_array_address_a: std_logic_vector(4 downto 0):= (others => '0');
+  signal register_array_address_b: std_logic_vector(4 downto 0):= (others => '0');
   signal register_array_data_in: std_logic_vector (31 downto 0):= (others => '0');
   signal register_array_write_enable: std_logic;
   
   signal register_array_data_out_a: std_logic_vector (31 downto 0);
   signal register_array_data_out_b: std_logic_vector (31 downto 0);
-  
+  signal register_enable: std_logic;
   type state is (wait_request,write_register,read_register);
   signal current_state: state:=wait_request;
   
@@ -83,26 +85,33 @@ begin
     spo => register_array_data_out_a,
     dpra => register_array_address_b,
     dpo => register_array_data_out_b, 
-    we => register_array_write_enable
+    we => register_array_write_enable,
+    i_ce => register_enable
   );
   process (clk) is 
   begin 
     if (rising_edge(clk)) then
         if (reset = '1') then 
             if (current_state=wait_request) then 
-                if (write_request='1') then 
-                    current_state<=write_register;
-                elsif (read_request='1') then
-                    current_state<=read_register;
+                if (enable = '1') then 
+                    if (write_request='1') then 
+                        current_state<=write_register;
+                    elsif (read_request='1') then
+                        current_state<=read_register;
+                    end if;
                 end if;
             elsif (current_state=write_register)  then 
                 if (read_request='1') then 
                     current_state <= read_register;
                 else 
-                    current_state <= wait_request;
+                    if (write_request<= '0') then 
+                        current_state <= wait_request;
+                    end if;
                 end if;
             elsif (current_state=read_register) then
-                current_state <= wait_request;
+                if (read_request<= '0') then 
+                        current_state <= wait_request;
+                end if;
             else
                 current_state <= wait_request;
             end if;
@@ -118,21 +127,31 @@ begin
         when wait_request => 
             ready <= '1';
             register_array_write_enable <= '0';
-            register_a_output <= register_array_data_out_a;
-            register_b_output <= register_array_data_out_b;
+            if (address_a="00000") then 
+                register_a_output <= (others =>'0');
+            else 
+                register_a_output <= register_array_data_out_a;
+            end if;
+            if (address_b="00000") then 
+                register_b_output <= (others =>'0');
+            else 
+                register_b_output <= register_array_data_out_b;
+            end if;
+            register_enable <= '0';
         when write_register => 
             ready <= '0';
             register_array_write_enable <= '1';
             register_array_data_in<=register_input;
             register_array_address_a <= address_write;
-            
+            register_enable <= '1';
         when read_register => 
             ready <= '0';
             register_array_write_enable <= '0';
             register_array_address_a<=address_a;
             register_array_address_b<=address_b;
+            register_enable <= '1';
     end case;
-    register_array_data_in <=register_input;
+    register_array_data_in <= register_input;
   end process;
   
 end Behavioral;

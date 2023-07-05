@@ -140,14 +140,14 @@ begin
                 instruction_memory_ready <= '0';
                 data_memory_ready <= '0';
                 cache_en <= '1';
-                cache_we <= "1";
+                cache_we <= "0";
                 cache_address <= instruction_memory_address(cache_address_dimension-1 downto 0);
  
             when instruction_fetch_wait =>
                 instruction_memory_ready <= '0';
                 data_memory_ready <= '0';
                 cache_en <= '1';
-                cache_we <= "1";
+                cache_we <= "0";
                 cache_address <= instruction_memory_address(cache_address_dimension-1 downto 0);
 
                 
@@ -155,7 +155,7 @@ begin
                 instruction_memory_ready <= '0';
                 data_memory_ready <= '0';
                 cache_en <= '1';
-                cache_we <= "1";
+                cache_we <= "0";
                 cache_address <= data_memory_address(cache_address_dimension-1 downto 0);
 
                 
@@ -163,7 +163,7 @@ begin
                 instruction_memory_ready <= '0';
                 data_memory_ready <= '0';
                 cache_en <= '1';
-                cache_we <= "0";
+                cache_we <= "1";
                 cache_address <= data_memory_address(cache_address_dimension-1 downto 0);
                 cache_data_in <= data_memory_data_in;
 
@@ -172,7 +172,7 @@ begin
                 instruction_memory_ready <= '0';
                 data_memory_ready <= '0';
                 cache_en <= '1';
-                cache_we <= "1";
+                cache_we <= "0";
                 cache_address <= data_memory_address(cache_address_dimension-1 downto 0);
 
                 
@@ -180,7 +180,7 @@ begin
                 instruction_memory_ready <= '0';
                 data_memory_ready <= '0';
                 cache_en <= '1';
-                cache_we <= "0";
+                cache_we <= "1";
                 cache_address <= data_memory_address(cache_address_dimension-1 downto 0);
                 cache_data_in <= data_memory_data_in;
                 

@@ -59,28 +59,30 @@ module register_array (
   dpra,
   clk,
   we,
+  i_ce,
   spo,
   dpo
 );
 
-input wire [5 : 0] a;
+input wire [4 : 0] a;
 input wire [31 : 0] d;
-input wire [5 : 0] dpra;
+input wire [4 : 0] dpra;
 input wire clk;
 input wire we;
+input wire i_ce;
 output wire [31 : 0] spo;
 output wire [31 : 0] dpo;
 
   dist_mem_gen_v8_0_13 #(
     .C_FAMILY("zynq"),
-    .C_ADDR_WIDTH(6),
+    .C_ADDR_WIDTH(5),
     .C_DEFAULT_DATA("0"),
-    .C_DEPTH(64),
+    .C_DEPTH(32),
     .C_HAS_CLK(1),
     .C_HAS_D(1),
     .C_HAS_DPO(1),
     .C_HAS_DPRA(1),
-    .C_HAS_I_CE(0),
+    .C_HAS_I_CE(1),
     .C_HAS_QDPO(0),
     .C_HAS_QDPO_CE(0),
     .C_HAS_QDPO_CLK(0),
@@ -99,7 +101,7 @@ output wire [31 : 0] dpo;
     .C_QCE_JOINED(0),
     .C_QUALIFY_WE(0),
     .C_READ_MIF(0),
-    .C_REG_A_D_INPUTS(0),
+    .C_REG_A_D_INPUTS(1),
     .C_REG_DPRA_INPUT(0),
     .C_SYNC_ENABLE(1),
     .C_WIDTH(32),
@@ -110,7 +112,7 @@ output wire [31 : 0] dpo;
     .dpra(dpra),
     .clk(clk),
     .we(we),
-    .i_ce(1'D1),
+    .i_ce(i_ce),
     .qspo_ce(1'D1),
     .qdpo_ce(1'D1),
     .qdpo_clk(1'D0),
