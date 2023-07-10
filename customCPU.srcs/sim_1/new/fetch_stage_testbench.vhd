@@ -38,7 +38,7 @@ end fetch_stage_testbench;
 architecture Behavioral of fetch_stage_testbench is
     component fetch_stage_controller is
       Generic (
-        address_width: integer:= 64;
+        address_width: integer:= 32;
         instruction_width: integer:= 32
       );
       
@@ -64,20 +64,20 @@ architecture Behavioral of fetch_stage_testbench is
         instruction_memory_request: in std_logic;
         instruction_memory_ready: out std_logic;
         instruction_memory_data: out std_logic_vector(32-1 downto 0);
-        instruction_memory_address: in std_logic_vector (64-1 downto 0);
+        instruction_memory_address: in std_logic_vector (32-1 downto 0);
         
         data_memory_request: in std_logic;
         data_memory_ready: out std_logic;
         data_memory_data_in:   in std_logic_vector(32-1 downto 0); 
         data_memory_data_out:  out std_logic_vector(32-1 downto 0); 
-        data_memory_address: in std_logic_vector(64-1 downto 0);
+        data_memory_address: in std_logic_vector(32-1 downto 0);
         data_memory_direction: in std_logic;
         
         clk: in std_logic;
         reset: in std_logic
       );
     end component memory_interface;
-    signal address_in: std_logic_vector(63 downto 0);
+    signal address_in: std_logic_vector(31 downto 0);
     signal pipeline_step: std_logic;
       
     signal instruction_request: std_logic;
@@ -86,7 +86,7 @@ architecture Behavioral of fetch_stage_testbench is
     signal fetch_stage_ready: std_logic;
     signal instruction_in: std_logic_vector(31 downto 0);
       
-    signal new_address: std_logic_Vector(63 downto 0);
+    signal new_address: std_logic_Vector(31 downto 0);
     signal instruction_out: std_logic_vector(31 downto 0);
       
     signal clk: std_logic;
@@ -95,13 +95,13 @@ architecture Behavioral of fetch_stage_testbench is
     signal instruction_memory_request: std_logic;
     signal instruction_memory_ready: std_logic;
     signal instruction_memory_data: std_logic_vector(32-1 downto 0);
-    signal instruction_memory_address: std_logic_vector (64-1 downto 0);
+    signal instruction_memory_address: std_logic_vector (32-1 downto 0);
         
     signal data_memory_request: std_logic;
     signal data_memory_ready: std_logic;
     signal data_memory_data_in: std_logic_vector(32-1 downto 0); 
     signal data_memory_data_out: std_logic_vector(32-1 downto 0); 
-    signal data_memory_address: std_logic_vector(64-1 downto 0);
+    signal data_memory_address: std_logic_vector(32-1 downto 0);
     signal data_memory_direction: std_logic;
     
 
@@ -140,6 +140,7 @@ begin
     instruction_memory_address <= address_in;
     
    data_memory_request <='0';
+
     process is
     begin
         clk <= '1';
@@ -156,11 +157,11 @@ begin
         wait for 40ns;
         reset <= '1';
      
-        for i in 0 to 10 loop 
+        for i in 0 to 15 loop 
             pipeline_step <='1';
             wait for 20ns;
             pipeline_step <= '0';
-            wait for 100ns;
+            wait for 200ns;
         end loop;
         
     end process;

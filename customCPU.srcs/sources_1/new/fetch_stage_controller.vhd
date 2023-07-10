@@ -33,7 +33,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity fetch_stage_controller is
   Generic (
-    address_width: integer:= 64;
+    address_width: integer:= 32;
     instruction_width: integer:= 32
   );
   
@@ -58,7 +58,7 @@ end fetch_stage_controller;
 architecture Behavioral of fetch_stage_controller is
     component program_counter is
       generic (address_width: integer:=address_width;                                 --width of address lines (bits)
-               instruction_width: integer:=instruction_width/8);                             --width of the instructions (bytes)
+               instruction_width: integer:=4);                             --width of the instructions (bytes)
       Port (load_enable: in std_logic;                                     --line used to trigger the counter to load a specific address from address_in (enabled -> '1');
             address_in: in std_logic_vector(address_width-1 downto 0);     --input line used to set a specific value to the program counter
             address_out: out std_logic_vector(address_width-1 downto 0);   --output address from the program counter
@@ -69,7 +69,7 @@ architecture Behavioral of fetch_stage_controller is
     signal pc_address_out: std_logic_vector(address_width-1 downto 0);
     
     
-    type state is (step_wait,instruction_fetch);
+    type state is (step_wait,instruction_fetch,instruction_load);
     signal current_state: state;
 begin
     pc: program_counter port map (clk => clk, reset => reset, address_in=>address_in, address_out => pc_address_out, load_enable=>pipeline_step);
@@ -79,10 +79,12 @@ begin
             if (reset='0') then 
                 current_state<= step_wait;
             else  
-                if (current_state<=step_wait) then 
+                if (current_state=step_wait) then 
                     if (pipeline_step='1') then 
-                        current_state <= instruction_fetch;
+                        current_state <= instruction_load;
                     end if;
+                elsif (current_state = instruction_load) then
+                    current_state <= instruction_fetch;
                 elsif (current_state = instruction_fetch) then 
                     if (instruction_ready='1') then 
                         current_state <= step_wait;
@@ -98,12 +100,16 @@ begin
         case current_state is 
         when step_wait => 
             fetch_stage_ready <= '1';
-            instruction_request <= '0';
-            instruction_out <= instruction_in;
-        when instruction_fetch =>
+            instruction_request <='0';
+        when instruction_load =>
+            instruction_request <='1';
+            fetch_stage_ready <= '0';
+        when instruction_fetch => 
+            instruction_request <='0';
             fetch_stage_ready<='0';
-            instruction_request <= '1';
+            
         end case;
     end process;
-    new_address<=pc_address_out;
+    new_address <= pc_address_out;
+    instruction_out <= instruction_in;
 end Behavioral;

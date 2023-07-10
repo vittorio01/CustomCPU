@@ -58,27 +58,28 @@ begin
     register_address_a <= instruction_in(19 downto 15);
     register_address_b <= instruction_in(24 downto 20);
     
-    with op_code select
-    immediate_value <=  (instruction_in (31 downto 12) & "000000000000") when "0110111",  -- U type
-                        (instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(19 downto 12) & "000000000000") when "1101111",  -- J type
-                        (instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in (31 downto 20)) when "1100111",  -- I type JALR
-                        (instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(7) & instruction_in (30 downto 25) & "00000") when "1100011", -- B type
-                        (instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31 downto 20)) when ("0000011" or "0010011"), --I type
-                        (others => '-') when others;
-    with op_code select 
-    instruction_type <= "0000" when "0110111",   -- U type
-                        "0001" when "1101111",   -- J type
-                        "0010" when "1100111",   -- I type JALR
-                        "0011" when "1100011",   -- B type 
-                        "0100" when "0000011",   -- I type Load 
-                        "0101" when "0100011",   -- S type
-                        "0110" when "0010011",   -- I type arithmetic / R type shift
-                        "0111" when "0110011",   -- R type
-                        "----" when others;
+    immediate_value <=  (instruction_in (31 downto 12) & "000000000000") when (op_code="0110111") else  -- U type
+                        (instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(19 downto 12) & "000000000000") when (op_code = "1101111") else  -- J type
+                        (instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in (31 downto 20)) when (op_code="1100111") else  -- I type JALR
+                        (instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(7) & instruction_in (30 downto 25) & "00000") when (op_code="1100011") else -- B type
+                        (instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31 downto 20)) when (op_code="0000011" or (op_code="0010011" and not(funct3 = "001" or funct3 = "101"))) else --I type
+                        ("000000000000000000000000000" & instruction_in(24 downto 20)) when (op_code="0010011" and (funct3 = "001" or funct3 = "101")) else
+                        (others => '-');
+ 
+    instruction_type <= "0000" when (op_code="0110111") else   -- U type
+                        "0001" when (op_code="1101111") else   -- J type
+                        "0010" when (op_code="1100111") else   -- I type JALR
+                        "0011" when (op_code="1100011") else   -- B type 
+                        "0100" when (op_code="0000011") else   -- I type Load 
+                        "0101" when (op_code="0100011") else   -- S type
+                        "0110" when (op_code="0010011" and not(funct3 = "001" or funct3 = "101")) else   -- I type arithmetic / R type shift
+                        "1000" when (op_code="0010011" and (funct3 = "001" or funct3 = "101")) else      -- I type arithmetic / R type shift
+                        "0111" when (op_code="0110011") else   -- R type
+                        "----";
                         
     with funct7 select 
-    alu_control <= "00" & funct3 when "0100000", 
-                   "01" & funct3 when "0000000", 
+    alu_control <= "00" & funct3 when "0000000", 
+                   "01" & funct3 when "0100000", 
                    "--" & funct3 when others;
     
  

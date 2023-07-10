@@ -213,12 +213,17 @@ begin
     process (clk) is 
     begin 
         if (rising_edge(clk)) then
-            if (fetch_stage_ready='1' and decode_stage_ready='1') then
-                fetch_pipeline_step <= '1';
-                decode_pipeline_step <= '1';
-            else 
+            if (reset = '0') then 
                 fetch_pipeline_step <= '0';
                 decode_pipeline_step <= '0';
+            else 
+                if (fetch_stage_ready = '1' and decode_stage_ready = '1') then 
+                    fetch_pipeline_step <= '1';
+                    decode_pipeline_step <= '1';
+                else 
+                    fetch_pipeline_step <= '0';
+                    decode_pipeline_step <= '0';
+                end if;
             end if;
         end if;
     end process;
