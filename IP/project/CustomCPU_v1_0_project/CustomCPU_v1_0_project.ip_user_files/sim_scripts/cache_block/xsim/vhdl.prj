@@ -1,0 +1,5 @@
+vhdl xil_defaultlib  \
+"../../../../CustomCPU_v1_0_project.gen/sources_1/ip/cache_block/cache_block_sim_netlist.vhdl" \
+
+# Do not sort compile order
+nosort

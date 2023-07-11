@@ -1,5 +1,0 @@
-vhdl xil_defaultlib  \
-"../../../../customCPU.gen/sources_1/ip/register_array/register_array_sim_netlist.vhdl" \
-
-# Do not sort compile order
-nosort

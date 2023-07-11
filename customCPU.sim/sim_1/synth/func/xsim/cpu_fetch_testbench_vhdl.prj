@@ -1,7 +1,0 @@
-# compile vhdl design source files
-vhdl xil_defaultlib  \
-"cpu_fetch_testbench_func_synth.vhd" \
-"../../../../../customCPU.srcs/sim_1/new/cpu_fetch_testbench.vhd" \
-
-# Do not sort compile order
-nosort
