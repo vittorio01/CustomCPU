@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-07-16T15:59:29.014Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0" etag="AH6_gAfHcYD881WHeHb5" version="21.6.2" type="github">
+<mxfile host="app.diagrams.net" modified="2023-07-16T16:12:23.263Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0" etag="jnSLfk8Yu0Pqku__9NJl" version="21.6.2" type="github">
   <diagram name="Pagina-1" id="_AoRa2cJ0ejXUdXcMOnp">
-    <mxGraphModel dx="1456" dy="346" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1707" dy="485" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -84,7 +84,7 @@
         <mxCell id="yG971o4-tWycymEqZ0E4-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="h3B7MR_wZLT5G75nNYw9-30" target="h3B7MR_wZLT5G75nNYw9-42">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="h3B7MR_wZLT5G75nNYw9-30" value="cache/memory writeback" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="h3B7MR_wZLT5G75nNYw9-30" value="&lt;div&gt;memory&lt;/div&gt;&lt;div&gt;writeback&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="357" y="340" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="yG971o4-tWycymEqZ0E4-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="h3B7MR_wZLT5G75nNYw9-38" target="h3B7MR_wZLT5G75nNYw9-23">
@@ -92,7 +92,7 @@
             <mxPoint x="49.99999999999977" y="430" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="h3B7MR_wZLT5G75nNYw9-38" value="memory read transfer" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="h3B7MR_wZLT5G75nNYw9-38" value="memory read" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="-10" y="340" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="yG971o4-tWycymEqZ0E4-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="h3B7MR_wZLT5G75nNYw9-42">
