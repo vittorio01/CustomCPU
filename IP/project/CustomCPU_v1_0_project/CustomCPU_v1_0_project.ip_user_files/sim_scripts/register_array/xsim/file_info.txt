@@ -1,0 +1,1 @@
+register_array_sim_netlist.vhdl,vhdl,xil_defaultlib,../../../../CustomCPU_v1_0_project.gen/sources_1/ip/register_array/register_array_sim_netlist.vhdl,

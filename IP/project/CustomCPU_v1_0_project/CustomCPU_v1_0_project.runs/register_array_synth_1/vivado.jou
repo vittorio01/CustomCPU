@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2023.1 (64-bit)
+# SW Build 3865809 on Sun May  7 15:04:56 MDT 2023
+# IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
+# SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
+# Start of session at: Mon Jul 17 18:11:17 2023
+# Process ID: 46395
+# Current directory: /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/register_array_synth_1
+# Command line: vivado -log register_array.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source register_array.tcl
+# Log file: /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/register_array_synth_1/register_array.vds
+# Journal file: /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/register_array_synth_1/vivado.jou
+# Running On: asus-pc, OS: Linux, CPU Frequency: 2400.000 MHz, CPU Physical cores: 2, Host memory: 8180 MB
+#-----------------------------------------------------------
+source register_array.tcl -notrace
