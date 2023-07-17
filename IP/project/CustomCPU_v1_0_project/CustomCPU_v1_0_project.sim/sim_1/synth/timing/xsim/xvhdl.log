@@ -1,0 +1,20 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sim_1/new/register_file_testbench.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'register_file_testbench'
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sim_1/new/memory_interface_testbench.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'memory_interface_testbench'
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sim_1/new/memory_manager_testbench.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'memory_manager_testbench'
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sim_1/new/cache_register_testbench.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'cache_register_testbench'
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sim_1/new/fetch_stage_testbench.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'fetch_stage_testbench'
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sim_1/new/cpu_fetch_testbench.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'cpu_fetch_testbench'
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sim_1/new/decode_stage_testbench.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'decode_stage_testbench'
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sim_1/new/program_counter_testbench.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'program_counter_testbench'
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sim_1/new/ALU_testbench.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'ALU_testbench'
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sim_1/new/cache_testbench.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'cache_testbench'

@@ -1,0 +1,1 @@
+page_list_sim_netlist.vhdl,vhdl,xil_defaultlib,../../../../CustomCPU_v1_0_project.gen/sources_1/ip/page_list/page_list_sim_netlist.vhdl,

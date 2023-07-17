@@ -1,0 +1,1 @@
+block_ram_sim_netlist.vhdl,vhdl,xil_defaultlib,../../../../CustomCPU_v1_0_project.gen/sources_1/ip/block_ram/block_ram_sim_netlist.vhdl,
