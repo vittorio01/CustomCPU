@@ -89,7 +89,7 @@ begin
                 else 
                     index:=to_integer(unsigned(data_address(data_address_dimension-1 downto 0)&"000"));
                     case data_write_mode is 
-                        when "11" => -- write 32 bit word
+                        when "10" => -- write 32 bit word
                             data(index+7 downto index) <= data_in(7 downto 0);
                             data(index+15 downto index+7) <= data_in(15 downto 7);
                             data(index+23 downto index+15) <= data_in(23 downto 15);

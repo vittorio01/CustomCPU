@@ -37,19 +37,25 @@ entity execute_stage is
     register_b: in std_logic_vector(31 downto 0);
     immediate_operand: in std_logic_vector(31 downto 0);
     new_program_counter: in stD_logic_vector(31 downto 0);
+    
+    new_program_counter_out: out std_logic_vector (31 downto 0);
+    register_output_address_in: in std_logic_vector(4 downto 0);
+    
     instruction_type: in std_logic_vector(3 downto 0);
     alu_control: in std_logic_vector (4 downto 0);
     
-    branch_enable: out std_logic;
-    register_output: out std_logic_vector (31 downto 0);
+    alu_output: out std_logic_vector (31 downto 0);
+    register_output_address: out std_logic_vector (4 downto 0);
+    register_writeback_enable: out std_logic;
     
     data_memory_address: out std_logic_vector(31 downto 0);
-    writeback_enable: out std_logic;
     memory_write_enable: out std_logic;
     memory_read_enable: out std_logic;
     
     pipeline_step: in std_logic;
     execute_stage_ready: out std_logic;
+    
+    memory_access_mode: out std_logic_vector(2 downto 0);
     
     clk: in std_logic;
     reset: in std_logic
@@ -69,15 +75,9 @@ architecture Behavioral of execute_stage is
     signal alu_a, alu_b, alu_data_out: std_logic_vector(31 downto 0);
     signal alu_operation: std_logic_vector(4 downto 0);
     
-    type state is (step_wait, other_instruction, branch_instruction, store_instruction, jalr_instruction, address_calculation);
+    type state is (step_wait, other_instruction, branch_instruction, jalr_instruction, address_calculation, output_latch);
     signal current_state: state;
-    signal branch_check: std_logic;
-    
-    signal memory_write: std_logic:='0';
-    signal register_write: std_logic:='0';
-    signal memory_read: std_logic:='0';
-    signal register_out: std_logic_vector(31 downto 0);
-    signal memory_address: std_logic_vector(31 downto 0);
+
 begin
     alu1: alu port map (
         a => alu_a,
@@ -86,29 +86,240 @@ begin
         operation => alu_operation
     );
     process (clk) is 
+    variable branch_check: std_logic;
     begin 
         if (rising_edge(clk)) then 
             if (reset='0') then
+                branch_check := '0';
                 current_state<=step_wait;
+                register_writeback_enable <= '0';
+                memory_write_enable <= '0';
+                memory_read_enable <= '0';
+                data_memory_address <= (others => '0');
+                alu_output <= (others => '0');
+                register_output_address <= (others => '0');
             else 
                 if (current_state = step_wait) then 
+                    execute_stage_ready <= '1';
                     if (pipeline_step = '1') then
                         if (instruction_type = "0011") then 
                             current_state <= branch_instruction;
-                        elsif (instruction_type = "0101") then
-                            current_state <= store_instruction;
                         elsif (instruction_type = "0010") then 
                             current_state <= jalr_instruction;
                         else
                             current_state <= other_instruction;
                         end if;
+                    else 
+                        branch_check:='0';
                     end if;
-                
-                elsif (current_state = branch_instruction and branch_check = '1') then 
+                elsif (current_state = branch_instruction) then 
+                    execute_stage_ready <= '0';
+                    
+                    branch_check:='1';
+                    alu_a <= register_a;
+                    alu_b <= register_b;
+                    case alu_control(2 downto 0) is 
+                        when "000" => alu_operation <= "01000";     -- BEQ
+                        when "001" => alu_operation <= "01000";     -- BNE
+                        when "100" => alu_operation <= "00010";     -- BLT
+                        when "101" => alu_operation <= "00010";     -- BGE
+                        when "110" => alu_operation <= "00011";     -- BLTU
+                        when "111" => alu_operation <= "00011";     -- BGEU
+                        when others => alu_operation <= (others => '-');
+                    end case;
+                    current_state <= address_calculation;
+                elsif (current_state = jalr_instruction) then 
+                    execute_stage_ready <= '0';
+                    
+                    branch_check:='0';
+                    alu_a <= register_a;
+                    alu_b <= immediate_operand;
+                    alu_operation <= "00000";
                     current_state <= address_calculation;
                 elsif (current_state = address_calculation) then 
-                    current_state <= step_wait;
+                    execute_stage_ready <= '0';
+                    if (branch_check='1') then 
+                        alu_a <= new_program_counter;
+                        alu_b <= immediate_operand;
+                        alu_operation <= "00000";
+                        case alu_control (2 downto 0) is  
+                            when "000" =>      -- BEQ
+                                if (not(alu_data_out = x"00000000")) then 
+                                    branch_check:= '0';
+                                end if;
+                            when "001" =>      -- BNE
+                                if (alu_data_out = x"00000000") then 
+                                    branch_check := '1';
+                                end if;
+                            when "100" =>      -- BLT
+                                if (alu_data_out = x"00000000") then 
+                                    branch_check:= '0';
+                                end if;
+                            when "101" =>      -- BGE
+                                if (alu_data_out = x"11111111") then 
+                                    branch_check:='0';
+                                end if;
+                            when "110" =>      -- BLTU
+                                if (alu_data_out = x"00000000") then 
+                                    branch_check:= '0';
+                                end if;
+                            when "111" =>      -- BGEU
+                                if (alu_data_out = x"11111111") then 
+                                    branch_check:='0';
+                                end if;
+                            when others =>
+                                branch_check:= '0';
+                        end case;
+                    else
+                        alu_a <= new_program_counter;
+                        alu_b <= alu_data_out;
+                        alu_operation <= "00000";
+                    end if;
+                    current_state <= output_latch;
                 elsif (current_state = other_instruction) then
+                    execute_stage_ready <= '0';
+                    case instruction_type is 
+                        when "0111" => alu_a <= register_a;             -- R arithmetic type
+                        when "0000" => alu_a <= (others => '0');        -- U type LUI
+                        when "1001" => alu_a <= new_program_counter;    -- U type AUIPC
+                        when "0001" => alu_a <= new_program_counter;    -- J type
+                        when "0100" => alu_a <= register_a;             -- I type load
+                        when "1000" => alu_a <= register_a;             -- R type shift
+                        when "0110" => alu_a <= register_a;             -- I type arithmetic
+                        when "0101" => alu_a <= register_a;             -- S type store
+                        when others => alu_a <= (others => '-');
+                        
+                    end case;
+                    
+                    case instruction_type is 
+                        when "0111" => alu_b <= register_b;             -- R arithmetic type
+                        when "0000" => alu_b <= immediate_operand;      -- U type LUI
+                        when "1001" => alu_b <= immediate_operand;      -- U type AUIPC
+                        when "0001" => alu_b <= immediate_operand;      -- J type
+                        when "0100" => alu_b <= immediate_operand;      -- I type load
+                        when "1000" => alu_b <= immediate_operand;      -- R type shift
+                        when "0110" => alu_b <= immediate_operand;      -- I type arithmetic
+                        when "0101" => alu_b <= immediate_operand;      -- S type store
+                        when others => alu_b <= (others => '-');
+                    end case;
+                    
+                    case instruction_type is 
+                        when "0111" => alu_operation <= alu_control;      -- R arithmetic type
+                        when "0000" => alu_operation <= "00000";          -- U type LUI
+                        when "1001" => alu_operation <= "00000";          -- U type AUIPC
+                        when "0001" => alu_operation <= "00000";          -- J type
+                        when "0100" => alu_operation <= "00000";          -- I type load
+                        when "1000" => alu_operation <= alu_control;      -- R type shift
+                        when "0110" => alu_operation <= alu_control;      -- I type arithmetic
+                        when "0101" => alu_operation <= "00000";          -- S type store
+                        when others => alu_operation <= (others => '-');
+                    end case;
+                    current_state <= output_latch;
+                elsif (current_state <= output_latch) then
+                    execute_stage_ready <= '0';
+                    case instruction_type is 
+                        when "0010" =>                                    -- JALR instruction
+                            register_writeback_enable <= '1';
+                            memory_write_enable <= '0';
+                            memory_read_enable <= '0';
+                            data_memory_address <= (others => '-');
+                            new_program_counter_out <= alu_data_out;
+                            alu_output <= new_program_counter;
+                            register_output_address <= register_output_address_in;
+                            memory_access_mode <= (others => '-');
+                        when "0011" =>                                    -- branch 
+                            register_writeback_enable <= '0';
+                            memory_write_enable <= '0';
+                            memory_read_enable <= '0';
+                            data_memory_address <= (others => '-');
+                            alu_output <= (others => '-');
+                            register_output_address <= (others => '-');
+                            new_program_counter_out <= alu_data_out;
+                            memory_access_mode <= (others => '-');
+                        when "0111" =>     -- R arithmetic type
+                            register_writeback_enable <= '1';
+                            memory_write_enable <= '0';
+                            memory_read_enable <= '0';
+                            data_memory_address <= (others => '-');
+                            alu_output <= alu_data_out;
+                            register_output_address <= register_output_address_in;
+                            new_program_counter_out <= new_program_counter;
+                            memory_access_mode <= (others => '-');
+                        when "0000" =>           -- U type AUI
+                            register_writeback_enable <= '1';
+                            memory_write_enable <= '0';
+                            memory_read_enable <= '0';
+                            data_memory_address <= (others => '-');
+                            alu_output <= alu_data_out;
+                            register_output_address <= register_output_address_in;
+                            new_program_counter_out <= new_program_counter;
+                            memory_access_mode <= (others => '-');
+                        when "1001" =>           -- U type AUIPC
+                            register_writeback_enable <= '1';
+                            memory_write_enable <= '0';
+                            memory_read_enable <= '0';
+                            data_memory_address <= (others => '-');
+                            alu_output <= alu_data_out;
+                            register_output_address <= register_output_address_in;
+                            new_program_counter_out <= new_program_counter;
+                            memory_access_mode <= (others => '-');
+                        when "0001" =>          -- J type
+                            register_writeback_enable <= '0';
+                            memory_write_enable <= '0';
+                            memory_read_enable <= '0';
+                            data_memory_address <= (others => '-');
+                            alu_output <= (others => '-');
+                            register_output_address <= (others => '-');
+                            new_program_counter_out <= alu_data_out;
+                            memory_access_mode <= (others => '-');
+                        when "0100" =>          -- I type load
+                            register_writeback_enable <= '1';
+                            memory_write_enable <= '0';
+                            memory_read_enable <= '1';
+                            data_memory_address <= alu_data_out;
+                            alu_output <= (others => '-');
+                            register_output_address <= register_output_address_in;
+                            new_program_counter_out <= new_program_counter;
+                            memory_access_mode <= alu_operation(2 downto 0);
+                            
+                        when "1000" =>       -- R type shift
+                            register_writeback_enable <= '1';
+                            memory_write_enable <= '0';
+                            memory_read_enable <= '0';
+                            data_memory_address <= (others => '-');
+                            alu_output <= alu_data_out;
+                            register_output_address <= register_output_address_in;
+                            new_program_counter_out <= new_program_counter;
+                            memory_access_mode <= (others => '-');
+                        when "0110" =>       -- I type arithmetic
+                            register_writeback_enable <= '1';
+                            memory_write_enable <= '0';
+                            memory_read_enable <= '0';
+                            data_memory_address <= (others => '-');
+                            alu_output <= alu_data_out;
+                            register_output_address <= register_output_address_in;
+                            new_program_counter_out <= new_program_counter;
+                            memory_access_mode <= (others => '-');
+                        when "0101" =>           -- S type store
+                            register_writeback_enable <= '0';
+                            memory_write_enable <= '1';
+                            memory_read_enable <= '0';
+                            data_memory_address <= alu_data_out;
+                            alu_output <= register_b;
+                            register_output_address <= (others => '-');
+                            new_program_counter_out <= new_program_counter;
+                            memory_access_mode <= alu_operation(2 downto 0);
+                        when others => 
+                            register_writeback_enable <= '0';
+                            memory_write_enable <= '0';
+                            memory_read_enable <= '0';
+                            data_memory_address <= (others => '0');
+                            alu_output <= (others => '-');
+                            register_output_address <= (others => '-');
+                            memory_access_mode <= (others => '-');
+                            new_program_counter_out <= new_program_counter;
+                        end case;
+                    memory_access_mode <= alu_operation(2 downto 0);
                     current_state <= step_wait;
                 else 
                     current_state <= step_wait;
@@ -116,86 +327,4 @@ begin
             end if;
         end if;
     end process;
-    
-    process (current_state) is 
-    begin 
-        case current_state is 
-            when step_wait => 
-                execute_stage_ready <= '1';
-                branch_check <= '0';
-                writeback_enable <= register_write; 
-                memory_write_enable <= memory_write;
-                memory_read_enable <= memory_read;
-                register_output <= register_out; 
-                data_memory_address <= memory_address;
-                
-            when other_instruction => 
-                execute_stage_ready <= '0';
-                branch_check <= '0';
-                
-                case instruction_type is 
-                    when "0111" => alu_a <= register_a;             -- R arithmetic type
-                    when "0000" => alu_a <= (others => '0');        -- U type
-                    when "0001" => alu_a <= new_program_counter;    -- J type
-                    when "0100" => alu_a <= register_a;             -- I type load
-                    when "1000" => alu_a <= register_a;             -- R type shift
-                    when "0110" => alu_a <= register_a;             -- I type arithmetic
-                    when others => alu_a <= (others => '-');
-                    
-                end case;
-                 case instruction_type is 
-                    when "0111" => alu_b <= register_b;             -- R arithmetic type
-                    when "0000" => alu_b <= immediate_operand;      -- U type
-                    when "0001" => alu_b <= immediate_operand;      -- J type
-                    when "0100" => alu_b <= immediate_operand;      -- I type load
-                    when "1000" => alu_b <= immediate_operand;      -- R type shift
-                    when "0110" => alu_b <= immediate_operand;      -- I type arithmetic
-                    when others => alu_b <= (others => '-');
-                    
-                end case;
-                memory_write <= '0';
-                register_write <= '1';
-                if (instruction_type = "0100") then 
-                    memory_read <= '1'; 
-                else 
-                    memory_read <= '0';
-                end if;
-                
-                case instruction_type is 
-                    when "0111" => alu_operation <= alu_control;      -- R arithmetic type
-                    when "0000" => alu_operation <= "00000";          -- U type
-                    when "0001" => alu_operation <= "00000";          -- J type
-                    when "0100" => alu_operation <= "00000";          -- I type load
-                    when "1000" => alu_operation <= alu_control;      -- R type shift
-                    when "0110" => alu_operation <= alu_control;      -- I type arithmetic
-                    when others => alu_operation <= (others => '-');
-                end case;
-                register_out <= alu_data_out;
-                
-        when jalr_instruction => 
-                execute_stage_ready <= '0';
-                register_out <= new_program_counter;
-                branch_check <= '1';
-                register_write <= '1';
-                memory_write <= '0';
-                memory_read <= '0';
-        
-        when store_instruction => 
-                
-                
-                
-                
-        when branch_instruction => 
-                execute_stage_ready <= '1';
-                
-                
-                
-                
-                
-                
-        end case;
-    end process;
-    
-    
-
 end Behavioral;

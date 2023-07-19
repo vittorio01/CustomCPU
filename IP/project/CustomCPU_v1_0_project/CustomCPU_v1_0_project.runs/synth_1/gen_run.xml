@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7z020clg484-1" LaunchTime="1689607494">
-  <File Type="VDS-TIMINGSUMMARY" Name="memory_interface_timing_summary_synth.rpt"/>
+<GenRun Id="synth_1" LaunchPart="xc7z020clg484-1" LaunchTime="1689760605" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/memory_interface.dcp">
   <File Type="RDS-DCP" Name="memory_interface.dcp"/>
   <File Type="RDS-UTIL-PB" Name="memory_interface_utilization_synth.pb"/>
-  <File Type="RDS-UTIL" Name="memory_interface_utilization_synth.rpt"/>
-  <File Type="RDS-PROPCONSTRS" Name="memory_interface_drc_synth.rpt"/>
-  <File Type="RDS-RDS" Name="memory_interface.vds"/>
-  <File Type="REPORTS-TCL" Name="memory_interface_reports.tcl"/>
-  <File Type="VDS-TIMING-PB" Name="memory_interface_timing_summary_synth.pb"/>
   <File Type="PA-TCL" Name="memory_interface.tcl"/>
+  <File Type="RDS-UTIL" Name="memory_interface_utilization_synth.rpt"/>
+  <File Type="REPORTS-TCL" Name="memory_interface_reports.tcl"/>
+  <File Type="RDS-RDS" Name="memory_interface.vds"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0_memory_bus.vhd">
@@ -103,13 +100,6 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/ip/block_ram/block_ram.xci">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
     <File Path="$PSRCDIR/sources_1/imports/CustomCPU/IP/project/CustomCPU_v1_0_project/programs/list_cache_test.coe">
       <FileInfo>
         <Attr Name="ImportPath" Val="$PPRDIR/programs/list_cache_test.coe"/>
@@ -122,6 +112,24 @@
       <FileInfo>
         <Attr Name="ImportPath" Val="$PPRDIR/../../../programs/init_test.coe"/>
         <Attr Name="ImportTime" Val="1689521480"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/programs/list_cache_test.coe">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../programs/init_test.coe">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/memory_access_stage.vhd">
+      <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
@@ -139,6 +147,14 @@
   </FileSet>
   <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1" RelGenDir="$PGENDIR/utils_1">
     <Filter Type="Utils"/>
+    <File Path="$PSRCDIR/utils_1/imports/synth_1/memory_interface.dcp">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedInSteps" Val="synth_1"/>
+        <Attr Name="AutoDcp" Val="1"/>
+      </FileInfo>
+    </File>
     <Config>
       <Option Name="TopAutoSet" Val="TRUE"/>
     </Config>
@@ -147,6 +163,8 @@
     <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023"/>
     <Step Id="synth_design"/>
   </Strategy>
-  <BlockFileSet Type="BlockSrcs" Name="page_list"/>
   <BlockFileSet Type="BlockSrcs" Name="cache_block"/>
+  <BlockFileSet Type="BlockSrcs" Name="page_list"/>
+  <BlockFileSet Type="BlockSrcs" Name="block_ram"/>
+  <BlockFileSet Type="BlockSrcs" Name="register_array"/>
 </GenRun>

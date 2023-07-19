@@ -1,7 +1,7 @@
 Vivado Simulator v2023.1
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: /opt/Xilinx/Vivado/2023.1/bin/unwrapped/lnx64.o/xelab --incr --debug typical --relax --mt 8 -L xil_defaultlib -L secureip -L xpm --snapshot fetch_stage_testbench_behav xil_defaultlib.fetch_stage_testbench -log elaborate.log 
+Running: /opt/Xilinx/Vivado/2023.1/bin/unwrapped/lnx64.o/xelab --incr --debug typical --relax --mt 8 -L xil_defaultlib -L secureip -L xpm --snapshot memory_access_testbench_behav xil_defaultlib.memory_access_testbench -log elaborate.log 
 Using 8 slave threads.
 Starting static elaboration
 Completed static elaboration
@@ -165,7 +165,6 @@ Compiling architecture implementation of entity xil_defaultlib.CustomCPU_v1_0_me
 Compiling architecture behavioral of entity xil_defaultlib.cache [\cache(0,31)\]
 Compiling architecture behavioral of entity xil_defaultlib.cache_register [cache_register_default]
 Compiling architecture behavioral of entity xil_defaultlib.memory_interface [\memory_interface(0,31)\]
-Compiling architecture behavioral of entity xil_defaultlib.program_counter [program_counter_default]
-Compiling architecture behavioral of entity xil_defaultlib.fetch_stage_controller [fetch_stage_controller_default]
-Compiling architecture behavioral of entity xil_defaultlib.fetch_stage_testbench
-Built simulation snapshot fetch_stage_testbench_behav
+Compiling architecture behavioral of entity xil_defaultlib.memory_access_stage [memory_access_stage_default]
+Compiling architecture behavioral of entity xil_defaultlib.memory_access_testbench
+Built simulation snapshot memory_access_testbench_behav

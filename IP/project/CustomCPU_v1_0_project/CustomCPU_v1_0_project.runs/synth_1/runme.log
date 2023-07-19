@@ -11,22 +11,27 @@
     ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 
 source memory_interface.tcl -notrace
-create_project: Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 1332.762 ; gain = 0.023 ; free physical = 169 ; free virtual = 5222
+create_project: Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1273.637 ; gain = 0.023 ; free physical = 1323 ; free virtual = 5276
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/vittorio/GitHub/CustomCPU/IP/CustomCPU_1_0'.
 WARNING: [IP_Flow 19-2207] Repository '/home/vittorio/GitHub/CustomCPU/IP/CustomCPU_1_0' already exists; ignoring attempt to add it again.
 INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/vittorio/GitHub/CustomCPU/IP/CustomCPU_1_0'.
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/Vivado/2023.1/data/ip'.
+Command: read_checkpoint -auto_incremental -incremental /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/utils_1/imports/synth_1/memory_interface.dcp
+INFO: [Vivado 12-5825] Read reference checkpoint from /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/utils_1/imports/synth_1/memory_interface.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
 Command: synth_design -top memory_interface -part xc7z020clg484-1
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: [Device 21-403] Loading part xc7z020clg484-1
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 34742
+INFO: [Synth 8-7075] Helper process launched with PID 27599
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2028.062 ; gain = 376.770 ; free physical = 120 ; free virtual = 4461
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2029.688 ; gain = 380.738 ; free physical = 246 ; free virtual = 4212
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'memory_interface' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:117]
 WARNING: [Synth 8-506] null port 'memory_bus_awuser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:81]
@@ -61,10 +66,10 @@ WARNING: [Synth 8-506] null port 'memory_bus_wuser' ignored [/home/vittorio/GitH
 WARNING: [Synth 8-506] null port 'memory_bus_buser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:98]
 WARNING: [Synth 8-506] null port 'memory_bus_aruser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:110]
 WARNING: [Synth 8-506] null port 'memory_bus_ruser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:117]
-INFO: [Synth 8-3491] module 'page_list' declared at '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/synth_1/.Xil/Vivado-34693-asus-pc/realtime/page_list_stub.vhdl:6' bound to instance 'list' of component 'page_list' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:241]
-INFO: [Synth 8-638] synthesizing module 'page_list' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/synth_1/.Xil/Vivado-34693-asus-pc/realtime/page_list_stub.vhdl:17]
-INFO: [Synth 8-3491] module 'cache_block' declared at '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/synth_1/.Xil/Vivado-34693-asus-pc/realtime/cache_block_stub.vhdl:6' bound to instance 'cache' of component 'cache_block' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:249]
-INFO: [Synth 8-638] synthesizing module 'cache_block' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/synth_1/.Xil/Vivado-34693-asus-pc/realtime/cache_block_stub.vhdl:18]
+INFO: [Synth 8-3491] module 'page_list' declared at '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/synth_1/.Xil/Vivado-27532-asus-pc/realtime/page_list_stub.vhdl:6' bound to instance 'list' of component 'page_list' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:241]
+INFO: [Synth 8-638] synthesizing module 'page_list' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/synth_1/.Xil/Vivado-27532-asus-pc/realtime/page_list_stub.vhdl:17]
+INFO: [Synth 8-3491] module 'cache_block' declared at '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/synth_1/.Xil/Vivado-27532-asus-pc/realtime/cache_block_stub.vhdl:6' bound to instance 'cache' of component 'cache_block' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:249]
+INFO: [Synth 8-638] synthesizing module 'cache_block' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/synth_1/.Xil/Vivado-27532-asus-pc/realtime/cache_block_stub.vhdl:18]
 	Parameter C_M_TARGET_SLAVE_BASE_ADDR bound to: 32'b01000000000000000000000000000000 
 	Parameter C_M_AXI_BURST_LEN bound to: 8 - type: integer 
 	Parameter C_M_AXI_ID_WIDTH bound to: 8 - type: integer 
@@ -114,10 +119,10 @@ INFO: [Synth 8-638] synthesizing module 'cache_register' [/home/vittorio/GitHub/
 	Parameter page_dimension bound to: 256 - type: integer 
 	Parameter data_address_dimension bound to: 5 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'cache_register' (0#1) [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache_register.vhd:59]
-WARNING: [Synth 8-614] signal 'data_memory_address' is read in the process but is not in the sensitivity list [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:590]
-WARNING: [Synth 8-614] signal 'data_memory_data_in' is read in the process but is not in the sensitivity list [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:590]
-WARNING: [Synth 8-614] signal 'register_data_out' is read in the process but is not in the sensitivity list [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:590]
-WARNING: [Synth 8-614] signal 'instruction_memory_address' is read in the process but is not in the sensitivity list [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:590]
+WARNING: [Synth 8-614] signal 'data_memory_address' is read in the process but is not in the sensitivity list [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:599]
+WARNING: [Synth 8-614] signal 'data_memory_data_in' is read in the process but is not in the sensitivity list [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:599]
+WARNING: [Synth 8-614] signal 'register_data_out' is read in the process but is not in the sensitivity list [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:599]
+WARNING: [Synth 8-614] signal 'instruction_memory_address' is read in the process but is not in the sensitivity list [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:599]
 INFO: [Synth 8-256] done synthesizing module 'memory_interface' (0#1) [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:117]
 WARNING: [Synth 8-7129] Port data_access in module cache_register is either unconnected or has no load
 WARNING: [Synth 8-7129] Port M_AXI_AWREADY in module CustomCPU_v1_0_memory_bus is either unconnected or has no load
@@ -145,18 +150,18 @@ WARNING: [Synth 8-7129] Port data_memory_address[31] in module memory_interface 
 WARNING: [Synth 8-7129] Port data_memory_address[30] in module memory_interface is either unconnected or has no load
 WARNING: [Synth 8-7129] Port data_memory_address[29] in module memory_interface is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2150.047 ; gain = 498.754 ; free physical = 144 ; free virtual = 4295
+Finished RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2150.672 ; gain = 501.723 ; free physical = 130 ; free virtual = 4086
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2164.891 ; gain = 513.598 ; free physical = 141 ; free virtual = 4292
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2165.516 ; gain = 516.566 ; free physical = 130 ; free virtual = 4085
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2164.891 ; gain = 513.598 ; free physical = 141 ; free virtual = 4292
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2165.516 ; gain = 516.566 ; free physical = 130 ; free virtual = 4085
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00.19 ; elapsed = 00:00:00.19 . Memory (MB): peak = 2164.891 ; gain = 0.000 ; free physical = 148 ; free virtual = 4303
+Netlist sorting complete. Time (s): cpu = 00:00:00.22 ; elapsed = 00:00:00.22 . Memory (MB): peak = 2165.516 ; gain = 0.000 ; free physical = 125 ; free virtual = 4083
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -165,24 +170,24 @@ Parsing XDC File [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_proj
 Finished Parsing XDC File [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.gen/sources_1/ip/cache_block/cache_block/cache_block_in_context.xdc] for cell 'cache1/cache'
 Parsing XDC File [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.gen/sources_1/ip/page_list/page_list/page_list_in_context.xdc] for cell 'cache1/list'
 Finished Parsing XDC File [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.gen/sources_1/ip/page_list/page_list/page_list_in_context.xdc] for cell 'cache1/list'
-Parsing XDC File [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/synth_1/dont_touch.xdc]
-Finished Parsing XDC File [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2274.461 ; gain = 0.000 ; free physical = 128 ; free virtual = 4278
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2273.117 ; gain = 0.000 ; free physical = 132 ; free virtual = 4078
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2274.461 ; gain = 0.000 ; free physical = 132 ; free virtual = 4279
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2273.117 ; gain = 0.000 ; free physical = 132 ; free virtual = 4078
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 2274.461 ; gain = 623.168 ; free physical = 120 ; free virtual = 4268
+Finished Constraint Validation : Time (s): cpu = 00:00:25 ; elapsed = 00:00:27 . Memory (MB): peak = 2273.117 ; gain = 624.168 ; free physical = 129 ; free virtual = 4068
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg484-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 2274.461 ; gain = 623.168 ; free physical = 120 ; free virtual = 4268
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:25 ; elapsed = 00:00:27 . Memory (MB): peak = 2273.117 ; gain = 624.168 ; free physical = 129 ; free virtual = 4068
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -190,7 +195,7 @@ Start Applying 'set_property' XDC Constraints
 Applied set_property KEEP_HIERARCHY = SOFT for cache1/cache. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for cache1/list. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 2274.461 ; gain = 623.168 ; free physical = 120 ; free virtual = 4268
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:25 ; elapsed = 00:00:27 . Memory (MB): peak = 2273.117 ; gain = 624.168 ; free physical = 129 ; free virtual = 4068
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'wa_current_state_reg' in module 'CustomCPU_v1_0_memory_bus'
 INFO: [Synth 8-802] inferred FSM for state register 'ra_current_state_reg' in module 'CustomCPU_v1_0_memory_bus'
@@ -213,7 +218,7 @@ INFO: [Synth 8-3354] encoded FSM with state register 'ra_current_state_reg' usin
 *
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'wa_current_state_reg' using encoding 'one-hot' in module 'CustomCPU_v1_0_memory_bus'
-WARNING: [Synth 8-327] inferring latch for variable 'instruction_memory_ready_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:597]
+WARNING: [Synth 8-327] inferring latch for variable 'instruction_memory_ready_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:606]
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
@@ -235,11 +240,10 @@ instruction_page2_request |                             1100 |                  
        instruction_latch |                             1111 |                             1111
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'current_state_reg' using encoding 'sequential' in module 'memory_interface'
-WARNING: [Synth 8-327] inferring latch for variable 'instruction_memory_data_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:764]
-WARNING: [Synth 8-327] inferring latch for variable 'data_memory_data_out_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:705]
-WARNING: [Synth 8-327] inferring latch for variable 'offset_overflow_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:634]
-WARNING: [Synth 8-327] inferring latch for variable 'loaded_page1_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:370]
-WARNING: [Synth 8-327] inferring latch for variable 'loaded_page2_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:380]
+WARNING: [Synth 8-327] inferring latch for variable 'instruction_memory_data_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:772]
+WARNING: [Synth 8-327] inferring latch for variable 'data_memory_data_out_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:713]
+WARNING: [Synth 8-327] inferring latch for variable 'loaded_page2_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:381]
+WARNING: [Synth 8-327] inferring latch for variable 'loaded_page1_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:369]
 WARNING: [Synth 8-327] inferring latch for variable 'cache_address_in_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:279]
 WARNING: [Synth 8-327] inferring latch for variable 'cache_write_enable_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:283]
 WARNING: [Synth 8-327] inferring latch for variable 'cache_enable_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:284]
@@ -251,7 +255,7 @@ WARNING: [Synth 8-327] inferring latch for variable 'register_data_write_reg' [/
 WARNING: [Synth 8-327] inferring latch for variable 'register_data_access_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:344]
 WARNING: [Synth 8-327] inferring latch for variable 'register_data_address_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:345]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 2274.461 ; gain = 623.168 ; free physical = 125 ; free virtual = 4249
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 2273.117 ; gain = 624.168 ; free physical = 127 ; free virtual = 4070
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -265,7 +269,7 @@ Detailed RTL Component Info :
 	               32 Bit    Registers := 8     
 	               19 Bit    Registers := 1     
 	                2 Bit    Registers := 3     
-	                1 Bit    Registers := 14    
+	                1 Bit    Registers := 15    
 +---Muxes : 
 	 256 Input  512 Bit        Muxes := 1     
 	   3 Input  512 Bit        Muxes := 2     
@@ -277,16 +281,16 @@ Detailed RTL Component Info :
 	   2 Input   32 Bit        Muxes := 3     
 	  16 Input   24 Bit        Muxes := 3     
 	  16 Input    5 Bit        Muxes := 1     
-	  42 Input    4 Bit        Muxes := 1     
+	  44 Input    4 Bit        Muxes := 1     
 	   3 Input    3 Bit        Muxes := 2     
 	   2 Input    3 Bit        Muxes := 2     
 	   2 Input    2 Bit        Muxes := 1     
 	   4 Input    2 Bit        Muxes := 1     
-	   2 Input    1 Bit        Muxes := 38    
+	   2 Input    1 Bit        Muxes := 42    
 	   3 Input    1 Bit        Muxes := 3     
 	   4 Input    1 Bit        Muxes := 7     
 	   5 Input    1 Bit        Muxes := 2     
-	  16 Input    1 Bit        Muxes := 23    
+	  16 Input    1 Bit        Muxes := 22    
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -310,25 +314,25 @@ WARNING: [Synth 8-7129] Port data_memory_address[31] in module memory_interface 
 WARNING: [Synth 8-7129] Port data_memory_address[30] in module memory_interface is either unconnected or has no load
 WARNING: [Synth 8-7129] Port data_memory_address[29] in module memory_interface is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:50 ; elapsed = 00:00:52 . Memory (MB): peak = 2274.461 ; gain = 623.168 ; free physical = 138 ; free virtual = 4254
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:59 ; elapsed = 00:01:02 . Memory (MB): peak = 2273.117 ; gain = 624.168 ; free physical = 131 ; free virtual = 4064
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:57 ; elapsed = 00:00:58 . Memory (MB): peak = 2274.461 ; gain = 623.168 ; free physical = 123 ; free virtual = 4240
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:06 ; elapsed = 00:01:09 . Memory (MB): peak = 2273.117 ; gain = 624.168 ; free physical = 132 ; free virtual = 4065
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:57 ; elapsed = 00:00:58 . Memory (MB): peak = 2274.461 ; gain = 623.168 ; free physical = 123 ; free virtual = 4240
+Finished Timing Optimization : Time (s): cpu = 00:01:07 ; elapsed = 00:01:09 . Memory (MB): peak = 2273.117 ; gain = 624.168 ; free physical = 132 ; free virtual = 4065
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:58 ; elapsed = 00:00:59 . Memory (MB): peak = 2274.461 ; gain = 623.168 ; free physical = 123 ; free virtual = 4240
+Finished Technology Mapping : Time (s): cpu = 00:01:08 ; elapsed = 00:01:11 . Memory (MB): peak = 2273.117 ; gain = 624.168 ; free physical = 133 ; free virtual = 4066
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -346,46 +350,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:03 ; elapsed = 00:01:05 . Memory (MB): peak = 2274.461 ; gain = 623.168 ; free physical = 122 ; free virtual = 4240
+Finished IO Insertion : Time (s): cpu = 00:01:14 ; elapsed = 00:01:17 . Memory (MB): peak = 2273.117 ; gain = 624.168 ; free physical = 142 ; free virtual = 4075
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:03 ; elapsed = 00:01:05 . Memory (MB): peak = 2274.461 ; gain = 623.168 ; free physical = 122 ; free virtual = 4240
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:14 ; elapsed = 00:01:17 . Memory (MB): peak = 2273.117 ; gain = 624.168 ; free physical = 142 ; free virtual = 4075
 ---------------------------------------------------------------------------------
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin offset_overflow with 1st driver pin 'offset_overflow_reg__0/Q' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:372]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin offset_overflow with 2nd driver pin 'offset_overflow_reg/Q' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:634]
-
-Report Check Netlist: 
-+------+------------------+-------+---------+-------+------------------+
-|      |Item              |Errors |Warnings |Status |Description       |
-+------+------------------+-------+---------+-------+------------------+
-|1     |multi_driven_nets |      0|        1|Failed |Multi driven nets |
-+------+------------------+-------+---------+-------+------------------+
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:03 ; elapsed = 00:01:05 . Memory (MB): peak = 2274.461 ; gain = 623.168 ; free physical = 122 ; free virtual = 4240
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:14 ; elapsed = 00:01:17 . Memory (MB): peak = 2273.117 ; gain = 624.168 ; free physical = 142 ; free virtual = 4075
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:03 ; elapsed = 00:01:05 . Memory (MB): peak = 2274.461 ; gain = 623.168 ; free physical = 122 ; free virtual = 4240
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:14 ; elapsed = 00:01:17 . Memory (MB): peak = 2273.117 ; gain = 624.168 ; free physical = 142 ; free virtual = 4075
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:04 ; elapsed = 00:01:05 . Memory (MB): peak = 2274.461 ; gain = 623.168 ; free physical = 122 ; free virtual = 4240
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:15 ; elapsed = 00:01:18 . Memory (MB): peak = 2273.117 ; gain = 624.168 ; free physical = 137 ; free virtual = 4070
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:01:04 ; elapsed = 00:01:05 . Memory (MB): peak = 2274.461 ; gain = 623.168 ; free physical = 122 ; free virtual = 4240
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:15 ; elapsed = 00:01:18 . Memory (MB): peak = 2273.117 ; gain = 624.168 ; free physical = 137 ; free virtual = 4070
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -406,44 +401,43 @@ Report Cell Usage:
 |1     |cache_block_bbox |     1|
 |2     |page_list_bbox   |     1|
 |3     |BUFG             |     5|
-|4     |CARRY4           |    58|
+|4     |CARRY4           |    59|
 |5     |LUT1             |     7|
-|6     |LUT2             |    98|
-|7     |LUT3             |   389|
-|8     |LUT4             |    49|
-|9     |LUT5             |   153|
-|10    |LUT6             |  1574|
-|11    |MUXF7            |   162|
-|12    |FDRE             |  1620|
-|13    |LD               |   194|
-|14    |IBUF             |   135|
+|6     |LUT2             |   122|
+|7     |LUT3             |   445|
+|8     |LUT4             |    65|
+|9     |LUT5             |   195|
+|10    |LUT6             |  1627|
+|11    |MUXF7            |   160|
+|12    |FDRE             |  1626|
+|13    |LD               |   199|
+|14    |IBUF             |   136|
 |15    |OBUF             |   238|
 +------+-----------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:04 ; elapsed = 00:01:05 . Memory (MB): peak = 2274.461 ; gain = 623.168 ; free physical = 122 ; free virtual = 4240
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:15 ; elapsed = 00:01:18 . Memory (MB): peak = 2273.117 ; gain = 624.168 ; free physical = 137 ; free virtual = 4070
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 2 critical warnings and 23 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:59 ; elapsed = 00:01:00 . Memory (MB): peak = 2274.461 ; gain = 513.598 ; free physical = 122 ; free virtual = 4240
-Synthesis Optimization Complete : Time (s): cpu = 00:01:04 ; elapsed = 00:01:06 . Memory (MB): peak = 2274.469 ; gain = 623.168 ; free physical = 122 ; free virtual = 4240
+Synthesis finished with 0 errors, 0 critical warnings and 22 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:09 ; elapsed = 00:01:11 . Memory (MB): peak = 2273.117 ; gain = 516.566 ; free physical = 137 ; free virtual = 4070
+Synthesis Optimization Complete : Time (s): cpu = 00:01:15 ; elapsed = 00:01:18 . Memory (MB): peak = 2273.125 ; gain = 624.168 ; free physical = 137 ; free virtual = 4070
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.04 . Memory (MB): peak = 2274.469 ; gain = 0.000 ; free physical = 390 ; free virtual = 4508
-INFO: [Netlist 29-17] Analyzing 414 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.06 . Memory (MB): peak = 2273.125 ; gain = 0.000 ; free physical = 411 ; free virtual = 4344
+INFO: [Netlist 29-17] Analyzing 418 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2274.469 ; gain = 0.000 ; free physical = 389 ; free virtual = 4508
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2273.125 ; gain = 0.000 ; free physical = 410 ; free virtual = 4344
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 194 instances were transformed.
-  LD => LDCE: 194 instances
+  A total of 199 instances were transformed.
+  LD => LDCE: 199 instances
 
-Synth Design complete | Checksum: 394ceba6
+Synth Design complete | Checksum: f30b45bc
 INFO: [Common 17-83] Releasing license: Synthesis
-39 Infos, 88 Warnings, 2 Critical Warnings and 0 Errors encountered.
+45 Infos, 87 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:16 ; elapsed = 00:01:14 . Memory (MB): peak = 2274.469 ; gain = 941.707 ; free physical = 389 ; free virtual = 4508
-INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 1884.821; main = 1568.275; forked = 362.629
-INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3239.691; main = 2274.465; forked = 965.227
-INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
+synth_design: Time (s): cpu = 00:01:27 ; elapsed = 00:01:26 . Memory (MB): peak = 2273.125 ; gain = 966.770 ; free physical = 410 ; free virtual = 4343
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 1886.976; main = 1570.843; forked = 366.489
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3238.344; main = 2273.121; forked = 965.223
 INFO: [Common 17-1381] The checkpoint '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/synth_1/memory_interface.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file memory_interface_utilization_synth.rpt -pb memory_interface_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Mon Jul 17 17:26:34 2023...
+INFO: [Common 17-206] Exiting Vivado at Wed Jul 19 11:58:33 2023...

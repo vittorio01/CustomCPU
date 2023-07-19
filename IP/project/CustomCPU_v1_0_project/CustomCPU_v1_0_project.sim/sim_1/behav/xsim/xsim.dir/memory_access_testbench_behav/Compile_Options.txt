@@ -1,0 +1,1 @@
+--incr --debug "typical" --relax --mt "8" -L "xil_defaultlib" -L "secureip" -L "xpm" --snapshot "memory_access_testbench_behav" "xil_defaultlib.memory_access_testbench" -log "elaborate.log" 

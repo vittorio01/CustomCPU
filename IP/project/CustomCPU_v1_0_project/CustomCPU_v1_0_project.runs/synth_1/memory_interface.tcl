@@ -95,6 +95,8 @@ OPTRACE "Adding files" START { }
 add_files /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/project/CustomCPU_v1_0_project/programs/test.coe
 add_files /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/project/CustomCPU_v1_0_project/programs/list_cache_test.coe
 add_files /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/programs/init_test.coe
+add_files /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/programs/list_cache_test.coe
+add_files /home/vittorio/GitHub/CustomCPU/programs/init_test.coe
 read_vhdl -library xil_defaultlib {
   /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0_memory_bus.vhd
   /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd
@@ -108,15 +110,19 @@ read_vhdl -library xil_defaultlib {
   /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/decode.vhd
   /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd
   /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/register_file.vhd
+  /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_access_stage.vhd
 }
-read_ip -quiet /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/ip/block_ram/block_ram.xci
-set_property used_in_implementation false [get_files -all /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.gen/sources_1/ip/block_ram/block_ram_ooc.xdc]
-
 read_ip -quiet /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/ip/cache_block/cache_block.xci
 set_property used_in_implementation false [get_files -all /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.gen/sources_1/ip/cache_block/cache_block_ooc.xdc]
 
 read_ip -quiet /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/ip/page_list/page_list.xci
 set_property used_in_implementation false [get_files -all /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.gen/sources_1/ip/page_list/page_list_ooc.xdc]
+
+read_ip -quiet /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/ip/block_ram/block_ram.xci
+set_property used_in_implementation false [get_files -all /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.gen/sources_1/ip/block_ram/block_ram_ooc.xdc]
+
+read_ip -quiet /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/ip/register_array/register_array.xci
+set_property used_in_implementation false [get_files -all /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.gen/sources_1/ip/register_array/register_array_ooc.xdc]
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -127,9 +133,9 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc dont_touch.xdc
-set_property used_in_implementation false [get_files dont_touch.xdc]
 set_param ips.enableIPCacheLiteLoad 1
+
+read_checkpoint -auto_incremental -incremental /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/utils_1/imports/synth_1/memory_interface.dcp
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }

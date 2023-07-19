@@ -63,24 +63,25 @@ begin
                         (instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in (31 downto 20)) when (op_code="1100111") else  -- I type JALR
                         (instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(7) & instruction_in (30 downto 25) & "00000") when (op_code="1100011") else -- B type
                         (instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31 downto 20)) when (op_code="0000011" or (op_code="0010011" and not(funct3 = "001" or funct3 = "101"))) else --I type
-                        ("000000000000000000000000000" & instruction_in(24 downto 20)) when (op_code="0010011" and (funct3 = "001" or funct3 = "101")) else
+                        ("000000000000000000000000000" & instruction_in(24 downto 20)) when (op_code="0010011" and (funct3 = "001" or funct3 = "101")) else -- R type shift
                         (others => '-');
  
-    instruction_type <= "0000" when (op_code="0110111") else   -- U type
+    instruction_type <= "0000" when (op_code="0110111") else   -- U type LUI
+                        "1001" when (op_code="0010111") else   -- U type AUIPC
                         "0001" when (op_code="1101111") else   -- J type
                         "0010" when (op_code="1100111") else   -- I type JALR
                         "0011" when (op_code="1100011") else   -- B type 
                         "0100" when (op_code="0000011") else   -- I type Load 
                         "0101" when (op_code="0100011") else   -- S type
-                        "0110" when (op_code="0010011" and not(funct3 = "001" or funct3 = "101")) else   -- I type arithmetic / R type shift
-                        "1000" when (op_code="0010011" and (funct3 = "001" or funct3 = "101")) else      -- I type arithmetic / R type shift
+                        "0110" when (op_code="0010011" and not(funct3 = "001" or funct3 = "101")) else   -- I type arithmetic
+                        "1000" when (op_code="0010011" and (funct3 = "001" or funct3 = "101")) else      -- R type shift
                         "0111" when (op_code="0110011") else   -- R type
                         "----";
                         
     with funct7 select 
     alu_control <= "00" & funct3 when "0000000", 
                    "01" & funct3 when "0100000", 
-                   "--" & funct3 when others;
+                   "00" & funct3 when others;
     
  
 end Behavioral;

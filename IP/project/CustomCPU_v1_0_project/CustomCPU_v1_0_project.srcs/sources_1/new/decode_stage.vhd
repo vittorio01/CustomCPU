@@ -63,6 +63,8 @@ architecture Behavioral of decode_stage is
       immediate_value: out std_logic_vector (31 downto 0);
       
       instruction_type: out std_logic_vector (3 downto 0);
+  
+      
       alu_control: out std_logic_vector (4 downto 0)
       );
     end component decode;

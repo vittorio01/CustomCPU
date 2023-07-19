@@ -81,13 +81,13 @@ begin
     b_signal <= unsigned(b);
     
     result <= (a_signal + b_signal) when (operation = "00000") else                     -- sum
-              (not(a_signal + b_signal)+1) when (operation = "01000") else              -- sub 
+              (a_signal - b_signal) when (operation = "01000") else                     -- sub 
               shiftleft(a_signal,b_signal) when (operation="00001") else                -- shift left logic
               shiftright(a_signal,b_signal) when (operation="00101") else               -- shift right logic
               shiftrighta(a_signal,b_signal) when (operation="01101") else              -- shift right arithmetic
               (others => '1') when (operation="00011" and a_signal<b_signal) else       -- lower unsigned
               (others => '0') when (operation="00011" and a_signal>=b_signal) else 
-              (others => '1') when (operation="00010" and signed(a)<signed(b)) else     -- aritmetic signed
+              (others => '1') when (operation="00010" and signed(a)<signed(b)) else     -- lower aritmetic signed
               (others => '0') when (operation="00010" and signed(a)>=signed(b)) else 
               (a_signal xor b_signal) when (operation="00100") else                     -- xor
               (a_signal or b_signal) when (operation="00110") else                      -- or
