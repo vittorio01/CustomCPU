@@ -68,49 +68,49 @@ entity memory_interface is
     reset: in std_logic;
     
     memory_bus_aclk	: in std_logic;
-		memory_bus_aresetn	: in std_logic;
-		memory_bus_awid	: out std_logic_vector(C_memory_bus_ID_WIDTH-1 downto 0);
-		memory_bus_awaddr	: out std_logic_vector(C_memory_bus_ADDR_WIDTH-1 downto 0);
-		memory_bus_awlen	: out std_logic_vector(C_memory_bus_BURST_LEN-1 downto 0);
-		memory_bus_awsize	: out std_logic_vector(2 downto 0);
-		memory_bus_awburst	: out std_logic_vector(1 downto 0);
-		memory_bus_awlock	: out std_logic;
-		memory_bus_awcache	: out std_logic_vector(3 downto 0);
-		memory_bus_awprot	: out std_logic_vector(2 downto 0);
-		memory_bus_awqos	: out std_logic_vector(3 downto 0);
-		memory_bus_awuser	: out std_logic_vector(C_memory_bus_AWUSER_WIDTH-1 downto 0);
-		memory_bus_awvalid	: out std_logic;
-		memory_bus_awready	: in std_logic;
-		memory_bus_wdata	: out std_logic_vector(C_memory_bus_DATA_WIDTH-1 downto 0);
-		memory_bus_wstrb	: out std_logic_vector(C_memory_bus_DATA_WIDTH/8-1 downto 0);
-		memory_bus_wlast	: out std_logic;
-		memory_bus_wuser	: out std_logic_vector(C_memory_bus_WUSER_WIDTH-1 downto 0);
-		memory_bus_wvalid	: out std_logic;
-		memory_bus_wready	: in std_logic;
-		memory_bus_bid	: in std_logic_vector(C_memory_bus_ID_WIDTH-1 downto 0);
-		memory_bus_bresp	: in std_logic_vector(1 downto 0);
-		memory_bus_buser	: in std_logic_vector(C_memory_bus_BUSER_WIDTH-1 downto 0);
-		memory_bus_bvalid	: in std_logic;
-		memory_bus_bready	: out std_logic;
-		memory_bus_arid	: out std_logic_vector(C_memory_bus_ID_WIDTH-1 downto 0);
-		memory_bus_araddr	: out std_logic_vector(C_memory_bus_ADDR_WIDTH-1 downto 0);
-		memory_bus_arlen	: out std_logic_vector(C_memory_bus_BURST_LEN-1 downto 0);
-		memory_bus_arsize	: out std_logic_vector(2 downto 0);
-		memory_bus_arburst	: out std_logic_vector(1 downto 0);
-		memory_bus_arlock	: out std_logic;
-		memory_bus_arcache	: out std_logic_vector(3 downto 0);
-		memory_bus_arprot	: out std_logic_vector(2 downto 0);
-		memory_bus_arqos	: out std_logic_vector(3 downto 0);
-		memory_bus_aruser	: out std_logic_vector(C_memory_bus_ARUSER_WIDTH-1 downto 0);
-		memory_bus_arvalid	: out std_logic;
-		memory_bus_arready	: in std_logic;
-		memory_bus_rid	: in std_logic_vector(C_memory_bus_ID_WIDTH-1 downto 0);
-		memory_bus_rdata	: in std_logic_vector(C_memory_bus_DATA_WIDTH-1 downto 0);
-		memory_bus_rresp	: in std_logic_vector(1 downto 0);
-		memory_bus_rlast	: in std_logic;
-		memory_bus_ruser	: in std_logic_vector(C_memory_bus_RUSER_WIDTH-1 downto 0);
-		memory_bus_rvalid	: in std_logic;
-		memory_bus_rready	: out std_logic
+    memory_bus_aresetn	: in std_logic;
+    memory_bus_awid	: out std_logic_vector(C_memory_bus_ID_WIDTH-1 downto 0);
+    memory_bus_awaddr	: out std_logic_vector(C_memory_bus_ADDR_WIDTH-1 downto 0);
+    memory_bus_awlen	: out std_logic_vector(C_memory_bus_BURST_LEN-1 downto 0);
+    memory_bus_awsize	: out std_logic_vector(2 downto 0);
+    memory_bus_awburst	: out std_logic_vector(1 downto 0);
+    memory_bus_awlock	: out std_logic;
+    memory_bus_awcache	: out std_logic_vector(3 downto 0);
+    memory_bus_awprot	: out std_logic_vector(2 downto 0);
+    memory_bus_awqos	: out std_logic_vector(3 downto 0);
+    memory_bus_awuser	: out std_logic_vector(C_memory_bus_AWUSER_WIDTH-1 downto 0);
+    memory_bus_awvalid	: out std_logic;
+    memory_bus_awready	: in std_logic;
+    memory_bus_wdata	: out std_logic_vector(C_memory_bus_DATA_WIDTH-1 downto 0);
+    memory_bus_wstrb	: out std_logic_vector(C_memory_bus_DATA_WIDTH/8-1 downto 0);
+    memory_bus_wlast	: out std_logic;
+    memory_bus_wuser	: out std_logic_vector(C_memory_bus_WUSER_WIDTH-1 downto 0);
+    memory_bus_wvalid	: out std_logic;
+    memory_bus_wready	: in std_logic;
+    memory_bus_bid	: in std_logic_vector(C_memory_bus_ID_WIDTH-1 downto 0);
+    memory_bus_bresp	: in std_logic_vector(1 downto 0);
+    memory_bus_buser	: in std_logic_vector(C_memory_bus_BUSER_WIDTH-1 downto 0);
+    memory_bus_bvalid	: in std_logic;
+    memory_bus_bready	: out std_logic;
+    memory_bus_arid	: out std_logic_vector(C_memory_bus_ID_WIDTH-1 downto 0);
+    memory_bus_araddr	: out std_logic_vector(C_memory_bus_ADDR_WIDTH-1 downto 0);
+    memory_bus_arlen	: out std_logic_vector(C_memory_bus_BURST_LEN-1 downto 0);
+    memory_bus_arsize	: out std_logic_vector(2 downto 0);
+    memory_bus_arburst	: out std_logic_vector(1 downto 0);
+    memory_bus_arlock	: out std_logic;
+    memory_bus_arcache	: out std_logic_vector(3 downto 0);
+    memory_bus_arprot	: out std_logic_vector(2 downto 0);
+    memory_bus_arqos	: out std_logic_vector(3 downto 0);
+    memory_bus_aruser	: out std_logic_vector(C_memory_bus_ARUSER_WIDTH-1 downto 0);
+    memory_bus_arvalid	: out std_logic;
+    memory_bus_arready	: in std_logic;
+    memory_bus_rid	: in std_logic_vector(C_memory_bus_ID_WIDTH-1 downto 0);
+    memory_bus_rdata	: in std_logic_vector(C_memory_bus_DATA_WIDTH-1 downto 0);
+    memory_bus_rresp	: in std_logic_vector(1 downto 0);
+    memory_bus_rlast	: in std_logic;
+    memory_bus_ruser	: in std_logic_vector(C_memory_bus_RUSER_WIDTH-1 downto 0);
+    memory_bus_rvalid	: in std_logic;
+    memory_bus_rready	: out std_logic
   );
 end memory_interface;
 
@@ -207,6 +207,7 @@ architecture Behavioral of memory_interface is
       Generic ( page_dimension: integer:= 256;
                 data_address_dimension: integer:= 5
       );
+     
       Port (
         page_in: in std_logic_vector(page_dimension-1 downto 0);
         page_out: out std_logic_vector(page_dimension-1 downto 0);
@@ -273,7 +274,8 @@ architecture Behavioral of memory_interface is
     signal current_state: state;
     
 begin
-    cache1: cache port map ( 
+    cache1: cache 
+    port map ( 
             clk => clk,
             reset => reset,
             address_in => cache_address_in,
@@ -404,7 +406,6 @@ begin
                                     end if;
                              
                             elsif (instruction_memory_request = '1') then
-                                
                                 data_address(address_range-1 downto 0):=instruction_memory_address(address_range-1 downto 0);
                                 offset1:= std_logic_vector(unsigned(data_address));
                                 offset2:= std_logic_vector(unsigned(data_address)+3);
@@ -433,7 +434,6 @@ begin
                                         current_state<=instruction_page1_request;
                                     end if;
                                 end if;
-                                
                             end if;
                          end if;
                     when data_page1_request =>
@@ -604,13 +604,12 @@ begin
             when wait_request => 
                 cache_enable<='0';
                 cache_write_enable<='0';
-                instruction_memory_ready<='1';
-                data_memory_ready<='1';
                 register_page_access <= '0';
                 register_write_enable <='0';
                 register_data_access <='0';
                 register_data_write<='0';
-              
+                instruction_memory_ready <= '1';
+                data_memory_ready <= '1';
                 
             when data_page1_request => 
                 cache_address_in <= data_memory_address(cache_offset_address_dimension+cache_page_address_dimension-1 downto cache_offset_address_dimension);

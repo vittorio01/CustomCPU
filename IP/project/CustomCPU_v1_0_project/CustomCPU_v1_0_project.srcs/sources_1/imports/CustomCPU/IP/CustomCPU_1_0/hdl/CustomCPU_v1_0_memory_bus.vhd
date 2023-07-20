@@ -411,7 +411,10 @@ begin
 	        elsif (ra_current_state = stop) then 
 	           transmission_read_started<='0';
 	           axi_rready<='0';
-	           ra_current_state <= idle;      
+	                
+	           if (transmission_read_start = '0') then
+	               ra_current_state <= idle; 
+	           end if;
 	        end if;                                              
 	      end if;                                                          
 	    end if;                                                            

@@ -33,6 +33,9 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity decode_stage is
   Port (
+    new_program_counter_in: in std_logic_vector(31 downto 0);
+    new_program_counter_out: out std_logic_vector(31 downto 0);
+      
     instruction_in: in std_logic_vector(31 downto 0);
     register_a: out std_logic_vector(31 downto 0);
     register_b: out std_logic_vector(31 downto 0);
@@ -43,6 +46,7 @@ entity decode_stage is
     
     decode_stage_ready: out std_logic; 
     pipeline_step: in std_logic;
+    output_mask: in std_logic;
     
     register_writeback_address: in std_logic_vector(4 downto 0);
     register_writeback_data: in std_logic_vector(31 downto 0);
@@ -63,8 +67,6 @@ architecture Behavioral of decode_stage is
       immediate_value: out std_logic_vector (31 downto 0);
       
       instruction_type: out std_logic_vector (3 downto 0);
-  
-      
       alu_control: out std_logic_vector (4 downto 0)
       );
     end component decode;
@@ -139,54 +141,57 @@ begin
     register_address_write <= register_writeback_address;
     register_write_data <= register_writeback_data;
     register_write_request <= register_writeback_request;
+    
+    decode_instruction_in <= instruction_in;
     process (clk) is 
     begin 
         if (rising_edge(clk)) then
             if (reset = '0') then 
                 current_state <= step_wait;
-            else 
-                if (current_state = step_wait) then
-                    if (pipeline_step = '1') then
-                        current_state <= register_data_request;
-                    end if;
-                elsif (current_state = register_data_request) then
-                    current_state <= register_data_receive;
-                elsif (current_state = register_data_receive) then 
-                    if (register_ready='1') then 
+                
+            else
+                if (output_mask = '0') then 
+                    if (current_state = step_wait) then
+                        register_read_request <= '0';
+                        register_enable<='0';
+                        if (pipeline_step = '1') then
+                            current_state <= register_data_request;
+                            decode_stage_ready <= '0';
+                        else 
+                            decode_stage_ready <= '1';
+                        end if;
+                    elsif (current_state = register_data_request) then
+                        register_read_request <= '1';
+                        register_enable<='1';
+                        current_state <= register_data_receive;
+                    elsif (current_state = register_data_receive) then 
+                        register_a <= register_a_data;
+                        register_b <= register_b_data;
+                        register_dest <= decode_register_dest;
+                        immediate_operand <= decode_immediate;
+                        instruction_type <= decode_instruction_type;
+                        alu_control <= decode_alu_control;
+                        register_enable<='0';
+                        register_read_request <= '0';
+                        new_program_counter_out <= new_program_counter_in;
+                        if (register_ready='1') then 
+                            current_state <= step_wait;
+                        end if;  
+                                                                                                   
+                    else 
                         current_state <= step_wait;
-                    end if;  
-                                                                                               
+                    end if;
                 else 
                     current_state <= step_wait;
+                    new_program_counter_out <= x"00000000";
+                    register_a <= (others => '-');
+                    register_b <= (others => '-');
+                    register_dest <= (others => '0');
+                    immediate_operand <= (others => '-');
+                    alu_control <= "00000";
+                    instruction_type <= "0111";
                 end if;
             end if;
         end if;
     end process;
-    process (current_state) is 
-    begin 
-        case current_state is 
-            when step_wait => 
-                decode_instruction_in <= instruction_in;
-                decode_stage_ready <= '1';
-                register_read_request <= '0';
-                register_enable<='0';
-                register_a <= register_a_data;
-                register_b <= register_b_data;
-                register_dest <= decode_register_dest;
-                immediate_operand <= decode_immediate;
-                instruction_type <= decode_instruction_type;
-                alu_control <= decode_alu_control;
-                
-            when register_data_request =>
-                
-                decode_stage_ready <= '0';
-                register_read_request <= '1';
-                register_enable<='1';
-            when register_data_receive =>
-                register_enable<='0';
-                decode_stage_ready <= '0';
-                register_read_request <= '0';
-        end case;
-    end process;
-    
 end Behavioral;

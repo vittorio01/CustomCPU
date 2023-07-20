@@ -58,11 +58,12 @@ begin
     register_address_a <= instruction_in(19 downto 15);
     register_address_b <= instruction_in(24 downto 20);
     
-    immediate_value <=  (instruction_in (31 downto 12) & "000000000000") when (op_code="0110111") else  -- U type
+    immediate_value <=  (instruction_in (31 downto 12) & "000000000000") when (op_code="0110111" or op_code="0010111") else  -- U type
                         (instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(19 downto 12) & "000000000000") when (op_code = "1101111") else  -- J type
                         (instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in (31 downto 20)) when (op_code="1100111") else  -- I type JALR
                         (instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(7) & instruction_in (30 downto 25) & "00000") when (op_code="1100011") else -- B type
                         (instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31) & instruction_in(31 downto 20)) when (op_code="0000011" or (op_code="0010011" and not(funct3 = "001" or funct3 = "101"))) else --I type
+                        ("00000000000000000000" & instruction_in(31 downto 25) & instruction_in(11 downto 7)) when (op_code="0100011") else -- s type
                         ("000000000000000000000000000" & instruction_in(24 downto 20)) when (op_code="0010011" and (funct3 = "001" or funct3 = "101")) else -- R type shift
                         (others => '-');
  

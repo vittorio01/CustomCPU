@@ -38,31 +38,25 @@ entity program_counter is
   generic (address_width: integer:=32;                                 --width of address lines (bits)
            instruction_width: integer:=4);                             --width of the instructions (bytes)
   Port (load_enable: in std_logic;                                     --line used to trigger the counter to load a specific address from address_in (enabled -> '1');
+        increment: in std_logic;
         address_in: in std_logic_vector(address_width-1 downto 0);     --input line used to set a specific value to the program counter
         address_out: out std_logic_vector(address_width-1 downto 0);   --output address from the program counter
-        
         clk: in std_logic;                                             
         reset:in std_logic);                                           --syncronus reset (enable -> '0');
 end program_counter;
 
 architecture Behavioral of program_counter is
     signal current_address: unsigned(address_width-1 downto 0):=(others => '0');
-    type state is (count_enable,count_wait);
-    signal current_state: state;
 begin
     process (clk, reset) begin
         if (rising_edge(clk)) then 
             if (reset = '0') then
-                current_state <= count_wait;
                 current_address <= (others => '0');
             else 
-                if (current_state=count_wait) then 
-                    if (load_enable='1') then 
-                        current_address<=unsigned(address_in)+instruction_width;
-                        current_state<=count_enable;
-                    end if;
-                elsif (current_state=count_enable and load_enable='0') then
-                    current_state <=count_wait;
+                if (load_enable='1') then 
+                    current_address<=unsigned(address_in);
+                elsif (increment = '1') then
+                    current_address<=current_address+4;
                 end if;
             end if;
         end if;
