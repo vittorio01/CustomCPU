@@ -72,12 +72,16 @@ architecture Behavioral of execute_stage is
       a: in std_logic_vector(31 downto 0);
       b: in std_logic_vector(31 downto 0);
       data_out: out std_logic_vector(31 downto 0);
-      operation: in std_logic_vector (4 downto 0)
+      operation: in std_logic_vector (4 downto 0);
+      clk: in std_logic;
+      reset: in std_logic;
+      execute: in std_logic;
+      ready: out std_logic
       );
     end component ALU;
     signal alu_a, alu_b, alu_data_out: std_logic_vector(31 downto 0);
     signal alu_operation: std_logic_vector(4 downto 0);
-    
+    signal alu_execute,alu_ready: std_logic;
     type state is (step_wait, other_instruction, branch_instruction, jalr_instruction, address_calculation, output_latch);
     signal current_state: state;
 
@@ -86,7 +90,11 @@ begin
         a => alu_a,
         b => alu_b,
         data_out => alu_data_out,
-        operation => alu_operation
+        operation => alu_operation,
+        clk => clk,
+        reset => reset,
+        execute => alu_execute,
+        ready => alu_ready
     );
     process (clk) is 
     variable branch_check: std_logic;
@@ -94,11 +102,11 @@ begin
         if (rising_edge(clk)) then 
             if (reset='0') then
                 branch_check := '0';
-                
             else 
                 if (output_mask = '0') then
+                    
                     if (current_state = step_wait) then 
-                        
+                        alu_execute <= '0';
                         if (pipeline_step = '1') then
                             execute_stage_ready <= '0';
                             if (instruction_type = "0011") then 
@@ -114,7 +122,7 @@ begin
                         end if;
                     elsif (current_state = branch_instruction) then 
                         execute_stage_ready <= '0';
-                        
+                        alu_execute <= '1';
                         branch_check:='1';
                         alu_a <= register_a;
                         alu_b <= register_b;
@@ -129,6 +137,7 @@ begin
                         end case;
                         current_state <= address_calculation;
                     elsif (current_state = jalr_instruction) then 
+                        alu_execute <= '1';
                         execute_stage_ready <= '0';
                         
                         branch_check:='0';
@@ -137,6 +146,7 @@ begin
                         alu_operation <= "00000";
                         current_state <= address_calculation;
                     elsif (current_state = address_calculation) then 
+                        alu_execute <= '1';
                         execute_stage_ready <= '0';
                         if (branch_check='1') then 
                             alu_a <= new_program_counter;
@@ -177,6 +187,7 @@ begin
                         end if;
                         current_state <= output_latch;
                     elsif (current_state = other_instruction) then
+                        alu_execute <= '1';
                         execute_stage_ready <= '0';
                         case instruction_type is 
                             when "0111" => alu_a <= register_a;             -- R arithmetic type
@@ -214,8 +225,11 @@ begin
                             when "0101" => alu_operation <= "00000";          -- S type store
                             when others => alu_operation <= (others => '-');
                         end case;
-                        current_state <= output_latch;
+                        if (alu_ready= '1') then 
+                            current_state <= output_latch;
+                        end if;
                     elsif (current_state <= output_latch) then
+                        alu_execute <= '0';
                         execute_stage_ready <= '0';
                         case instruction_type is 
                             when "0010" =>                                    -- JALR instruction

@@ -54,11 +54,10 @@
 COMPONENT cache_block
   PORT (
     a : IN STD_LOGIC_VECTOR(5 DOWNTO 0);
-    d : IN STD_LOGIC_VECTOR(255 DOWNTO 0);
+    d : IN STD_LOGIC_VECTOR(127 DOWNTO 0);
     clk : IN STD_LOGIC;
     we : IN STD_LOGIC;
-    i_ce : IN STD_LOGIC;
-    spo : OUT STD_LOGIC_VECTOR(255 DOWNTO 0) 
+    spo : OUT STD_LOGIC_VECTOR(127 DOWNTO 0) 
   );
 END COMPONENT;
 -- COMP_TAG_END ------ End COMPONENT Declaration ------------
@@ -73,7 +72,6 @@ your_instance_name : cache_block
     d => d,
     clk => clk,
     we => we,
-    i_ce => i_ce,
     spo => spo
   );
 -- INST_TAG_END ------ End INSTANTIATION Template ---------

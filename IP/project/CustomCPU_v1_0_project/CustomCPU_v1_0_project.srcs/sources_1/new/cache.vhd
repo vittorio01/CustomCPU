@@ -38,11 +38,11 @@ entity cache is
 		-- User parameters ends
 		-- Do not modify the parameters beyond this line
         cache_address_dimension : integer := 6;
-        memory_address_dimension: integer := 24;
-        cache_data_dimension: integer:= 256;
+        memory_address_dimension: integer := 25;
+        cache_data_dimension: integer:= 128;
         transmission_data_dimension: integer := 32;
         
-        cache_offset_address_dimension: integer:= 8;
+        cache_offset_address_dimension: integer:= 7;
         
 		-- Parameters of Axi Master Bus Interface memory_bus
 		C_memory_bus_TARGET_SLAVE_BASE_ADDR	: std_logic_vector	:= x"40000000";
@@ -377,7 +377,7 @@ CustomCPU_v1_0_memory_bus_inst : CustomCPU_v1_0_memory_bus
 	           elsif (current_state = memory_read) then
 	               if (transmission_read_start='0') then
 	                   transmission_read_start<='1';
-                       transmission_read_address<=(address_in & "00000000");--memory_low_address);
+                       transmission_read_address<=(address_in & "0000000");--memory_low_address);
 	                   transmission_read_start <= '1'; 
 	                   memory_current_word_number:=0;
 	               else 
@@ -401,7 +401,7 @@ CustomCPU_v1_0_memory_bus_inst : CustomCPU_v1_0_memory_bus
 	               if (transmission_write_start='0') then
 	                   memory_current_word_number:=0;
 	                   transmission_write_start<='1';
-                       transmission_write_address<=(address_in & "00000000"); --memory_low_address);
+                       transmission_write_address<=(address_in & "0000000"); --memory_low_address);
 	                   transmission_write_start <= '1'; 
 	               else 
 	                   if (transmission_write_started='1' and memory_current_word_number < memory_transfer_number) then

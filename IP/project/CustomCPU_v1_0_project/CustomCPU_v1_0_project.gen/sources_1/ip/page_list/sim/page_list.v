@@ -62,10 +62,10 @@ module page_list (
 );
 
 input wire [5 : 0] a;
-input wire [18 : 0] d;
+input wire [19 : 0] d;
 input wire clk;
 input wire we;
-output wire [18 : 0] spo;
+output wire [19 : 0] spo;
 
   dist_mem_gen_v8_0_13 #(
     .C_FAMILY("zynq"),
@@ -98,7 +98,7 @@ output wire [18 : 0] spo;
     .C_REG_A_D_INPUTS(0),
     .C_REG_DPRA_INPUT(0),
     .C_SYNC_ENABLE(1),
-    .C_WIDTH(19),
+    .C_WIDTH(20),
     .C_PARSER_TYPE(1)
   ) inst (
     .a(a),

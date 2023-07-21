@@ -1,0 +1,1 @@
+--incr --debug "typical" --relax --mt "8" -L "xil_defaultlib" -L "secureip" -L "xpm" --snapshot "pipeline_manager_testbench_behav" "xil_defaultlib.pipeline_manager_testbench" -log "elaborate.log" 

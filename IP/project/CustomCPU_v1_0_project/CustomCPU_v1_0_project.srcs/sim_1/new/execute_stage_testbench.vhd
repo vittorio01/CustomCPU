@@ -61,7 +61,7 @@ architecture Behavioral of execute_stage_testbench is
         
         pipeline_step: in std_logic;
         execute_stage_ready: out std_logic;
-        
+        output_mask: in std_logic;
         clk: in std_logic;
         reset: in std_logic
         
@@ -92,6 +92,7 @@ architecture Behavioral of execute_stage_testbench is
     
     signal clk:  std_logic;
     signal reset:  std_logic;
+    signal output_mask: std_logic;
 begin
     execute: execute_stage port map (
         register_a => register_a,
@@ -100,7 +101,7 @@ begin
         new_program_counter => new_program_counter,
         new_program_counter_out => new_program_counter_out,
         register_output_address_in => register_output_address_in,
-        
+        output_mask => output_mask,
         instruction_type => instruction_type,
         alu_control => alu_control,
         
@@ -120,7 +121,7 @@ begin
         clk => clk,
         reset => reset
     );
-    
+    output_mask <='0';
     process is 
     begin 
         clk <= '1';
@@ -161,8 +162,8 @@ begin
         pipeline_step <= '0';
         wait for 80ns;
         pipeline_step <='1';
-        register_a <= x"00001111";
-        register_b <= x"11110000";
+        register_a <= x"00011111";
+        register_b <= x"00000011";
         immediate_operand <= x"00000002";
         register_output_address_in <= "00010";
         instruction_type <= "1000";             -- R type shift

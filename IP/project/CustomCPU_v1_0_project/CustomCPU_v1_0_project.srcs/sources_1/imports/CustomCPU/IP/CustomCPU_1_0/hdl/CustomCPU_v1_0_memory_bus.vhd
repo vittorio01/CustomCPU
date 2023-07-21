@@ -372,8 +372,8 @@ begin
 
 	--In this example, the read address increments in the same
 	--manner as the write address channel.
-        ra_burst_len <= "00000111";
-        wa_burst_len <= "00000111";
+        ra_burst_len <= "00000011";
+        wa_burst_len <= "00000011";
 	  process(M_AXI_ACLK)                                            
 	  begin                                                                
 	    if (rising_edge (M_AXI_ACLK)) then                                 

@@ -1,0 +1,18 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"cpu_fetch_testbench_func_synth.vhd" \
+"../../../../../CustomCPU_v1_0_project.srcs/sim_1/new/register_file_testbench.vhd" \
+"../../../../../CustomCPU_v1_0_project.srcs/sim_1/new/memory_interface_testbench.vhd" \
+"../../../../../CustomCPU_v1_0_project.srcs/sim_1/new/memory_manager_testbench.vhd" \
+"../../../../../CustomCPU_v1_0_project.srcs/sim_1/new/cache_register_testbench.vhd" \
+"../../../../../CustomCPU_v1_0_project.srcs/sim_1/new/fetch_stage_testbench.vhd" \
+"../../../../../CustomCPU_v1_0_project.srcs/sim_1/new/cpu_fetch_testbench.vhd" \
+"../../../../../CustomCPU_v1_0_project.srcs/sim_1/new/decode_stage_testbench.vhd" \
+"../../../../../CustomCPU_v1_0_project.srcs/sim_1/new/program_counter_testbench.vhd" \
+"../../../../../CustomCPU_v1_0_project.srcs/sim_1/new/ALU_testbench.vhd" \
+"../../../../../CustomCPU_v1_0_project.srcs/sim_1/new/cache_testbench.vhd" \
+"../../../../../CustomCPU_v1_0_project.srcs/sim_1/new/execute_stage_testbench.vhd" \
+"../../../../../CustomCPU_v1_0_project.srcs/sim_1/new/memory_access_testbench.vhd" \
+
+# Do not sort compile order
+nosort

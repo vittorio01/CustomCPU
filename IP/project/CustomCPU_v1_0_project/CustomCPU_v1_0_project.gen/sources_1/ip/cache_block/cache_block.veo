@@ -55,12 +55,11 @@
 
 //----------- Begin Cut here for INSTANTIATION Template ---// INST_TAG
 cache_block your_instance_name (
-  .a(a),        // input wire [5 : 0] a
-  .d(d),        // input wire [255 : 0] d
-  .clk(clk),    // input wire clk
-  .we(we),      // input wire we
-  .i_ce(i_ce),  // input wire i_ce
-  .spo(spo)    // output wire [255 : 0] spo
+  .a(a),      // input wire [5 : 0] a
+  .d(d),      // input wire [127 : 0] d
+  .clk(clk),  // input wire clk
+  .we(we),    // input wire we
+  .spo(spo)  // output wire [127 : 0] spo
 );
 // INST_TAG_END ------ End INSTANTIATION Template ---------
 

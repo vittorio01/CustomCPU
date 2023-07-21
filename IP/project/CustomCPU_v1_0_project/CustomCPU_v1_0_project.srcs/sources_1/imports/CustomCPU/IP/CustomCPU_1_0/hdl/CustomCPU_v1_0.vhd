@@ -78,6 +78,39 @@ entity CustomCPU_v1_0 is
 end CustomCPU_v1_0;
 
 architecture arch_imp of CustomCPU_v1_0 is
+    component pipeline_manager is
+      Port (
+        fetch_stage_ready: in std_logic;
+        fetch_stage_step: out std_logic;
+        fetch_stage_mask: out std_logic;
+        
+        decode_stage_ready: in std_logic; 
+        decode_stage_step: out std_logic;
+        decode_stage_mask: out std_logic;
+        
+        execute_stage_ready: in std_logic; 
+        execute_stage_step: out std_logic;
+        execute_stage_mask: out std_logic;
+        
+        access_stage_ready: in std_logic;
+        access_stage_step: out std_logic;
+        access_stage_mask: out std_logic;
+        
+        memory_step: out std_logic;
+        
+        decode_register_a_address: in std_logic_vector(4 downto 0);
+        decode_register_b_address: in std_logic_vector(4 downto 0);
+        access_register_writeback_address: in std_logic_vector(4 downto 0);
+        access_register_writeback_enable: in std_logic;
+        
+        decode_instruction_type: in std_logic_vector(3 downto 0);
+        access_branch_enable: in std_logic;
+        
+        
+        clk: in std_logic; 
+        reset: in std_logic
+      );
+    end component pipeline_manager;
     component fetch_stage_controller is
       Generic (
         address_width: integer:= 32;
@@ -106,10 +139,9 @@ architecture arch_imp of CustomCPU_v1_0 is
       Generic (
         address_dimension: integer := 32;
         data_dimension: integer := 32;
-        cache_page_address_dimension: integer := 24;
-        cache_data_dimension: integer:= 256;
-        cache_offset_address_dimension : integer := 5;
-        
+        cache_page_address_dimension: integer := 25;
+        cache_data_dimension: integer:= 128;
+        cache_offset_address_dimension : integer := 4;
         C_memory_bus_TARGET_SLAVE_BASE_ADDR	: std_logic_vector	:= x"40000000";
         C_memory_bus_BURST_LEN	: integer	:= 8;
         C_memory_bus_ID_WIDTH	: integer	:= 8;
@@ -202,6 +234,9 @@ architecture arch_imp of CustomCPU_v1_0 is
         register_writeback_address: in std_logic_vector(4 downto 0);
         register_writeback_data: in std_logic_vector(31 downto 0);
         register_writeback_request: in std_logic;
+        
+        register_a_address_out: out std_logic_vector(4 downto 0);
+        register_b_address_out: out std_logic_vector(4 downto 0);
         
         clk: in std_logic; 
         reset: in std_logic
@@ -306,7 +341,10 @@ architecture arch_imp of CustomCPU_v1_0 is
     signal decode_immediate_operand: std_logic_vector(31 downto 0);
     signal decode_alu_control: std_logic_vector(4 downto 0);
     signal decode_instruction_type: std_logic_vector(3 downto 0);
-        
+    
+    signal decode_register_a_address: std_logic_vector(4 downto 0);
+    signal decode_register_b_address: std_logic_vector(4 downto 0);
+    
     signal decode_stage_ready: std_logic; 
     signal decode_pipeline_step: std_logic;
     signal decode_output_mask: std_logic;
@@ -430,7 +468,8 @@ begin
         
         decode_stage_ready=>decode_stage_ready,
         pipeline_step=>decode_pipeline_step,
-        
+        register_a_address_out => decode_register_a_address,
+        register_b_address_out => decode_register_b_address,
         register_writeback_address=>access_register_writeback_address,
         register_writeback_data=>access_register_writeback_data,
         register_writeback_request=>access_register_writeback_enable,
@@ -501,42 +540,35 @@ begin
     );
     memory_bus_aclk <= clk;
     memory_bus_aresetn <= reset;
-    process (clk) is 
-    begin 
-        if (rising_edge(clk)) then
-            if (reset = '0') then 
-                fetch_pipeline_step <= '0';
-                decode_pipeline_step <= '0';
-                execute_pipeline_step <= '0';
-                access_pipeline_step <= '0';
-                fetch_output_mask <= '1';
-                decode_output_mask <= '1';
-                execute_output_mask <= '1';
-                access_output_mask <= '1';
-                memory_step <= '0';
-            else 
-                if (fetch_stage_ready = '1' and decode_stage_ready = '1' and execute_stage_ready='1' and access_stage_ready = '1') then 
-                    fetch_output_mask <= '0';
-                    decode_output_mask <= '0';
-                    execute_output_mask <= '0';
-                    access_output_mask <= '0';
-                    fetch_pipeline_step <= '1';
-                    decode_pipeline_step <= '1';
-                    execute_pipeline_step <= '1';
-                    access_pipeline_step <= '1';
-                    memory_step <= '1';
-                else 
-                    fetch_output_mask <= '0';
-                    decode_output_mask <= '0';
-                    execute_output_mask <= '0';
-                    access_output_mask <= '0';
-                    fetch_pipeline_step <= '0';
-                    decode_pipeline_step <= '0';
-                    execute_pipeline_step <= '0';
-                    access_pipeline_step <= '0';
-                    memory_step <= '0';
-                end if;
-            end if;
-        end if;
-    end process;
+    pipeline: pipeline_manager port map (
+        fetch_stage_ready => fetch_stage_ready,
+        fetch_stage_step => fetch_pipeline_step,
+        fetch_stage_mask => fetch_output_mask,
+        
+        decode_stage_ready=>decode_stage_ready,
+        decode_stage_step => decode_pipeline_step,
+        decode_stage_mask => decode_output_mask,
+        
+        execute_stage_ready => execute_stage_ready,
+        execute_stage_step => execute_pipeline_step,
+        execute_stage_mask => execute_output_mask,
+        
+        access_stage_ready => access_stage_ready,
+        access_stage_step => access_pipeline_step,
+        access_stage_mask => access_output_mask,
+        
+        memory_step => memory_step,
+        
+        decode_register_a_address => decode_register_a_address,
+        decode_register_b_address => decode_register_b_address,
+        access_register_writeback_address => access_register_writeback_address,
+        access_register_writeback_enable => access_register_writeback_enable,
+        
+        decode_instruction_type => decode_instruction_type,
+        access_branch_enable => fetch_load_enable,
+        
+        
+        clk => clk,
+        reset => reset
+      );
 end arch_imp;

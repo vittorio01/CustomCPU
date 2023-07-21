@@ -52,6 +52,9 @@ entity decode_stage is
     register_writeback_data: in std_logic_vector(31 downto 0);
     register_writeback_request: in std_logic;
     
+    register_a_address_out: out std_logic_vector(4 downto 0);
+    register_b_address_out: out std_logic_vector(4 downto 0);
+    
     clk: in std_logic; 
     reset: in std_logic
   );
@@ -167,6 +170,8 @@ begin
                     elsif (current_state = register_data_receive) then 
                         register_a <= register_a_data;
                         register_b <= register_b_data;
+                        register_a_address_out <= register_address_a;
+                        register_b_address_out <= register_address_b;
                         register_dest <= decode_register_dest;
                         immediate_operand <= decode_immediate;
                         instruction_type <= decode_instruction_type;
@@ -186,6 +191,8 @@ begin
                     new_program_counter_out <= x"00000000";
                     register_a <= (others => '-');
                     register_b <= (others => '-');
+                    register_a_address_out <= (others => '-');
+                    register_b_address_out <= (others => '-');
                     register_dest <= (others => '0');
                     immediate_operand <= (others => '-');
                     alu_control <= "00000";

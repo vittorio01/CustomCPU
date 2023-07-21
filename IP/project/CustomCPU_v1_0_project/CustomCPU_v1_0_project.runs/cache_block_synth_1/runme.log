@@ -11,7 +11,7 @@
     ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 
 source cache_block.tcl -notrace
-create_project: Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 1325.309 ; gain = 0.023 ; free physical = 131 ; free virtual = 5811
+create_project: Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1332.766 ; gain = 0.023 ; free physical = 1102 ; free virtual = 3650
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/vittorio/GitHub/CustomCPU/IP/CustomCPU_1_0'.
 WARNING: [IP_Flow 19-2207] Repository '/home/vittorio/GitHub/CustomCPU/IP/CustomCPU_1_0' already exists; ignoring attempt to add it again.
@@ -25,11 +25,11 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020
 INFO: [Device 21-403] Loading part xc7z020clg484-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 14241
+INFO: [Synth 8-7075] Helper process launched with PID 58610
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2025.703 ; gain = 377.801 ; free physical = 146 ; free virtual = 4862
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2025.129 ; gain = 374.801 ; free physical = 148 ; free virtual = 2707
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'cache_block' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.gen/sources_1/ip/cache_block/synth/cache_block.vhd:70]
+INFO: [Synth 8-638] synthesizing module 'cache_block' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.gen/sources_1/ip/cache_block/synth/cache_block.vhd:69]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_ADDR_WIDTH bound to: 6 - type: integer 
 	Parameter C_DEFAULT_DATA bound to: 0 - type: string 
@@ -38,7 +38,7 @@ INFO: [Synth 8-638] synthesizing module 'cache_block' [/home/vittorio/GitHub/Cus
 	Parameter C_HAS_D bound to: 1 - type: integer 
 	Parameter C_HAS_DPO bound to: 0 - type: integer 
 	Parameter C_HAS_DPRA bound to: 0 - type: integer 
-	Parameter C_HAS_I_CE bound to: 1 - type: integer 
+	Parameter C_HAS_I_CE bound to: 0 - type: integer 
 	Parameter C_HAS_QDPO bound to: 0 - type: integer 
 	Parameter C_HAS_QDPO_CE bound to: 0 - type: integer 
 	Parameter C_HAS_QDPO_CLK bound to: 0 - type: integer 
@@ -60,124 +60,124 @@ INFO: [Synth 8-638] synthesizing module 'cache_block' [/home/vittorio/GitHub/Cus
 	Parameter C_REG_A_D_INPUTS bound to: 1 - type: integer 
 	Parameter C_REG_DPRA_INPUT bound to: 0 - type: integer 
 	Parameter C_SYNC_ENABLE bound to: 1 - type: integer 
-	Parameter C_WIDTH bound to: 256 - type: integer 
+	Parameter C_WIDTH bound to: 128 - type: integer 
 	Parameter C_PARSER_TYPE bound to: 1 - type: integer 
-INFO: [Synth 8-3491] module 'dist_mem_gen_v8_0_13' declared at '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.gen/sources_1/ip/cache_block/hdl/dist_mem_gen_v8_0_vhsyn_rfs.vhd:3237' bound to instance 'U0' of component 'dist_mem_gen_v8_0_13' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.gen/sources_1/ip/cache_block/synth/cache_block.vhd:136]
-INFO: [Synth 8-256] done synthesizing module 'cache_block' (0#1) [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.gen/sources_1/ip/cache_block/synth/cache_block.vhd:70]
-WARNING: [Synth 8-7129] Port qspo[255] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[254] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[253] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[252] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[251] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[250] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[249] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[248] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[247] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[246] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[245] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[244] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[243] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[242] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[241] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[240] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[239] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[238] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[237] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[236] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[235] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[234] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[233] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[232] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[231] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[230] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[229] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[228] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[227] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[226] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[225] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[224] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[223] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[222] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[221] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[220] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[219] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[218] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[217] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[216] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[215] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[214] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[213] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[212] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[211] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[210] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[209] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[208] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[207] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[206] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[205] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[204] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[203] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[202] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[201] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[200] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[199] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[198] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[197] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[196] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[195] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[194] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[193] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[192] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[191] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[190] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[189] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[188] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[187] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[186] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[185] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[184] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[183] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[182] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[181] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[180] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[179] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[178] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[177] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[176] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[175] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[174] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[173] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[172] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[171] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[170] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[169] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[168] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[167] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[166] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[165] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[164] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[163] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[162] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[161] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[160] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[159] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[158] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[157] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[156] in module spram is either unconnected or has no load
+INFO: [Synth 8-3491] module 'dist_mem_gen_v8_0_13' declared at '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.gen/sources_1/ip/cache_block/hdl/dist_mem_gen_v8_0_vhsyn_rfs.vhd:3237' bound to instance 'U0' of component 'dist_mem_gen_v8_0_13' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.gen/sources_1/ip/cache_block/synth/cache_block.vhd:135]
+INFO: [Synth 8-256] done synthesizing module 'cache_block' (0#1) [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.gen/sources_1/ip/cache_block/synth/cache_block.vhd:69]
+WARNING: [Synth 8-7129] Port qspo[127] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[126] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[125] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[124] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[123] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[122] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[121] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[120] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[119] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[118] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[117] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[116] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[115] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[114] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[113] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[112] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[111] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[110] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[109] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[108] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[107] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[106] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[105] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[104] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[103] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[102] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[101] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[100] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[99] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[98] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[97] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[96] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[95] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[94] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[93] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[92] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[91] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[90] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[89] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[88] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[87] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[86] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[85] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[84] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[83] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[82] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[81] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[80] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[79] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[78] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[77] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[76] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[75] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[74] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[73] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[72] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[71] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[70] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[69] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[68] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[67] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[66] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[65] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[64] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[63] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[62] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[61] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[60] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[59] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[58] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[57] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[56] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[55] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[54] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[53] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[52] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[51] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[50] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[49] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[48] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[47] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[46] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[45] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[44] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[43] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[42] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[41] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[40] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[39] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[38] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[37] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[36] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[35] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[34] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[33] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[32] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[31] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[30] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[29] in module spram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port qspo[28] in module spram is either unconnected or has no load
 INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2097.641 ; gain = 449.738 ; free physical = 132 ; free virtual = 4769
+Finished RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2097.035 ; gain = 446.707 ; free physical = 119 ; free virtual = 2645
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2115.453 ; gain = 467.551 ; free physical = 130 ; free virtual = 4767
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2114.848 ; gain = 464.520 ; free physical = 135 ; free virtual = 2656
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2115.453 ; gain = 467.551 ; free physical = 130 ; free virtual = 4767
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2114.848 ; gain = 464.520 ; free physical = 135 ; free virtual = 2656
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2115.453 ; gain = 0.000 ; free physical = 129 ; free virtual = 4767
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2114.848 ; gain = 0.000 ; free physical = 133 ; free virtual = 2655
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -188,38 +188,39 @@ Parsing XDC File [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_proj
 Finished Parsing XDC File [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/cache_block_synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2223.188 ; gain = 0.000 ; free physical = 148 ; free virtual = 4743
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2218.582 ; gain = 0.000 ; free physical = 125 ; free virtual = 2629
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.04 . Memory (MB): peak = 2223.188 ; gain = 0.000 ; free physical = 148 ; free virtual = 4743
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.03 . Memory (MB): peak = 2218.582 ; gain = 0.000 ; free physical = 125 ; free virtual = 2629
 INFO: [Designutils 20-5008] Incremental synthesis strategy off
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 2223.188 ; gain = 575.285 ; free physical = 143 ; free virtual = 4739
+Finished Constraint Validation : Time (s): cpu = 00:00:22 ; elapsed = 00:00:24 . Memory (MB): peak = 2218.582 ; gain = 568.254 ; free physical = 144 ; free virtual = 2606
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg484-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 2223.188 ; gain = 575.285 ; free physical = 143 ; free virtual = 4739
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:22 ; elapsed = 00:00:24 . Memory (MB): peak = 2218.582 ; gain = 568.254 ; free physical = 144 ; free virtual = 2606
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 Applied set_property KEEP_HIERARCHY = SOFT for U0. (constraint file  /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/cache_block_synth_1/dont_touch.xdc, line 9).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 2223.188 ; gain = 575.285 ; free physical = 143 ; free virtual = 4739
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:22 ; elapsed = 00:00:24 . Memory (MB): peak = 2218.582 ; gain = 568.254 ; free physical = 144 ; free virtual = 2606
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 2223.188 ; gain = 575.285 ; free physical = 141 ; free virtual = 4738
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:22 ; elapsed = 00:00:24 . Memory (MB): peak = 2218.582 ; gain = 568.254 ; free physical = 144 ; free virtual = 2607
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Registers : 
-	              256 Bit    Registers := 1     
+	              128 Bit    Registers := 2     
+	                6 Bit    Registers := 1     
 	                1 Bit    Registers := 1     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
@@ -238,7 +239,7 @@ Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 2223.188 ; gain = 575.285 ; free physical = 140 ; free virtual = 4739
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 2218.582 ; gain = 568.254 ; free physical = 142 ; free virtual = 2605
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -248,7 +249,7 @@ Distributed RAM: Preliminary Mapping Report (see note below)
 +------------+-----------------------------------------------------------+-----------+----------------------+-----------------+
 |Module Name | RTL Object                                                | Inference | Size (Depth x Width) | Primitives      | 
 +------------+-----------------------------------------------------------+-----------+----------------------+-----------------+
-|U0          | synth_options.dist_mem_inst/gen_sp_ram.spram_inst/ram_reg | Implied   | 64 x 256             | RAM64X1S x 256  | 
+|U0          | synth_options.dist_mem_inst/gen_sp_ram.spram_inst/ram_reg | Implied   | 64 x 128             | RAM64X1S x 128  | 
 +------------+-----------------------------------------------------------+-----------+----------------------+-----------------+
 
 Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
@@ -259,13 +260,13 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:30 ; elapsed = 00:00:32 . Memory (MB): peak = 2223.188 ; gain = 575.285 ; free physical = 138 ; free virtual = 4742
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:33 ; elapsed = 00:00:35 . Memory (MB): peak = 2218.582 ; gain = 568.254 ; free physical = 132 ; free virtual = 2594
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:30 ; elapsed = 00:00:32 . Memory (MB): peak = 2223.188 ; gain = 575.285 ; free physical = 138 ; free virtual = 4742
+Finished Timing Optimization : Time (s): cpu = 00:00:33 ; elapsed = 00:00:35 . Memory (MB): peak = 2218.582 ; gain = 568.254 ; free physical = 132 ; free virtual = 2594
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -275,7 +276,7 @@ Distributed RAM: Final Mapping Report
 +------------+-----------------------------------------------------------+-----------+----------------------+-----------------+
 |Module Name | RTL Object                                                | Inference | Size (Depth x Width) | Primitives      | 
 +------------+-----------------------------------------------------------+-----------+----------------------+-----------------+
-|U0          | synth_options.dist_mem_inst/gen_sp_ram.spram_inst/ram_reg | Implied   | 64 x 256             | RAM64X1S x 256  | 
+|U0          | synth_options.dist_mem_inst/gen_sp_ram.spram_inst/ram_reg | Implied   | 64 x 128             | RAM64X1S x 128  | 
 +------------+-----------------------------------------------------------+-----------+----------------------+-----------------+
 
 ---------------------------------------------------------------------------------
@@ -285,7 +286,7 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 2223.188 ; gain = 575.285 ; free physical = 137 ; free virtual = 4742
+Finished Technology Mapping : Time (s): cpu = 00:00:33 ; elapsed = 00:00:35 . Memory (MB): peak = 2218.582 ; gain = 568.254 ; free physical = 132 ; free virtual = 2594
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -303,37 +304,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:37 ; elapsed = 00:00:38 . Memory (MB): peak = 2223.188 ; gain = 575.285 ; free physical = 136 ; free virtual = 4741
+Finished IO Insertion : Time (s): cpu = 00:00:40 ; elapsed = 00:00:42 . Memory (MB): peak = 2218.582 ; gain = 568.254 ; free physical = 129 ; free virtual = 2591
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:37 ; elapsed = 00:00:38 . Memory (MB): peak = 2223.188 ; gain = 575.285 ; free physical = 136 ; free virtual = 4741
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:40 ; elapsed = 00:00:42 . Memory (MB): peak = 2218.582 ; gain = 568.254 ; free physical = 129 ; free virtual = 2591
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:37 ; elapsed = 00:00:38 . Memory (MB): peak = 2223.188 ; gain = 575.285 ; free physical = 136 ; free virtual = 4741
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:40 ; elapsed = 00:00:42 . Memory (MB): peak = 2218.582 ; gain = 568.254 ; free physical = 129 ; free virtual = 2591
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:37 ; elapsed = 00:00:38 . Memory (MB): peak = 2223.188 ; gain = 575.285 ; free physical = 136 ; free virtual = 4741
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:40 ; elapsed = 00:00:42 . Memory (MB): peak = 2218.582 ; gain = 568.254 ; free physical = 129 ; free virtual = 2591
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:37 ; elapsed = 00:00:38 . Memory (MB): peak = 2223.188 ; gain = 575.285 ; free physical = 136 ; free virtual = 4741
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:40 ; elapsed = 00:00:42 . Memory (MB): peak = 2218.582 ; gain = 568.254 ; free physical = 129 ; free virtual = 2591
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:37 ; elapsed = 00:00:38 . Memory (MB): peak = 2223.188 ; gain = 575.285 ; free physical = 136 ; free virtual = 4741
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:40 ; elapsed = 00:00:42 . Memory (MB): peak = 2218.582 ; gain = 568.254 ; free physical = 129 ; free virtual = 2591
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -349,36 +350,36 @@ Report Cell Usage:
 +------+---------+------+
 |      |Cell     |Count |
 +------+---------+------+
-|1     |RAM64X1S |   256|
-|2     |FDRE     |   519|
+|1     |RAM64X1S |   128|
+|2     |FDRE     |   263|
 +------+---------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:37 ; elapsed = 00:00:38 . Memory (MB): peak = 2223.188 ; gain = 575.285 ; free physical = 136 ; free virtual = 4741
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:40 ; elapsed = 00:00:42 . Memory (MB): peak = 2218.582 ; gain = 568.254 ; free physical = 129 ; free virtual = 2591
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 782 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:34 ; elapsed = 00:00:35 . Memory (MB): peak = 2223.188 ; gain = 467.551 ; free physical = 136 ; free virtual = 4740
-Synthesis Optimization Complete : Time (s): cpu = 00:00:37 ; elapsed = 00:00:38 . Memory (MB): peak = 2223.195 ; gain = 575.285 ; free physical = 136 ; free virtual = 4740
+Synthesis finished with 0 errors, 0 critical warnings and 399 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:37 ; elapsed = 00:00:39 . Memory (MB): peak = 2218.582 ; gain = 464.520 ; free physical = 130 ; free virtual = 2591
+Synthesis Optimization Complete : Time (s): cpu = 00:00:40 ; elapsed = 00:00:42 . Memory (MB): peak = 2218.590 ; gain = 568.254 ; free physical = 130 ; free virtual = 2591
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2223.195 ; gain = 0.000 ; free physical = 406 ; free virtual = 5017
-INFO: [Netlist 29-17] Analyzing 256 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2218.590 ; gain = 0.000 ; free physical = 407 ; free virtual = 2869
+INFO: [Netlist 29-17] Analyzing 128 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2223.195 ; gain = 0.000 ; free physical = 403 ; free virtual = 5015
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2218.590 ; gain = 0.000 ; free physical = 407 ; free virtual = 2868
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 256 instances were transformed.
-  RAM64X1S => RAM64X1S (RAMS64E): 256 instances
+  A total of 128 instances were transformed.
+  RAM64X1S => RAM64X1S (RAMS64E): 128 instances
 
-Synth Design complete | Checksum: 73325e4b
+Synth Design complete | Checksum: d8b4c98b
 INFO: [Common 17-83] Releasing license: Synthesis
 24 Infos, 102 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:49 ; elapsed = 00:00:47 . Memory (MB): peak = 2223.195 ; gain = 897.887 ; free physical = 403 ; free virtual = 5015
-INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 1816.003; main = 1496.562; forked = 387.263
-INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3201.293; main = 2223.191; forked = 978.102
+synth_design: Time (s): cpu = 00:00:52 ; elapsed = 00:00:50 . Memory (MB): peak = 2218.590 ; gain = 885.824 ; free physical = 407 ; free virtual = 2868
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 1829.627; main = 1509.032; forked = 385.081
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3196.688; main = 2218.586; forked = 978.102
 INFO: [Common 17-1381] The checkpoint '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/cache_block_synth_1/cache_block.dcp' has been generated.
-INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP cache_block, cache-ID = e1a6ce1b933d2d78
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP cache_block, cache-ID = 6c143953800d9380
 INFO: [Coretcl 2-1174] Renamed 3 cell refs.
 INFO: [Common 17-1381] The checkpoint '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/cache_block_synth_1/cache_block.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file cache_block_utilization_synth.rpt -pb cache_block_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sun Jul 16 17:32:38 2023...
+INFO: [Common 17-206] Exiting Vivado at Fri Jul 21 19:07:11 2023...

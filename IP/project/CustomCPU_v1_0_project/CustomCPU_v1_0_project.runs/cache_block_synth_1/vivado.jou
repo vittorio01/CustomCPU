@@ -3,12 +3,12 @@
 # SW Build 3865809 on Sun May  7 15:04:56 MDT 2023
 # IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
 # SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
-# Start of session at: Sun Jul 16 17:31:30 2023
-# Process ID: 14200
+# Start of session at: Fri Jul 21 19:05:58 2023
+# Process ID: 58551
 # Current directory: /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/cache_block_synth_1
 # Command line: vivado -log cache_block.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source cache_block.tcl
 # Log file: /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/cache_block_synth_1/cache_block.vds
 # Journal file: /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/cache_block_synth_1/vivado.jou
-# Running On: asus-pc, OS: Linux, CPU Frequency: 1397.123 MHz, CPU Physical cores: 2, Host memory: 8180 MB
+# Running On: asus-pc, OS: Linux, CPU Frequency: 2701.567 MHz, CPU Physical cores: 2, Host memory: 8180 MB
 #-----------------------------------------------------------
 source cache_block.tcl -notrace

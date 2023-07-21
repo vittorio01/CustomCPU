@@ -32,8 +32,8 @@ use IEEE.NUMERIC_STD.ALL;
 --use UNISIM.VComponents.all;
 
 entity cache_register is
-  Generic ( page_dimension: integer:= 256;
-            data_address_dimension: integer:= 5
+  Generic ( page_dimension: integer:= 128;
+            data_address_dimension: integer:= 4
   );
   Port (
     page_in: in std_logic_vector(page_dimension-1 downto 0);

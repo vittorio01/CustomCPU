@@ -1,0 +1,9 @@
+Vivado Simulator v2023.1
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: /opt/Xilinx/Vivado/2023.1/bin/unwrapped/lnx64.o/xelab --incr --debug typical --relax --mt 8 -L xil_defaultlib -L secureip --snapshot cpu_fetch_testbench_func_synth xil_defaultlib.cpu_fetch_testbench -log elaborate.log 
+Using 8 slave threads.
+Starting static elaboration
+ERROR: [VRFC 10-8944] expression has 0 elements; formal 's_axi_wdata' expects 32 [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sim_1/new/cpu_fetch_testbench.vhd:211]
+WARNING: [VRFC 10-4940] 'block_ram' remains a black box since it has no binding entity [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sim_1/new/cpu_fetch_testbench.vhd:199]
+ERROR: [XSIM 43-3321] Static elaboration of top level VHDL design unit cpu_fetch_testbench in library work failed.

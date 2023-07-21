@@ -32,18 +32,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity cpu_fetch_testbench is
-  Generic (
-            C_memory_bus_TARGET_SLAVE_BASE_ADDR	: std_logic_vector	:= x"40000000";
-            C_memory_bus_BURST_LEN	: integer	:= 8;
-            C_memory_bus_ID_WIDTH	: integer	:= 8;
-            C_memory_bus_ADDR_WIDTH	: integer	:= 32;
-            C_memory_bus_DATA_WIDTH	: integer	:= 32;
-            C_memory_bus_AWUSER_WIDTH	: integer	:= 0;
-            C_memory_bus_ARUSER_WIDTH	: integer	:= 0;
-            C_memory_bus_WUSER_WIDTH	: integer	:= 0;
-            C_memory_bus_RUSER_WIDTH	: integer	:= 0;
-            C_memory_bus_BUSER_WIDTH	: integer	:= 0
-  );
+  
 end cpu_fetch_testbench;
 
 architecture Behavioral of cpu_fetch_testbench is
@@ -159,49 +148,49 @@ architecture Behavioral of cpu_fetch_testbench is
       );
     end component block_ram;
     signal clk, reset: std_logic;
-    
+
     signal memory_bus_aclk	: std_logic;
     signal memory_bus_aresetn	: std_logic;
-    signal memory_bus_awid	: std_logic_vector(C_memory_bus_ID_WIDTH-1 downto 0);
-    signal memory_bus_awaddr	: std_logic_vector(C_memory_bus_ADDR_WIDTH-1 downto 0);
-    signal memory_bus_awlen	: std_logic_vector(C_memory_bus_BURST_LEN-1 downto 0);
+    signal memory_bus_awid	: std_logic_vector(7 downto 0);
+    signal memory_bus_awaddr	: std_logic_vector(31 downto 0);
+    signal memory_bus_awlen	: std_logic_vector(7 downto 0);
     signal memory_bus_awsize	: std_logic_vector(2 downto 0);
     signal memory_bus_awburst	: std_logic_vector(1 downto 0);
     signal memory_bus_awlock	: std_logic;
     signal memory_bus_awcache	: std_logic_vector(3 downto 0);
     signal memory_bus_awprot	: std_logic_vector(2 downto 0);
     signal memory_bus_awqos	: std_logic_vector(3 downto 0);
-    signal memory_bus_awuser	: std_logic_vector(C_memory_bus_AWUSER_WIDTH-1 downto 0);
+    signal memory_bus_awuser	: std_logic_vector(-1 downto 0);
     signal memory_bus_awvalid	: std_logic;
     signal memory_bus_awready	: std_logic;
-    signal memory_bus_wdata	: std_logic_vector(C_memory_bus_DATA_WIDTH-1 downto 0);
-    signal memory_bus_wstrb	: std_logic_vector(C_memory_bus_DATA_WIDTH/8-1 downto 0);
+    signal memory_bus_wdata	: std_logic_vector(31 downto 0);
+    signal memory_bus_wstrb	: std_logic_vector(3 downto 0);
     signal memory_bus_wlast	: std_logic;
-    signal memory_bus_wuser	: std_logic_vector(C_memory_bus_WUSER_WIDTH-1 downto 0);
+    signal memory_bus_wuser	: std_logic_vector(-1 downto 0);
     signal memory_bus_wvalid	: std_logic;
     signal memory_bus_wready	: std_logic;
-    signal memory_bus_bid	: std_logic_vector(C_memory_bus_ID_WIDTH-1 downto 0);
+    signal memory_bus_bid	: std_logic_vector(7 downto 0);
     signal memory_bus_bresp	: std_logic_vector(1 downto 0);
-    signal memory_bus_buser	: std_logic_vector(C_memory_bus_BUSER_WIDTH-1 downto 0);
+    signal memory_bus_buser	: std_logic_vector(-1 downto 0);
     signal memory_bus_bvalid	: std_logic;
     signal memory_bus_bready	: std_logic;
-    signal memory_bus_arid	: std_logic_vector(C_memory_bus_ID_WIDTH-1 downto 0);
-    signal memory_bus_araddr	: std_logic_vector(C_memory_bus_ADDR_WIDTH-1 downto 0);
-    signal memory_bus_arlen	: std_logic_vector(C_memory_bus_BURST_LEN-1 downto 0);
+    signal memory_bus_arid	: std_logic_vector(7 downto 0);
+    signal memory_bus_araddr	: std_logic_vector(31 downto 0);
+    signal memory_bus_arlen	: std_logic_vector(7 downto 0);
     signal memory_bus_arsize	: std_logic_vector(2 downto 0);
     signal memory_bus_arburst	: std_logic_vector(1 downto 0);
     signal memory_bus_arlock	: std_logic;
     signal memory_bus_arcache	: std_logic_vector(3 downto 0);
     signal memory_bus_arprot	: std_logic_vector(2 downto 0);
     signal memory_bus_arqos	: std_logic_vector(3 downto 0);
-    signal memory_bus_aruser	: std_logic_vector(C_memory_bus_ARUSER_WIDTH-1 downto 0);
+    signal memory_bus_aruser	: std_logic_vector(-1 downto 0);
     signal memory_bus_arvalid	: std_logic;
     signal memory_bus_arready	: std_logic;
-    signal memory_bus_rid	: std_logic_vector(C_memory_bus_ID_WIDTH-1 downto 0);
-    signal memory_bus_rdata	: std_logic_vector(C_memory_bus_DATA_WIDTH-1 downto 0);
+    signal memory_bus_rid	: std_logic_vector(7 downto 0);
+    signal memory_bus_rdata	: std_logic_vector(31 downto 0);
     signal memory_bus_rresp	: std_logic_vector(1 downto 0);
     signal memory_bus_rlast	: std_logic;
-    signal memory_bus_ruser	: std_logic_vector(C_memory_bus_RUSER_WIDTH-1 downto 0);
+    signal memory_bus_ruser	: std_logic_vector(-1 downto 0);
     signal memory_bus_rvalid	: std_logic;
     signal memory_bus_rready	:std_logic;
     

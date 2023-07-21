@@ -35,9 +35,9 @@ entity memory_interface is
   Generic (
     address_dimension: integer := 32;
     data_dimension: integer := 32;
-    cache_page_address_dimension: integer := 24;
-    cache_data_dimension: integer:= 256;
-    cache_offset_address_dimension : integer := 5;
+    cache_page_address_dimension: integer := 25;
+    cache_data_dimension: integer:= 128;
+    cache_offset_address_dimension : integer := 4;
     
     C_memory_bus_TARGET_SLAVE_BASE_ADDR	: std_logic_vector	:= x"40000000";
     C_memory_bus_BURST_LEN	: integer	:= 8;
@@ -122,11 +122,11 @@ architecture Behavioral of memory_interface is
 		-- User parameters ends
 		-- Do not modify the parameters beyond this line
         cache_address_dimension : integer := 6;
-        memory_address_dimension: integer := 24;
-        cache_data_dimension: integer:= 256;
+        memory_address_dimension: integer := 25;
+        cache_data_dimension: integer:= 128;
         transmission_data_dimension: integer := 32;
         
-        cache_offset_address_dimension: integer:= 8;
+        cache_offset_address_dimension: integer:= 7;
         
 		-- Parameters of Axi Master Bus Interface memory_bus
 		C_memory_bus_TARGET_SLAVE_BASE_ADDR	: std_logic_vector	:= x"40000000";
@@ -204,8 +204,8 @@ architecture Behavioral of memory_interface is
 	);
     end component cache;
     component cache_register is
-      Generic ( page_dimension: integer:= 256;
-                data_address_dimension: integer:= 5
+      Generic ( page_dimension: integer:= 128;
+                data_address_dimension: integer:= 4
       );
      
       Port (
