@@ -96,15 +96,14 @@ architecture arch_imp of CustomCPU_v1_0 is
         access_stage_step: out std_logic;
         access_stage_mask: out std_logic;
         
-        memory_step: out std_logic;
-        
+        decode_input_hold: out std_logic;
         decode_register_a_address: in std_logic_vector(4 downto 0);
         decode_register_b_address: in std_logic_vector(4 downto 0);
-        access_register_writeback_address: in std_logic_vector(4 downto 0);
-        access_register_writeback_enable: in std_logic;
+        execute_register_writeback_address: in std_logic_vector(4 downto 0);
+        execute_register_writeback_enable: in std_logic;
         
         decode_instruction_type: in std_logic_vector(3 downto 0);
-        access_branch_enable: in std_logic;
+        execute_branch_enable: in std_logic;
         
         
         clk: in std_logic; 
@@ -139,9 +138,10 @@ architecture arch_imp of CustomCPU_v1_0 is
       Generic (
         address_dimension: integer := 32;
         data_dimension: integer := 32;
-        cache_page_address_dimension: integer := 25;
-        cache_data_dimension: integer:= 128;
-        cache_offset_address_dimension : integer := 4;
+        cache_page_address_dimension: integer := 27;
+        cache_data_dimension: integer:= 256;
+        cache_offset_address_dimension : integer := 5;
+        cache_address_dimension: integer := 6;
         C_memory_bus_TARGET_SLAVE_BASE_ADDR	: std_logic_vector	:= x"40000000";
         C_memory_bus_BURST_LEN	: integer	:= 8;
         C_memory_bus_ID_WIDTH	: integer	:= 8;
@@ -166,7 +166,6 @@ architecture arch_imp of CustomCPU_v1_0 is
         data_memory_address: in std_logic_vector(address_dimension-1 downto 0);
         data_memory_direction: in std_logic;
         data_memory_write_mode: in std_logic_vector(1 downto 0);
-        step: in std_logic;
         clk: in std_logic;
         reset: in std_logic;
         memory_bus_aclk	: in std_logic;
@@ -227,7 +226,7 @@ architecture arch_imp of CustomCPU_v1_0 is
         immediate_operand:  out std_logic_vector(31 downto 0);
         alu_control: out std_logic_vector(4 downto 0);
         instruction_type: out std_logic_vector(3 downto 0);
-        
+        input_hold: in std_logic;
         decode_stage_ready: out std_logic; 
         pipeline_step: in std_logic;
         output_mask: in std_logic;
@@ -258,7 +257,8 @@ architecture arch_imp of CustomCPU_v1_0 is
         alu_output: out std_logic_vector (31 downto 0);
         register_output_address: out std_logic_vector (4 downto 0);
         register_writeback_enable: out std_logic;
-        
+
+
         data_memory_address: out std_logic_vector(31 downto 0);
         memory_write_enable: out std_logic;
         memory_read_enable: out std_logic;
@@ -344,7 +344,7 @@ architecture arch_imp of CustomCPU_v1_0 is
     
     signal decode_register_a_address: std_logic_vector(4 downto 0);
     signal decode_register_b_address: std_logic_vector(4 downto 0);
-    
+    signal decode_input_hold: std_logic;
     signal decode_stage_ready: std_logic; 
     signal decode_pipeline_step: std_logic;
     signal decode_output_mask: std_logic;
@@ -400,7 +400,6 @@ begin
         instruction_memory_ready => instruction_memory_ready,
         instruction_memory_data => instruction_memory_data,
         instruction_memory_address => instruction_memory_address,
-        step => memory_step,
         data_memory_request => data_memory_request,
         data_memory_ready => data_memory_ready,
         data_memory_data_in => data_memory_data_in,
@@ -467,6 +466,7 @@ begin
         instruction_type=>decode_instruction_type,
         
         decode_stage_ready=>decode_stage_ready,
+        input_hold => decode_input_hold,
         pipeline_step=>decode_pipeline_step,
         register_a_address_out => decode_register_a_address,
         register_b_address_out => decode_register_b_address,
@@ -557,15 +557,14 @@ begin
         access_stage_step => access_pipeline_step,
         access_stage_mask => access_output_mask,
         
-        memory_step => memory_step,
-        
+        decode_input_hold => decode_input_hold,
         decode_register_a_address => decode_register_a_address,
         decode_register_b_address => decode_register_b_address,
-        access_register_writeback_address => access_register_writeback_address,
-        access_register_writeback_enable => access_register_writeback_enable,
+        execute_register_writeback_address => execute_register_output_address,
+        execute_register_writeback_enable => execute_register_writeback_enable,
         
         decode_instruction_type => decode_instruction_type,
-        access_branch_enable => fetch_load_enable,
+        execute_branch_enable => execute_branch_enable,
         
         
         clk => clk,

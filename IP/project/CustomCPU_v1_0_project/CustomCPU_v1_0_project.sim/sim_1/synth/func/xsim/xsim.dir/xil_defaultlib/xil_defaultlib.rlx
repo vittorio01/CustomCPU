@@ -2,16 +2,17 @@
 2020.2
 May  7 2023
 15:10:42
-/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.sim/sim_1/synth/func/xsim/cpu_fetch_testbench_func_synth.vhd,1689947698,vhdl,,,,alu;cache;cache_block;cache_block_dist_mem_gen_v8_0_13;cache_block_dist_mem_gen_v8_0_13_synth;cache_block_spram;cache_register;customcpu_v1_0;customcpu_v1_0_memory_bus;decode_stage;execute_stage;fetch_stage_controller;memory_access_stage;memory_interface;page_list;page_list_dist_mem_gen_v8_0_13;page_list_dist_mem_gen_v8_0_13_synth;page_list_spram;program_counter;register_array;register_array_dist_mem_gen_v8_0_13;register_array_dist_mem_gen_v8_0_13_synth;register_array_dpram;register_file,,,,,,,,
+/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.sim/sim_1/synth/func/xsim/cpu_fetch_testbench_func_synth.vhd,1690140776,vhdl,,,,alu;cache;cache_block;cache_block_dist_mem_gen_v8_0_13;cache_block_dist_mem_gen_v8_0_13_synth;cache_block_spram;cache_register;customcpu_v1_0;customcpu_v1_0_memory_bus;decode_stage;execute_stage;fetch_stage_controller;memory_access_stage;memory_interface;page_list;page_list_dist_mem_gen_v8_0_13;page_list_dist_mem_gen_v8_0_13_synth;page_list_spram;pipeline_manager;program_counter;register_array;register_array_dist_mem_gen_v8_0_13;register_array_dist_mem_gen_v8_0_13_synth;register_array_dpram;register_file,,,,,,,,
 /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sim_1/new/ALU_testbench.vhd,1688807360,vhdl,,,,alu_testbench,,,,,,,,
 /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sim_1/new/cache_register_testbench.vhd,1689001834,vhdl,,,,cache_register_testbench,,,,,,,,
 /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sim_1/new/cache_testbench.vhd,1689526861,vhdl,,,,cache_testbench,,,,,,,,
-/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sim_1/new/cpu_fetch_testbench.vhd,1689947694,vhdl,,,,cpu_fetch_testbench,,,,,,,,
+/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sim_1/new/cpu_fetch_testbench.vhd,1690124248,vhdl,,,,cpu_fetch_testbench,,,,,,,,
 /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sim_1/new/decode_stage_testbench.vhd,1688566695,vhdl,,,,decode_stage_testbench,,,,,,,,
 /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sim_1/new/execute_stage_testbench.vhd,1689946946,vhdl,,,,execute_stage_testbench,,,,,,,,
 /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sim_1/new/fetch_stage_testbench.vhd,1689608812,vhdl,,,,fetch_stage_testbench,,,,,,,,
 /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sim_1/new/memory_access_testbench.vhd,1689777898,vhdl,,,,memory_access_testbench,,,,,,,,
 /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sim_1/new/memory_interface_testbench.vhd,1689608495,vhdl,,,,memory_interface_testbench,,,,,,,,
 /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sim_1/new/memory_manager_testbench.vhd,1688308184,vhdl,,,,memory_manager_testbench,,,,,,,,
+/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sim_1/new/pipeline_manager_testbench.vhd,1689957323,vhdl,,,,pipeline_manager_testbench,,,,,,,,
 /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sim_1/new/program_counter_testbench.vhd,1688379537,vhdl,,,,program_counter_testbench,,,,,,,,
 /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sim_1/new/register_file_testbench.vhd,1688464552,vhdl,,,,register_file_testbench,,,,,,,,

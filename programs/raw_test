@@ -1,0 +1,13 @@
+
+file.elf:     file format elf64-littleriscv
+
+
+Disassembly of section .text:
+
+0000000000000000 <_boot>:
+   0:	03400413          	li	s0,52
+   4:	03000493          	li	s1,48
+   8:	0084a023          	sw	s0,0(s1)
+   c:	08600413          	li	s0,134
+  10:	00940433          	add	s0,s0,s1
+  14:	fedff06f          	j	0 <_boot>

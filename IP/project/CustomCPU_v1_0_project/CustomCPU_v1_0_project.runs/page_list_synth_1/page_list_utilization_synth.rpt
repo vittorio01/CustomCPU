@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.1 (lin64) Build 3865809 Sun May  7 15:04:56 MDT 2023
-| Date         : Fri Jul 21 19:13:05 2023
+| Date         : Sat Jul 22 12:35:16 2023
 | Host         : asus-pc running 64-bit Linux Mint 21.2
 | Command      : report_utilization -file page_list_utilization_synth.rpt -pb page_list_utilization_synth.pb
 | Design       : page_list
@@ -31,13 +31,13 @@ Table of Contents
 +----------------------------+------+-------+------------+-----------+-------+
 |          Site Type         | Used | Fixed | Prohibited | Available | Util% |
 +----------------------------+------+-------+------------+-----------+-------+
-| Slice LUTs*                |   20 |     0 |          0 |     53200 |  0.04 |
+| Slice LUTs*                |   22 |     0 |          0 |     53200 |  0.04 |
 |   LUT as Logic             |    0 |     0 |          0 |     53200 |  0.00 |
-|   LUT as Memory            |   20 |     0 |          0 |     17400 |  0.11 |
-|     LUT as Distributed RAM |   20 |     0 |            |           |       |
+|   LUT as Memory            |   22 |     0 |          0 |     17400 |  0.13 |
+|     LUT as Distributed RAM |   22 |     0 |            |           |       |
 |     LUT as Shift Register  |    0 |     0 |            |           |       |
-| Slice Registers            |   20 |     0 |          0 |    106400 |  0.02 |
-|   Register as Flip Flop    |   20 |     0 |          0 |    106400 |  0.02 |
+| Slice Registers            |   22 |     0 |          0 |    106400 |  0.02 |
+|   Register as Flip Flop    |   22 |     0 |          0 |    106400 |  0.02 |
 |   Register as Latch        |    0 |     0 |          0 |    106400 |  0.00 |
 | F7 Muxes                   |    0 |     0 |          0 |     26600 |  0.00 |
 | F8 Muxes                   |    0 |     0 |          0 |     13300 |  0.00 |
@@ -61,7 +61,7 @@ Warning! LUT value is adjusted to account for LUT combining.
 | 0     |          Yes |           - |          Set |
 | 0     |          Yes |           - |        Reset |
 | 0     |          Yes |         Set |            - |
-| 20    |          Yes |       Reset |            - |
+| 22    |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -150,8 +150,8 @@ Warning! LUT value is adjusted to account for LUT combining.
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| RAMS64E  |   20 |  Distributed Memory |
-| FDRE     |   20 |        Flop & Latch |
+| RAMS64E  |   22 |  Distributed Memory |
+| FDRE     |   22 |        Flop & Latch |
 +----------+------+---------------------+
 
 

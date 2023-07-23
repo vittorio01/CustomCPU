@@ -56,10 +56,10 @@
 //----------- Begin Cut here for INSTANTIATION Template ---// INST_TAG
 page_list your_instance_name (
   .a(a),      // input wire [5 : 0] a
-  .d(d),      // input wire [19 : 0] d
+  .d(d),      // input wire [21 : 0] d
   .clk(clk),  // input wire clk
   .we(we),    // input wire we
-  .spo(spo)  // output wire [19 : 0] spo
+  .spo(spo)  // output wire [21 : 0] spo
 );
 // INST_TAG_END ------ End INSTANTIATION Template ---------
 

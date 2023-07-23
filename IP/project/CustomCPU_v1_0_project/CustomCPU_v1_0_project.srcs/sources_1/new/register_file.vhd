@@ -104,14 +104,12 @@ begin
                 if (read_request='1') then 
                     current_state <= read_register;
                 else 
-                    if (write_request<= '0') then 
-                        current_state <= wait_request;
-                    end if;
+                   current_state <= wait_request;
                 end if;
             elsif (current_state=read_register) then
-                if (read_request<= '0') then 
-                        current_state <= wait_request;
-                end if;
+
+                   current_state <= wait_request;
+
             else
                 current_state <= wait_request;
             end if;
@@ -127,16 +125,6 @@ begin
         when wait_request => 
             ready <= '1';
             register_array_write_enable <= '0';
-            if (address_a="00000") then 
-                register_a_output <= (others =>'0');
-            else 
-                register_a_output <= register_array_data_out_a;
-            end if;
-            if (address_b="00000") then 
-                register_b_output <= (others =>'0');
-            else 
-                register_b_output <= register_array_data_out_b;
-            end if;
             register_enable <= '0';
         when write_register => 
             ready <= '0';
@@ -153,5 +141,8 @@ begin
     end case;
     register_array_data_in <= register_input;
   end process;
-  
+  register_a_output <= (others => '0') when address_a="00000" else
+                       register_array_data_out_a;
+  register_b_output <= (others => '0') when address_b="00000" else
+                       register_array_data_out_b;              
 end Behavioral;

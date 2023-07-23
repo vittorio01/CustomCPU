@@ -58,14 +58,16 @@ module cache_block (
   d,
   clk,
   we,
+  i_ce,
   spo
 );
 
 input wire [5 : 0] a;
-input wire [127 : 0] d;
+input wire [255 : 0] d;
 input wire clk;
 input wire we;
-output wire [127 : 0] spo;
+input wire i_ce;
+output wire [255 : 0] spo;
 
   dist_mem_gen_v8_0_13 #(
     .C_FAMILY("zynq"),
@@ -76,7 +78,7 @@ output wire [127 : 0] spo;
     .C_HAS_D(1),
     .C_HAS_DPO(0),
     .C_HAS_DPRA(0),
-    .C_HAS_I_CE(0),
+    .C_HAS_I_CE(1),
     .C_HAS_QDPO(0),
     .C_HAS_QDPO_CE(0),
     .C_HAS_QDPO_CLK(0),
@@ -98,7 +100,7 @@ output wire [127 : 0] spo;
     .C_REG_A_D_INPUTS(1),
     .C_REG_DPRA_INPUT(0),
     .C_SYNC_ENABLE(1),
-    .C_WIDTH(128),
+    .C_WIDTH(256),
     .C_PARSER_TYPE(1)
   ) inst (
     .a(a),
@@ -106,7 +108,7 @@ output wire [127 : 0] spo;
     .dpra(6'B0),
     .clk(clk),
     .we(we),
-    .i_ce(1'D1),
+    .i_ce(i_ce),
     .qspo_ce(1'D1),
     .qdpo_ce(1'D1),
     .qdpo_clk(1'D0),

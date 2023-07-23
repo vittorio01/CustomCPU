@@ -2,7 +2,7 @@
 -- Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2023.1 (lin64) Build 3865809 Sun May  7 15:04:56 MDT 2023
--- Date        : Fri Jul 21 19:13:05 2023
+-- Date        : Sat Jul 22 12:35:16 2023
 -- Host        : asus-pc running 64-bit Linux Mint 21.2
 -- Command     : write_vhdl -force -mode synth_stub
 --               /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.gen/sources_1/ip/page_list/page_list_stub.vhdl
@@ -16,10 +16,10 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity page_list is
   Port ( 
     a : in STD_LOGIC_VECTOR ( 5 downto 0 );
-    d : in STD_LOGIC_VECTOR ( 19 downto 0 );
+    d : in STD_LOGIC_VECTOR ( 21 downto 0 );
     clk : in STD_LOGIC;
     we : in STD_LOGIC;
-    spo : out STD_LOGIC_VECTOR ( 19 downto 0 )
+    spo : out STD_LOGIC_VECTOR ( 21 downto 0 )
   );
 
 end page_list;
@@ -28,7 +28,7 @@ architecture stub of page_list is
 attribute syn_black_box : boolean;
 attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
-attribute black_box_pad_pin of stub : architecture is "a[5:0],d[19:0],clk,we,spo[19:0]";
+attribute black_box_pad_pin of stub : architecture is "a[5:0],d[21:0],clk,we,spo[21:0]";
 attribute x_core_info : string;
 attribute x_core_info of stub : architecture is "dist_mem_gen_v8_0_13,Vivado 2023.1";
 begin

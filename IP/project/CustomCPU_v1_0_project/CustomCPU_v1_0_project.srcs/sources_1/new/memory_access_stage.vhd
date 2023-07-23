@@ -70,12 +70,27 @@ entity memory_access_stage is
 end memory_access_stage;
 
 architecture Behavioral of memory_access_stage is
-    type state is (step_wait,data_memory_access,output_latch);
+    type state is (step_wait,data_memory_access,output_latch,nop);
     signal current_state: state;
 begin
     process (clk) is 
     variable memory_access_started: std_logic;
     variable memory_access_direction: std_logic;
+    
+    variable current_new_program_counter_in: std_logic_vector(31 downto 0);
+    
+    variable current_memory_write_enable: std_logic;
+    variable current_memory_read_enable: std_logic;
+    variable current_register_writeback_enable: std_logic;
+    
+    variable current_branch_enable: std_logic;
+    
+    variable current_data_in: std_logic_vector(31 downto 0);
+    variable current_register_writeback_address_in: std_logic_vector(4 downto 0);
+    
+    variable current_data_memory_address_in: std_logic_vector(31 downto 0);
+    variable current_data_memory_access_mode: std_logic_vector(2 downto 0);
+    
     begin 
         if (rising_edge(clk)) then 
             if (reset ='0') then
@@ -85,105 +100,106 @@ begin
                 if (output_mask ='0') then
                     if (current_state = step_wait) then 
                         memory_access_started:='0';
-                        if (memory_read_enable='1') then 
-                            case data_memory_access_mode is 
-                                when "000" => 
-                                    register_writeback_data_out <= 
-                                    data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out (7 downto 0);
-                                when "001" => 
-                                    register_writeback_data_out <= 
-                                    data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out (15 downto 0);
-                                when "010" => 
-                                    register_writeback_data_out <= data_memory_data_out;
-                                when "100" => 
-                                    register_writeback_data_out <= "000000000000000000000000" & data_memory_data_out(7 downto 0);
-                                when "101" => 
-                                    register_writeback_data_out <= "0000000000000000" & data_memory_data_out(15 downto 0);
-                                when others => 
-                                    register_writeback_data_out <= data_memory_data_out;
-                            end case;
-                        elsif (memory_write_enable = '0') then 
-                            register_writeback_data_out <= data_in;
-                        else 
-                            register_writeback_data_out <= (others => '-');
-                        end if;
-                        
                         if (pipeline_step ='1') then 
+                            current_new_program_counter_in:= new_program_counter_in;
+                            current_memory_write_enable:= memory_write_enable;
+                            current_memory_read_enable:= memory_read_enable;
+                            current_register_writeback_enable:= register_writeback_enable;
+                            current_branch_enable:= branch_enable;
+                            current_data_in:= data_in;
+                            current_register_writeback_address_in:= register_writeback_address_in;
+                            current_data_memory_address_in:= data_memory_address_in;
+                            current_data_memory_access_mode:= data_memory_access_mode;
                             
-                            if (memory_write_enable = '1') then
-                                memory_access_started:='0';
-                                memory_access_direction:='1';
-                                data_memory_request<='1';
-                                data_memory_direction <='1';
-                                data_memory_write_mode <= data_memory_access_mode(1 downto 0);
-                                data_memory_data_in <= data_in;
-                                data_memory_address <= data_memory_address_in;
-                                memory_access_stage_ready <='0';
-                                current_state <= data_memory_access;
-                            elsif (memory_read_enable = '1') then
-                                memory_access_started:='0';
-                                memory_access_direction:='0';
-                                data_memory_request<='1';
-                                data_memory_direction <='0';
-                                data_memory_address <= data_memory_address_in;
-                                current_state <= data_memory_access;
-                                memory_access_stage_ready <='0';
-                            elsif (register_writeback_enable= '1') then
-                                current_state <= output_latch;
-                                memory_access_stage_ready <='0';
-                            end if;
-                        else 
-                            data_memory_request <='0';
-                            memory_access_stage_ready<='1';
-                        end if;
-                    elsif (current_state = data_memory_access) then
-                        memory_access_stage_ready <= '0';
-                        if (memory_access_direction = '1') then 
-                            if (memory_access_started='0') then 
-                                memory_access_started:='1';
-                            else 
-                                if (data_memory_ready = '1') then
+                                if (current_memory_write_enable = '1') then
+                                    memory_access_started:='0';
+                                    memory_access_direction:='1';
+                                    data_memory_request<='1';
+                                    data_memory_direction <='1';
+                                    data_memory_write_mode <= current_data_memory_access_mode(1 downto 0);
+                                    data_memory_data_in <= current_data_in;
+                                    data_memory_address <= current_data_memory_address_in;
+                                    memory_access_stage_ready <='0';
+                                    current_state <= data_memory_access;
+                                elsif (current_memory_read_enable = '1') then
+                                    memory_access_started:='0';
+                                    memory_access_direction:='0';
+                                    data_memory_request<='1';
+                                    data_memory_direction <='0';
+                                    data_memory_address <= current_data_memory_address_in;
+                                    current_state <= data_memory_access;
+                                    memory_access_stage_ready <='0';
+                                elsif (current_register_writeback_enable= '1') then
                                     current_state <= output_latch;
+                                    memory_access_stage_ready <='0';
+                                elsif (branch_enable = '1') then 
+                                    current_state <= output_latch;
+                                else 
+                                    memory_access_stage_ready <= '0';
+                                    current_state <= nop;
+                                end if;
+                            else 
+                                data_memory_request <='0';
+                                memory_access_stage_ready<='1';
+                            end if;
+                        elsif (current_state = data_memory_access) then
+                            memory_access_stage_ready <= '0';
+                            if (memory_access_direction = '1') then 
+                                if (memory_access_started='0') then 
+                                    memory_access_started:='1';
+                                else 
+                                    if (data_memory_ready = '1') then
+                                        current_state <= output_latch;
+                                    end if;
+                                end if;
+                            elsif (memory_access_direction= '0') then 
+                                if (memory_access_started='0') then 
+                                    
+                                    memory_access_started:='1';
+                                else 
+                                    if (data_memory_ready = '1') then
+                                        current_state <= output_latch;
+                                    end if;
                                 end if;
                             end if;
-                        elsif (memory_access_direction= '0') then 
-                            if (memory_access_started='0') then 
-                                
-                                memory_access_started:='1';
-                            else 
-                                if (data_memory_ready = '1') then
-                                    current_state <= output_latch;
+                        elsif (current_state = output_latch) then 
+                            pc_address_load_enable <= current_branch_enable;
+                            memory_access_stage_ready <= '0';
+                            data_memory_request <= '0';
+                            if (current_memory_read_enable='1') then 
+                                case current_data_memory_access_mode is 
+                                    when "000" => 
+                                        register_writeback_data_out <= 
+                                        data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out (7 downto 0);
+                                    when "001" => 
+                                        register_writeback_data_out <= 
+                                        data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out (15 downto 0);
+                                    when "010" => 
+                                        register_writeback_data_out <= data_memory_data_out;
+                                    when "100" => 
+                                        register_writeback_data_out <= "000000000000000000000000" & data_memory_data_out(7 downto 0);
+                                    when "101" => 
+                                        register_writeback_data_out <= "0000000000000000" & data_memory_data_out(15 downto 0);
+                                    when others => 
+                                        register_writeback_data_out <= data_memory_data_out;
+                                end case;
+                            elsif (current_memory_write_enable = '0') then 
+                                if (current_register_writeback_enable = '1') then
+                                    register_writeback_enable_out<='1';
+                                    register_writeback_data_out <= current_data_in;
+                                    register_writeback_address_out <= current_register_writeback_address_in;
+                                else 
+                                    register_writeback_address_out <= (others => '-');
+                                    register_writeback_data_out <= (others => '-');
+                                    register_writeback_enable_out<='0';
                                 end if;
+                            else 
+                                register_writeback_data_out <= (others => '-');
                             end if;
-                        end if;
-                    elsif (current_state = output_latch) then 
-                        pc_address_load_enable <= branch_enable;
+                            new_program_counter_out <= current_new_program_counter_in;
+                            current_state <= step_wait;
+                        elsif (current_state = nop) then
                         memory_access_stage_ready <= '0';
-                        data_memory_request <= '0';
-                        if (memory_read_enable='1') then 
-                            case data_memory_access_mode is 
-                                when "000" => 
-                                    register_writeback_data_out <= 
-                                    data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out(7) & data_memory_data_out (7 downto 0);
-                                when "001" => 
-                                    register_writeback_data_out <= 
-                                    data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out(15) & data_memory_data_out (15 downto 0);
-                                when "010" => 
-                                    register_writeback_data_out <= data_memory_data_out;
-                                when "100" => 
-                                    register_writeback_data_out <= "000000000000000000000000" & data_memory_data_out(7 downto 0);
-                                when "101" => 
-                                    register_writeback_data_out <= "0000000000000000" & data_memory_data_out(15 downto 0);
-                                when others => 
-                                    register_writeback_data_out <= data_memory_data_out;
-                            end case;
-                        elsif (memory_write_enable = '0') then 
-                            register_writeback_data_out <= data_in;
-                        else 
-                            register_writeback_data_out <= (others => '-');
-                        end if;
-                        register_writeback_address_out <= register_writeback_address_in;
-                        new_program_counter_out <= new_program_counter_in;
                         current_state <= step_wait;
                     end if;
                 else 

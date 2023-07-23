@@ -13,6 +13,7 @@ vhdl xil_defaultlib  \
 "../../../../../CustomCPU_v1_0_project.srcs/sim_1/new/cache_testbench.vhd" \
 "../../../../../CustomCPU_v1_0_project.srcs/sim_1/new/execute_stage_testbench.vhd" \
 "../../../../../CustomCPU_v1_0_project.srcs/sim_1/new/memory_access_testbench.vhd" \
+"../../../../../CustomCPU_v1_0_project.srcs/sim_1/new/pipeline_manager_testbench.vhd" \
 
 # Do not sort compile order
 nosort

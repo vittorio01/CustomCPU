@@ -54,10 +54,10 @@
 COMPONENT page_list
   PORT (
     a : IN STD_LOGIC_VECTOR(5 DOWNTO 0);
-    d : IN STD_LOGIC_VECTOR(19 DOWNTO 0);
+    d : IN STD_LOGIC_VECTOR(21 DOWNTO 0);
     clk : IN STD_LOGIC;
     we : IN STD_LOGIC;
-    spo : OUT STD_LOGIC_VECTOR(19 DOWNTO 0) 
+    spo : OUT STD_LOGIC_VECTOR(21 DOWNTO 0) 
   );
 END COMPONENT;
 -- COMP_TAG_END ------ End COMPONENT Declaration ------------

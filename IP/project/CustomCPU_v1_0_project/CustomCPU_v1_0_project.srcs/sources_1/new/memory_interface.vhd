@@ -35,10 +35,10 @@ entity memory_interface is
   Generic (
     address_dimension: integer := 32;
     data_dimension: integer := 32;
-    cache_page_address_dimension: integer := 25;
-    cache_data_dimension: integer:= 128;
-    cache_offset_address_dimension : integer := 4;
-    
+    cache_page_address_dimension: integer := 24;
+    cache_data_dimension: integer:= 256;
+    cache_offset_address_dimension : integer := 5;
+    cache_address_dimension: integer := 6;
     C_memory_bus_TARGET_SLAVE_BASE_ADDR	: std_logic_vector	:= x"40000000";
     C_memory_bus_BURST_LEN	: integer	:= 8;
     C_memory_bus_ID_WIDTH	: integer	:= 8;
@@ -55,7 +55,6 @@ entity memory_interface is
     instruction_memory_ready: out std_logic;
     instruction_memory_data: out std_logic_vector(data_dimension-1 downto 0);
     instruction_memory_address: in std_logic_vector (address_dimension-1 downto 0);
-    step: in std_logic;
 
     data_memory_request: in std_logic;
     data_memory_ready: out std_logic;
@@ -121,12 +120,12 @@ architecture Behavioral of memory_interface is
 
 		-- User parameters ends
 		-- Do not modify the parameters beyond this line
-        cache_address_dimension : integer := 6;
-        memory_address_dimension: integer := 25;
-        cache_data_dimension: integer:= 128;
+        cache_address_dimension : integer := cache_address_dimension;
+        memory_address_dimension: integer := cache_page_address_dimension;
+        cache_data_dimension: integer:= cache_data_dimension;
         transmission_data_dimension: integer := 32;
         
-        cache_offset_address_dimension: integer:= 7;
+        cache_offset_address_dimension: integer:= cache_offset_address_dimension;
         
 		-- Parameters of Axi Master Bus Interface memory_bus
 		C_memory_bus_TARGET_SLAVE_BASE_ADDR	: std_logic_vector	:= x"40000000";
@@ -204,8 +203,8 @@ architecture Behavioral of memory_interface is
 	);
     end component cache;
     component cache_register is
-      Generic ( page_dimension: integer:= 128;
-                data_address_dimension: integer:= 4
+      Generic ( page_dimension: integer:= cache_data_dimension;
+                data_address_dimension: integer:= cache_offset_address_dimension
       );
      
       Port (
@@ -363,79 +362,78 @@ begin
             else 
                 case current_state is 
                     when wait_request =>
-                        if (step='1') then
-                            if (data_memory_request = '1') then 
-                                data_address(address_range-1 downto 0):=data_memory_address(address_range-1 downto 0);
-                                offset1:= std_logic_vector(unsigned(data_address));
-                                offset2:= std_logic_vector(unsigned(data_address)+3);
-                                    if (loaded_page1 = offset1(address_range-1 downto cache_offset_address_dimension) and page1_loaded='1') then -- page 1 verify
-                                        if (offset1(address_range-1 downto cache_offset_address_dimension) = offset2(address_range-1 downto cache_offset_address_dimension)) then --verify offset
-                                            
+
+                        if (data_memory_request = '1') then 
+                            data_address(address_range-1 downto 0):=data_memory_address(address_range-1 downto 0);
+                            offset1:= std_logic_vector(unsigned(data_address));
+                            offset2:= std_logic_vector(unsigned(data_address)+3);
+                                if (loaded_page1 = offset1(address_range-1 downto cache_offset_address_dimension) and page1_loaded='1') then -- page 1 verify
+                                    if (offset1(address_range-1 downto cache_offset_address_dimension) = offset2(address_range-1 downto cache_offset_address_dimension)) then --verify offset
+                                        
+                                        if (data_memory_direction = '1') then 
+                                            offset_overflow<='0';
+                                            current_state<=write_data;
+                                        else 
+                                            offset_overflow<='0';
+                                            current_state<=read_data;
+                                        end if;
+                                    else 
+                                        
+                                        if (loaded_page2=offset2(address_range-1 downto cache_offset_address_dimension) and page2_loaded='1') then 
                                             if (data_memory_direction = '1') then 
-                                                offset_overflow<='0';
+                                                offset_overflow<='1';
                                                 current_state<=write_data;
                                             else 
-                                                offset_overflow<='0';
+                                                offset_overflow<='1';
                                                 current_state<=read_data;
                                             end if;
                                         else 
                                             
-                                            if (loaded_page2=offset2(address_range-1 downto cache_offset_address_dimension) and page2_loaded='1') then 
-                                                if (data_memory_direction = '1') then 
-                                                    offset_overflow<='1';
-                                                    current_state<=write_data;
-                                                else 
-                                                    offset_overflow<='1';
-                                                    current_state<=read_data;
-                                                end if;
-                                            else 
-                                                
-                                                current_state<=data_page2_request;
-                                            end if;
-                                        end if;
-                                    else
-                                        if (offset1(address_range-1 downto cache_offset_address_dimension) = offset2(address_range-1 downto cache_offset_address_dimension)) then 
-                                            offset_overflow<='0';
-                                           
-                                            current_state<=data_page1_request;
-                                        else 
-                                            offset_overflow<='1';
-                                             
-                                            current_state<=data_page1_request;
-                                        end if;
-                                    end if;
-                             
-                            elsif (instruction_memory_request = '1') then
-                                data_address(address_range-1 downto 0):=instruction_memory_address(address_range-1 downto 0);
-                                offset1:= std_logic_vector(unsigned(data_address));
-                                offset2:= std_logic_vector(unsigned(data_address)+3);
-                                if (loaded_page1 = offset1(address_range-1 downto cache_offset_address_dimension) and page1_loaded='1') then -- page 1 verify
-                                    if (offset1(address_range-1 downto cache_offset_address_dimension) = offset2(address_range-1 downto cache_offset_address_dimension)) then --verify offset
-                                        offset_overflow<='0';
-                                        current_state<=instruction_read;
-                                    else 
-                                        
-                                        if (loaded_page2=offset2(address_range-1 downto cache_offset_address_dimension) and page2_loaded='1') then 
-                                            offset_overflow<='1';
-                                            current_state<=instruction_read;
-                                        else 
-                                            offset_overflow<='1';
-                                            current_state<=instruction_page2_request;
+                                            current_state<=data_page2_request;
                                         end if;
                                     end if;
                                 else
                                     if (offset1(address_range-1 downto cache_offset_address_dimension) = offset2(address_range-1 downto cache_offset_address_dimension)) then 
                                         offset_overflow<='0';
                                        
-                                        current_state<=instruction_page1_request;
+                                        current_state<=data_page1_request;
                                     else 
                                         offset_overflow<='1';
-                                       
-                                        current_state<=instruction_page1_request;
+                                         
+                                        current_state<=data_page1_request;
                                     end if;
                                 end if;
+                         
+                        elsif (instruction_memory_request = '1') then
+                            data_address(address_range-1 downto 0):=instruction_memory_address(address_range-1 downto 0);
+                            offset1:= std_logic_vector(unsigned(data_address));
+                            offset2:= std_logic_vector(unsigned(data_address)+3);
+                            if (loaded_page1 = offset1(address_range-1 downto cache_offset_address_dimension) and page1_loaded='1') then -- page 1 verify
+                                if (offset1(address_range-1 downto cache_offset_address_dimension) = offset2(address_range-1 downto cache_offset_address_dimension)) then --verify offset
+                                    offset_overflow<='0';
+                                    current_state<=instruction_read;
+                                else 
+                                    
+                                    if (loaded_page2=offset2(address_range-1 downto cache_offset_address_dimension) and page2_loaded='1') then 
+                                        offset_overflow<='1';
+                                        current_state<=instruction_read;
+                                    else 
+                                        offset_overflow<='1';
+                                        current_state<=instruction_page2_request;
+                                    end if;
+                                end if;
+                            else
+                                if (offset1(address_range-1 downto cache_offset_address_dimension) = offset2(address_range-1 downto cache_offset_address_dimension)) then 
+                                    offset_overflow<='0';
+                                   
+                                    current_state<=instruction_page1_request;
+                                else 
+                                    offset_overflow<='1';
+                                   
+                                    current_state<=instruction_page1_request;
+                                end if;
                             end if;
-                         end if;
+                        end if;
                     when data_page1_request =>
                         current_state <= data_page1_load;
                         
@@ -469,33 +467,37 @@ begin
                         if (cache_ready='1') then 
                             if (offset_overflow = '1') then 
                                 current_state <= write_page2_send;
-                            elsif (instruction_memory_request = '1') then
-                                data_address(address_range-1 downto 0):=instruction_memory_address(address_range-1 downto 0);
-                                offset1:= std_logic_vector(unsigned(data_address));
-                                offset2:= std_logic_vector(unsigned(data_address)+3);
-                                if (loaded_page1 = offset1(address_range-1 downto cache_offset_address_dimension) and page1_loaded='1') then -- page 1 verify
-                                    if (offset1(address_range-1 downto cache_offset_address_dimension) = offset2(address_range-1 downto cache_offset_address_dimension)) then --verify offset
-                                        offset_overflow<='0';
-                                        current_state<=instruction_read;
-                                    else 
-                                        offset_overflow<='1';
-                                        if (loaded_page2=offset2(address_range-1 downto cache_offset_address_dimension) and page2_loaded='1') then 
+                            else
+                                if (instruction_memory_request = '1') then
+                                    data_address(address_range-1 downto 0):=instruction_memory_address(address_range-1 downto 0);
+                                    offset1:= std_logic_vector(unsigned(data_address));
+                                    offset2:= std_logic_vector(unsigned(data_address)+3);
+                                    if (loaded_page1 = offset1(address_range-1 downto cache_offset_address_dimension) and page1_loaded='1') then -- page 1 verify
+                                        if (offset1(address_range-1 downto cache_offset_address_dimension) = offset2(address_range-1 downto cache_offset_address_dimension)) then --verify offset
+                                            offset_overflow<='0';
                                             current_state<=instruction_read;
                                         else 
-                                            current_state<=instruction_page2_request;
+                                            offset_overflow<='1';
+                                            if (loaded_page2=offset2(address_range-1 downto cache_offset_address_dimension) and page2_loaded='1') then 
+                                                current_state<=instruction_read;
+                                            else 
+                                                current_state<=instruction_page2_request;
+                                            end if;
+                                        end if;
+                                    else
+                                        if (offset1(address_range-1 downto cache_offset_address_dimension) = offset2(address_range-1 downto cache_offset_address_dimension)) then 
+                                            offset_overflow<='0';
+                                            current_state<=instruction_page1_request;
+                                        else 
+                                            offset_overflow<='1';
+                                            current_state<=instruction_page1_request;
                                         end if;
                                     end if;
-                                else
-                                    if (offset1(address_range-1 downto cache_offset_address_dimension) = offset2(address_range-1 downto cache_offset_address_dimension)) then 
-                                        offset_overflow<='0';
-                                        current_state<=instruction_page1_request;
-                                    else 
-                                        offset_overflow<='1';
-                                        current_state<=instruction_page1_request;
+                                else 
+                                    if (data_memory_request = '0') then
+                                        current_state <= wait_request;
                                     end if;
                                 end if;
-                            else 
-                                current_state <= wait_request;
                             end if;
                         end if;
                     when write_page2_send =>
@@ -527,13 +529,15 @@ begin
                                     end if;
                                 end if;
                             else 
-                                current_state <= wait_request;
+                                if (data_memory_request = '0') then 
+                                    current_state <= wait_request;
+                                end if;
                             end if;
                         end if;
                     when read_data =>
                         current_state <= data_latch;
                     when data_latch => 
-                        if (instruction_memory_request = '1') then
+                        if (instruction_memory_request = '1' and data_memory_request = '0') then
                             data_address(address_range-1 downto 0):=instruction_memory_address(address_range-1 downto 0);
                             offset1:= std_logic_vector(unsigned(data_address));
                             offset2:= std_logic_vector(unsigned(data_address)+3);
@@ -560,7 +564,7 @@ begin
                                 end if;
                             end if;
                         else 
-                            if (step = '0') then
+                            if (data_memory_request ='0') then
                                 current_state <= wait_request;
                             end if;
                         end if;
@@ -585,7 +589,7 @@ begin
                     when instruction_read =>
                         current_state <= instruction_latch;
                     when instruction_latch => 
-                        if (step='0') then
+                        if (instruction_memory_request = '0') then
                             current_state <= wait_request;
                         end if;
                 end case;
@@ -597,7 +601,7 @@ begin
     
     register_page_in <= cache_data_out;
     cache_data_in <= register_page_out;
-    process (current_state) is 
+    process (current_state,clk) is 
         begin
         
         case current_state is 
@@ -629,7 +633,7 @@ begin
                 cache_enable <= '0';
                 cache_write_enable<='0';
                 instruction_memory_ready<='0';
-                data_memory_ready<='0';
+                data_memory_ready <= '0';
                 register_page_access <= '1';
                 register_write_enable <='1';
                 register_data_access <='0';
@@ -640,10 +644,9 @@ begin
                 cache_address_in <= std_logic_vector(unsigned(data_memory_address(cache_offset_address_dimension+cache_page_address_dimension-1 downto cache_offset_address_dimension))+1);
                 loaded_page2<= std_logic_vector(unsigned(data_memory_address(cache_offset_address_dimension+cache_page_address_dimension-1 downto cache_offset_address_dimension))+1);
                 cache_enable <= '1';
-                
+                data_memory_ready <= '0';
                 cache_write_enable<='0';
                 instruction_memory_ready<='0';
-                data_memory_ready<='0';
                 register_page_access <= '0';
                 register_write_enable <='0';
                 register_page_number<='0';
@@ -678,9 +681,15 @@ begin
             when write_page1_send => 
                 cache_address_in <= loaded_page1;
                 cache_write_enable<='1';
+                
                 cache_enable<='0';
-                data_memory_ready<='0';
                 instruction_memory_ready<='0';
+                if (cache_ready='1') then
+                    data_memory_ready <= '1';
+                else 
+                    data_memory_ready <= '0';
+                end if;
+                 
                 register_page_access <= '1';
                 register_write_enable <='0';
                 register_page_number<='0';
@@ -691,7 +700,11 @@ begin
                 cache_address_in <= loaded_page2;
                 cache_write_enable<='1';
                 cache_enable<='1';
-                data_memory_ready<='0';
+                if (cache_ready='1') then
+                    data_memory_ready <= '1';
+                else 
+                    data_memory_ready <= '0';
+                end if;
                 instruction_memory_ready<='0';
                 register_page_access <= '1';
                 register_write_enable <='0';
@@ -699,11 +712,11 @@ begin
                 register_data_access <='1';
                 register_data_write<='0';
             when read_data =>
-            
+                data_memory_ready <= '0';
                 register_data_address<=data_memory_address(cache_offset_address_dimension-1 downto 0);
                 cache_write_enable<='0';
                 cache_enable<='0';
-                data_memory_ready<='0';
+                
                 instruction_memory_ready<='0';
                 register_page_access <= '0';
                 register_write_enable <='0';
@@ -713,6 +726,7 @@ begin
                 
                 
             when data_latch =>
+                data_memory_ready <= '1';
                 data_memory_data_out<=register_data_out;
                 
             when instruction_page1_request => 
@@ -720,8 +734,8 @@ begin
                 loaded_page1 <= instruction_memory_address(cache_offset_address_dimension+cache_page_address_dimension-1 downto cache_offset_address_dimension);
                 cache_write_enable<='0';
                 cache_enable<='1';
-                data_memory_ready<='0';
                 instruction_memory_ready<='0';
+                data_memory_ready <= '1';
                 register_page_access <= '0';
                 register_write_enable <='0';
                 register_data_access <='0';
@@ -729,8 +743,8 @@ begin
             when instruction_page1_load => 
                 cache_write_enable<='0';
                 cache_enable<='0';
-                data_memory_ready<='0';
                 instruction_memory_ready<='0';
+                data_memory_ready <= '1';
                 register_page_number<='0';
                 register_page_access <= '1';
                 register_write_enable <='1';
@@ -741,8 +755,8 @@ begin
                 loaded_page2<= std_logic_vector(unsigned(instruction_memory_address(cache_offset_address_dimension+cache_page_address_dimension-1 downto cache_offset_address_dimension))+1);
                 cache_write_enable<='0';
                 cache_enable<='1';
-                data_memory_ready<='0';
                 instruction_memory_ready<='0';
+                data_memory_ready <= '1';
                 register_page_access <= '0';
                 register_write_enable <='0';
                 register_data_access <='0';
@@ -751,8 +765,8 @@ begin
             when instruction_page2_load => 
                 cache_write_enable<='0';
                 cache_enable<='0';
-                data_memory_ready<='0';
                 instruction_memory_ready<='0';
+                data_memory_ready <= '1';
                 register_page_number<='1';
                 register_page_access <= '1';
                 register_write_enable <='1';
@@ -763,8 +777,8 @@ begin
                 register_data_address<=instruction_memory_address(cache_offset_address_dimension-1 downto 0);
                 cache_write_enable<='0';
                 cache_enable<='0';
-                data_memory_ready<='0';
                 instruction_memory_ready<='0';
+                data_memory_ready <= '1';
                 register_page_access <= '0';
                 register_write_enable <='0';
                 register_page_number<='0';
@@ -772,6 +786,8 @@ begin
                 register_data_write<='0';
             
             when instruction_latch => 
+                instruction_memory_ready <= '1';
+                data_memory_ready <= '1';
                 instruction_memory_data<=register_data_out;
 
         end case;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7z020clg484-1" LaunchTime="1689950680" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/memory_interface.dcp">
+<GenRun Id="synth_1" LaunchPart="xc7z020clg484-1" LaunchTime="1690140601" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/memory_interface.dcp">
   <File Type="VDS-TIMINGSUMMARY" Name="CustomCPU_v1_0_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="CustomCPU_v1_0.dcp"/>
   <File Type="RDS-UTIL-PB" Name="CustomCPU_v1_0_utilization_synth.pb"/>
@@ -137,6 +137,36 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/new/pipeline_manager.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../programs/raw_test.coe">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../programs/raw_test_cache.coe">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../programs/banch_test.coe">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../programs/branch_test_cache.coe">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
       <Option Name="TopModule" Val="CustomCPU_v1_0"/>
@@ -166,7 +196,8 @@
     <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023"/>
     <Step Id="synth_design"/>
   </Strategy>
+  <BlockFileSet Type="BlockSrcs" Name="blk_mem_gen_0"/>
   <BlockFileSet Type="BlockSrcs" Name="register_array"/>
-  <BlockFileSet Type="BlockSrcs" Name="page_list"/>
   <BlockFileSet Type="BlockSrcs" Name="cache_block"/>
+  <BlockFileSet Type="BlockSrcs" Name="page_list"/>
 </GenRun>

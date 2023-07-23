@@ -3,8 +3,8 @@
 # SW Build 3865809 on Sun May  7 15:04:56 MDT 2023
 # IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
 # SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
-# Start of session at: Fri Jul 21 16:44:43 2023
-# Process ID: 29984
+# Start of session at: Sun Jul 23 21:30:30 2023
+# Process ID: 4359
 # Current directory: /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/synth_1
 # Command line: vivado -log CustomCPU_v1_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source CustomCPU_v1_0.tcl
 # Log file: /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/synth_1/CustomCPU_v1_0.vds

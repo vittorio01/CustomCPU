@@ -59,10 +59,11 @@ USE dist_mem_gen_v8_0_13.dist_mem_gen_v8_0_13;
 ENTITY cache_block IS
   PORT (
     a : IN STD_LOGIC_VECTOR(5 DOWNTO 0);
-    d : IN STD_LOGIC_VECTOR(127 DOWNTO 0);
+    d : IN STD_LOGIC_VECTOR(255 DOWNTO 0);
     clk : IN STD_LOGIC;
     we : IN STD_LOGIC;
-    spo : OUT STD_LOGIC_VECTOR(127 DOWNTO 0)
+    i_ce : IN STD_LOGIC;
+    spo : OUT STD_LOGIC_VECTOR(255 DOWNTO 0)
   );
 END cache_block;
 
@@ -106,7 +107,7 @@ ARCHITECTURE cache_block_arch OF cache_block IS
     );
     PORT (
       a : IN STD_LOGIC_VECTOR(5 DOWNTO 0);
-      d : IN STD_LOGIC_VECTOR(127 DOWNTO 0);
+      d : IN STD_LOGIC_VECTOR(255 DOWNTO 0);
       dpra : IN STD_LOGIC_VECTOR(5 DOWNTO 0);
       clk : IN STD_LOGIC;
       we : IN STD_LOGIC;
@@ -118,10 +119,10 @@ ARCHITECTURE cache_block_arch OF cache_block IS
       qdpo_rst : IN STD_LOGIC;
       qspo_srst : IN STD_LOGIC;
       qdpo_srst : IN STD_LOGIC;
-      spo : OUT STD_LOGIC_VECTOR(127 DOWNTO 0);
-      dpo : OUT STD_LOGIC_VECTOR(127 DOWNTO 0);
-      qspo : OUT STD_LOGIC_VECTOR(127 DOWNTO 0);
-      qdpo : OUT STD_LOGIC_VECTOR(127 DOWNTO 0)
+      spo : OUT STD_LOGIC_VECTOR(255 DOWNTO 0);
+      dpo : OUT STD_LOGIC_VECTOR(255 DOWNTO 0);
+      qspo : OUT STD_LOGIC_VECTOR(255 DOWNTO 0);
+      qdpo : OUT STD_LOGIC_VECTOR(255 DOWNTO 0)
     );
   END COMPONENT dist_mem_gen_v8_0_13;
   ATTRIBUTE X_CORE_INFO : STRING;
@@ -129,8 +130,8 @@ ARCHITECTURE cache_block_arch OF cache_block IS
   ATTRIBUTE CHECK_LICENSE_TYPE : STRING;
   ATTRIBUTE CHECK_LICENSE_TYPE OF cache_block_arch : ARCHITECTURE IS "cache_block,dist_mem_gen_v8_0_13,{}";
   ATTRIBUTE CORE_GENERATION_INFO : STRING;
-  ATTRIBUTE CORE_GENERATION_INFO OF cache_block_arch: ARCHITECTURE IS "cache_block,dist_mem_gen_v8_0_13,{x_ipProduct=Vivado 2023.1,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=dist_mem_gen,x_ipVersion=8.0,x_ipCoreRevision=13,x_ipLanguage=VHDL,x_ipSimLanguage=VHDL,C_FAMILY=zynq,C_ADDR_WIDTH=6,C_DEFAULT_DATA=0,C_DEPTH=64,C_HAS_CLK=1,C_HAS_D=1,C_HAS_DPO=0,C_HAS_DPRA=0,C_HAS_I_CE=0,C_HAS_QDPO=0,C_HAS_QDPO_CE=0,C_HAS_QDPO_CLK=0,C_HAS_QDPO_RST=0,C_HAS_QDPO_SRST=0,C_HAS_QSPO=0,C_HAS_QSPO_CE=0,C_HAS_QSPO_RST=0,C_HAS_QSPO_SRST=0,C_HAS_SPO=1,C_HAS_WE=1,C_MEM_INIT_FILE=cache" & 
-"_block.mif,C_ELABORATION_DIR=./,C_MEM_TYPE=1,C_PIPELINE_STAGES=0,C_QCE_JOINED=0,C_QUALIFY_WE=0,C_READ_MIF=1,C_REG_A_D_INPUTS=1,C_REG_DPRA_INPUT=0,C_SYNC_ENABLE=1,C_WIDTH=128,C_PARSER_TYPE=1}";
+  ATTRIBUTE CORE_GENERATION_INFO OF cache_block_arch: ARCHITECTURE IS "cache_block,dist_mem_gen_v8_0_13,{x_ipProduct=Vivado 2023.1,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=dist_mem_gen,x_ipVersion=8.0,x_ipCoreRevision=13,x_ipLanguage=VHDL,x_ipSimLanguage=VHDL,C_FAMILY=zynq,C_ADDR_WIDTH=6,C_DEFAULT_DATA=0,C_DEPTH=64,C_HAS_CLK=1,C_HAS_D=1,C_HAS_DPO=0,C_HAS_DPRA=0,C_HAS_I_CE=1,C_HAS_QDPO=0,C_HAS_QDPO_CE=0,C_HAS_QDPO_CLK=0,C_HAS_QDPO_RST=0,C_HAS_QDPO_SRST=0,C_HAS_QSPO=0,C_HAS_QSPO_CE=0,C_HAS_QSPO_RST=0,C_HAS_QSPO_SRST=0,C_HAS_SPO=1,C_HAS_WE=1,C_MEM_INIT_FILE=cache" & 
+"_block.mif,C_ELABORATION_DIR=./,C_MEM_TYPE=1,C_PIPELINE_STAGES=0,C_QCE_JOINED=0,C_QUALIFY_WE=0,C_READ_MIF=1,C_REG_A_D_INPUTS=1,C_REG_DPRA_INPUT=0,C_SYNC_ENABLE=1,C_WIDTH=256,C_PARSER_TYPE=1}";
 BEGIN
   U0 : dist_mem_gen_v8_0_13
     GENERIC MAP (
@@ -142,7 +143,7 @@ BEGIN
       C_HAS_D => 1,
       C_HAS_DPO => 0,
       C_HAS_DPRA => 0,
-      C_HAS_I_CE => 0,
+      C_HAS_I_CE => 1,
       C_HAS_QDPO => 0,
       C_HAS_QDPO_CE => 0,
       C_HAS_QDPO_CLK => 0,
@@ -164,7 +165,7 @@ BEGIN
       C_REG_A_D_INPUTS => 1,
       C_REG_DPRA_INPUT => 0,
       C_SYNC_ENABLE => 1,
-      C_WIDTH => 128,
+      C_WIDTH => 256,
       C_PARSER_TYPE => 1
     )
     PORT MAP (
@@ -173,7 +174,7 @@ BEGIN
       dpra => STD_LOGIC_VECTOR(TO_UNSIGNED(0, 6)),
       clk => clk,
       we => we,
-      i_ce => '1',
+      i_ce => i_ce,
       qspo_ce => '1',
       qdpo_ce => '1',
       qdpo_clk => '0',

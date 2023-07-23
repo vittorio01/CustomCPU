@@ -8,7 +8,7 @@ entity CustomCPU_v1_0_memory_bus is
 
 		-- User parameters ends
 		-- Do not modify the parameters beyond this line
-
+        transmission_burst_number: integer:= 8;
 		-- Base address of targeted slave
 		C_M_TARGET_SLAVE_BASE_ADDR	: std_logic_vector	:= x"40000000";
 		-- Burst Length. Supports 1, 2, 4, 8, 16, 32, 64, 128, 256 burst lengths
@@ -372,8 +372,8 @@ begin
 
 	--In this example, the read address increments in the same
 	--manner as the write address channel.
-        ra_burst_len <= "00000011";
-        wa_burst_len <= "00000011";
+      ra_burst_len <= std_logic_vector(to_unsigned(transmission_burst_number-1,C_M_AXI_BURST_LEN));
+      wa_burst_len <= std_logic_vector(to_unsigned(transmission_burst_number-1,C_M_AXI_BURST_LEN));
 	  process(M_AXI_ACLK)                                            
 	  begin                                                                
 	    if (rising_edge (M_AXI_ACLK)) then                                 

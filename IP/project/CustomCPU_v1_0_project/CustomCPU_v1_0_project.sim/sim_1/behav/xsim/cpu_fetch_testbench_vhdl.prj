@@ -1,9 +1,9 @@
 # compile vhdl design source files
 vhdl xil_defaultlib  \
-"../../../../CustomCPU_v1_0_project.gen/sources_1/ip/cache_block/cache_block_sim_netlist.vhdl" \
 "../../../../CustomCPU_v1_0_project.gen/sources_1/ip/page_list/page_list_sim_netlist.vhdl" \
 "../../../../CustomCPU_v1_0_project.ip_user_files/ip/block_ram/block_ram_sim_netlist.vhdl" \
 "../../../../CustomCPU_v1_0_project.gen/sources_1/ip/register_array/register_array_sim_netlist.vhdl" \
+"../../../../CustomCPU_v1_0_project.gen/sources_1/ip/cache_block/cache_block_sim_netlist.vhdl" \
 "../../../../CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0_memory_bus.vhd" \
 "../../../../CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd" \
 "../../../../CustomCPU_v1_0_project.srcs/sources_1/new/program_counter.vhd" \

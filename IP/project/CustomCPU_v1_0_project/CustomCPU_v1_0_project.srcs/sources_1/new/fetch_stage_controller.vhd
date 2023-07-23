@@ -70,11 +70,11 @@ architecture Behavioral of fetch_stage_controller is
     signal pc_address_out: std_logic_vector(address_width-1 downto 0);
     signal register_load_enable: std_logic;
     
-    type state is (step_wait,instruction_fetch,instruction_load);
+    type state is (step_wait,load_address,instruction_fetch,instruction_load);
     signal current_state: state;
     signal increment: std_logic;
 begin
-    pc: program_counter port map (clk => clk, reset => reset, increment => increment, address_in=>address_in, address_out => pc_address_out, load_enable=>register_load_enable);
+    pc: program_counter port map (clk => clk, reset => reset, increment => increment, address_in=>address_in, address_out => pc_address_out, load_enable=>address_load_enable);
     process (clk) is
     begin 
         if (rising_edge(clk)) then 
@@ -82,33 +82,36 @@ begin
                 current_state<= step_wait;
             else  
                 if (output_mask = '0') then 
-                    if (current_state=step_wait) then 
-                      
-                        if (pipeline_step='1') then 
-                            increment <= '1';
-                            current_state <= instruction_load;
+                    if (address_load_enable = '0') then
+                        if (current_state=step_wait) then 
+                            if (pipeline_step='1') then 
+                                fetch_stage_ready <= '0';
+                                new_address <= pc_address_out;
+                                increment <= '1';
+                                current_state <= instruction_load;
+                                instruction_request <='1';
+                            else 
+                                increment<= '0';
+                                instruction_request <='0';
+                                fetch_stage_ready <= '1';
+                            end if;
+                        elsif (current_state = instruction_load) then
                             fetch_stage_ready <= '0';
-                            if (address_load_enable='1') then 
-                                register_load_enable <= '1';
+                            increment <= '0';
+                            register_load_enable <= '0';
+                            instruction_request <='1';
+                            current_state <= instruction_fetch;
+                        elsif (current_state = instruction_fetch) then 
+                            if (instruction_ready='1') then
+                                instruction_request <= '0'; 
+                                instruction_out <= instruction_in;
+                                current_state <= step_wait;
                             end if;
                         else 
-                            increment<= '0';
-                            instruction_request <='1';
-                            fetch_stage_ready <= '1';
-                        end if;
-                    elsif (current_state = instruction_load) then
-                        increment <= '0';
-                        register_load_enable <= '0';
-                        instruction_request <='1';
-                        current_state <= instruction_fetch;
-                    elsif (current_state = instruction_fetch) then 
-                        if (instruction_ready='1') then 
-                            instruction_out <= instruction_in;
-                            new_address <= pc_address_out;
                             current_state <= step_wait;
                         end if;
                     else 
-                        current_state <= step_wait;
+                        current_state <= instruction_load;
                     end if;
                 else 
                     current_state <= step_wait;

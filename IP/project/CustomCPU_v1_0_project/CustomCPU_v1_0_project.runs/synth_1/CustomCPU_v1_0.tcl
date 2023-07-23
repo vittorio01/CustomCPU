@@ -70,11 +70,6 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 1
-set_param checkpoint.writeSynthRtdsInDcp 1
-set_msg_config -id {Common 17-41} -limit 10000000
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7z020clg484-1
 
@@ -84,6 +79,7 @@ set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
 set_property webtalk.parent_dir /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.cache/wt [current_project]
 set_property parent.project_path /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.xpr [current_project]
+set_property XPM_LIBRARIES XPM_MEMORY [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language VHDL [current_project]
 set_property board_part digilentinc.com:zedboard:part0:1.1 [current_project]
@@ -101,6 +97,10 @@ add_files /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/Cust
 add_files /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/programs/init_test.coe
 add_files /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/programs/list_cache_test.coe
 add_files /home/vittorio/GitHub/CustomCPU/programs/init_test.coe
+add_files /home/vittorio/GitHub/CustomCPU/programs/raw_test.coe
+add_files /home/vittorio/GitHub/CustomCPU/IP/project/programs/raw_test_cache.coe
+add_files /home/vittorio/GitHub/CustomCPU/programs/banch_test.coe
+add_files /home/vittorio/GitHub/CustomCPU/IP/project/programs/branch_test_cache.coe
 read_vhdl -library xil_defaultlib {
   /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0_memory_bus.vhd
   /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd
@@ -115,15 +115,19 @@ read_vhdl -library xil_defaultlib {
   /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd
   /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/register_file.vhd
   /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_access_stage.vhd
+  /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/pipeline_manager.vhd
 }
-read_ip -quiet /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/ip/cache_block/cache_block.xci
-set_property used_in_implementation false [get_files -all /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.gen/sources_1/ip/cache_block/cache_block_ooc.xdc]
-
 read_ip -quiet /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/ip/page_list/page_list.xci
 set_property used_in_implementation false [get_files -all /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.gen/sources_1/ip/page_list/page_list_ooc.xdc]
 
 read_ip -quiet /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/ip/register_array/register_array.xci
 set_property used_in_implementation false [get_files -all /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.gen/sources_1/ip/register_array/register_array_ooc.xdc]
+
+read_ip -quiet /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/ip/cache_block/cache_block.xci
+set_property used_in_implementation false [get_files -all /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.gen/sources_1/ip/cache_block/cache_block_ooc.xdc]
+
+read_ip -quiet /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci
+set_property used_in_implementation false [get_files -all /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0_ooc.xdc]
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being

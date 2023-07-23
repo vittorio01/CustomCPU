@@ -11,7 +11,7 @@
     ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 
 source CustomCPU_v1_0.tcl -notrace
-create_project: Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1335.730 ; gain = 0.023 ; free physical = 1213 ; free virtual = 3371
+create_project: Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1330.723 ; gain = 0.023 ; free physical = 1638 ; free virtual = 6563
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/vittorio/GitHub/CustomCPU/IP/CustomCPU_1_0'.
 WARNING: [IP_Flow 19-2207] Repository '/home/vittorio/GitHub/CustomCPU/IP/CustomCPU_1_0' already exists; ignoring attempt to add it again.
@@ -24,13 +24,14 @@ Command: synth_design -top CustomCPU_v1_0 -part xc7z020clg484-1
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
-INFO: [Vivado_Tcl 4-1810] synth_design options have changed between reference and incremental; A full resynthesis will be run
 INFO: [Device 21-403] Loading part xc7z020clg484-1
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 30014
+INFO: [Synth 8-7075] Helper process launched with PID 4400
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 2026.031 ; gain = 377.770 ; free physical = 270 ; free virtual = 2428
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2029.055 ; gain = 379.738 ; free physical = 671 ; free virtual = 5597
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'CustomCPU_v1_0' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:80]
 WARNING: [Synth 8-506] null port 'memory_bus_awuser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:44]
@@ -38,7 +39,7 @@ WARNING: [Synth 8-506] null port 'memory_bus_wuser' ignored [/home/vittorio/GitH
 WARNING: [Synth 8-506] null port 'memory_bus_buser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:55]
 WARNING: [Synth 8-506] null port 'memory_bus_aruser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:67]
 WARNING: [Synth 8-506] null port 'memory_bus_ruser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:74]
-INFO: [Synth 8-3491] module 'fetch_stage_controller' declared at '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/fetch_stage_controller.vhd:34' bound to instance 'fetch_stage' of component 'fetch_stage_controller' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:342]
+INFO: [Synth 8-3491] module 'fetch_stage_controller' declared at '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/fetch_stage_controller.vhd:34' bound to instance 'fetch_stage' of component 'fetch_stage_controller' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:381]
 INFO: [Synth 8-638] synthesizing module 'fetch_stage_controller' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/fetch_stage_controller.vhd:59]
 	Parameter address_width bound to: 32 - type: integer 
 	Parameter instruction_width bound to: 32 - type: integer 
@@ -48,18 +49,19 @@ INFO: [Synth 8-638] synthesizing module 'program_counter' [/home/vittorio/GitHub
 	Parameter instruction_width bound to: 4 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'program_counter' (0#1) [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/program_counter.vhd:48]
 INFO: [Synth 8-256] done synthesizing module 'fetch_stage_controller' (0#1) [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/fetch_stage_controller.vhd:59]
-WARNING: [Synth 8-506] null port 'memory_bus_awuser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:150]
-WARNING: [Synth 8-506] null port 'memory_bus_wuser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:156]
-WARNING: [Synth 8-506] null port 'memory_bus_buser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:161]
-WARNING: [Synth 8-506] null port 'memory_bus_aruser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:173]
-WARNING: [Synth 8-506] null port 'memory_bus_ruser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:180]
-INFO: [Synth 8-3491] module 'memory_interface' declared at '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:34' bound to instance 'memory' of component 'memory_interface' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:357]
-INFO: [Synth 8-638] synthesizing module 'memory_interface' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:117]
+WARNING: [Synth 8-506] null port 'memory_bus_awuser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:182]
+WARNING: [Synth 8-506] null port 'memory_bus_wuser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:188]
+WARNING: [Synth 8-506] null port 'memory_bus_buser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:193]
+WARNING: [Synth 8-506] null port 'memory_bus_aruser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:205]
+WARNING: [Synth 8-506] null port 'memory_bus_ruser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:212]
+INFO: [Synth 8-3491] module 'memory_interface' declared at '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:34' bound to instance 'memory' of component 'memory_interface' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:396]
+INFO: [Synth 8-638] synthesizing module 'memory_interface' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:116]
 	Parameter address_dimension bound to: 32 - type: integer 
 	Parameter data_dimension bound to: 32 - type: integer 
-	Parameter cache_page_address_dimension bound to: 25 - type: integer 
-	Parameter cache_data_dimension bound to: 128 - type: integer 
-	Parameter cache_offset_address_dimension bound to: 4 - type: integer 
+	Parameter cache_page_address_dimension bound to: 27 - type: integer 
+	Parameter cache_data_dimension bound to: 256 - type: integer 
+	Parameter cache_offset_address_dimension bound to: 5 - type: integer 
+	Parameter cache_address_dimension bound to: 6 - type: integer 
 	Parameter C_memory_bus_TARGET_SLAVE_BASE_ADDR bound to: 32'b01000000000000000000000000000000 
 	Parameter C_memory_bus_BURST_LEN bound to: 8 - type: integer 
 	Parameter C_memory_bus_ID_WIDTH bound to: 8 - type: integer 
@@ -70,23 +72,23 @@ INFO: [Synth 8-638] synthesizing module 'memory_interface' [/home/vittorio/GitHu
 	Parameter C_memory_bus_WUSER_WIDTH bound to: 0 - type: integer 
 	Parameter C_memory_bus_RUSER_WIDTH bound to: 0 - type: integer 
 	Parameter C_memory_bus_BUSER_WIDTH bound to: 0 - type: integer 
-WARNING: [Synth 8-506] null port 'memory_bus_awuser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:81]
-WARNING: [Synth 8-506] null port 'memory_bus_wuser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:87]
-WARNING: [Synth 8-506] null port 'memory_bus_buser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:92]
-WARNING: [Synth 8-506] null port 'memory_bus_aruser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:104]
-WARNING: [Synth 8-506] null port 'memory_bus_ruser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:111]
-WARNING: [Synth 8-506] null port 'memory_bus_awuser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:171]
-WARNING: [Synth 8-506] null port 'memory_bus_wuser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:177]
-WARNING: [Synth 8-506] null port 'memory_bus_buser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:182]
-WARNING: [Synth 8-506] null port 'memory_bus_aruser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:194]
-WARNING: [Synth 8-506] null port 'memory_bus_ruser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:201]
-INFO: [Synth 8-3491] module 'cache' declared at '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:34' bound to instance 'cache1' of component 'cache' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:277]
+WARNING: [Synth 8-506] null port 'memory_bus_awuser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:80]
+WARNING: [Synth 8-506] null port 'memory_bus_wuser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:86]
+WARNING: [Synth 8-506] null port 'memory_bus_buser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:91]
+WARNING: [Synth 8-506] null port 'memory_bus_aruser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:103]
+WARNING: [Synth 8-506] null port 'memory_bus_ruser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:110]
+WARNING: [Synth 8-506] null port 'memory_bus_awuser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:170]
+WARNING: [Synth 8-506] null port 'memory_bus_wuser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:176]
+WARNING: [Synth 8-506] null port 'memory_bus_buser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:181]
+WARNING: [Synth 8-506] null port 'memory_bus_aruser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:193]
+WARNING: [Synth 8-506] null port 'memory_bus_ruser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:200]
+INFO: [Synth 8-3491] module 'cache' declared at '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:34' bound to instance 'cache1' of component 'cache' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:276]
 INFO: [Synth 8-638] synthesizing module 'cache' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:123]
 	Parameter cache_address_dimension bound to: 6 - type: integer 
-	Parameter memory_address_dimension bound to: 25 - type: integer 
-	Parameter cache_data_dimension bound to: 128 - type: integer 
+	Parameter memory_address_dimension bound to: 27 - type: integer 
+	Parameter cache_data_dimension bound to: 256 - type: integer 
 	Parameter transmission_data_dimension bound to: 32 - type: integer 
-	Parameter cache_offset_address_dimension bound to: 7 - type: integer 
+	Parameter cache_offset_address_dimension bound to: 5 - type: integer 
 	Parameter C_memory_bus_TARGET_SLAVE_BASE_ADDR bound to: 32'b01000000000000000000000000000000 
 	Parameter C_memory_bus_BURST_LEN bound to: 8 - type: integer 
 	Parameter C_memory_bus_ID_WIDTH bound to: 8 - type: integer 
@@ -102,10 +104,10 @@ WARNING: [Synth 8-506] null port 'memory_bus_wuser' ignored [/home/vittorio/GitH
 WARNING: [Synth 8-506] null port 'memory_bus_buser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:98]
 WARNING: [Synth 8-506] null port 'memory_bus_aruser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:110]
 WARNING: [Synth 8-506] null port 'memory_bus_ruser' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:117]
-INFO: [Synth 8-3491] module 'page_list' declared at '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/synth_1/.Xil/Vivado-29984-asus-pc/realtime/page_list_stub.vhdl:6' bound to instance 'list' of component 'page_list' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:241]
-INFO: [Synth 8-638] synthesizing module 'page_list' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/synth_1/.Xil/Vivado-29984-asus-pc/realtime/page_list_stub.vhdl:17]
-INFO: [Synth 8-3491] module 'cache_block' declared at '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/synth_1/.Xil/Vivado-29984-asus-pc/realtime/cache_block_stub.vhdl:6' bound to instance 'cache' of component 'cache_block' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:249]
-INFO: [Synth 8-638] synthesizing module 'cache_block' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/synth_1/.Xil/Vivado-29984-asus-pc/realtime/cache_block_stub.vhdl:18]
+INFO: [Synth 8-3491] module 'page_list' declared at '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/synth_1/.Xil/Vivado-4359-asus-pc/realtime/page_list_stub.vhdl:6' bound to instance 'list' of component 'page_list' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:242]
+INFO: [Synth 8-638] synthesizing module 'page_list' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/synth_1/.Xil/Vivado-4359-asus-pc/realtime/page_list_stub.vhdl:17]
+INFO: [Synth 8-3491] module 'cache_block' declared at '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/synth_1/.Xil/Vivado-4359-asus-pc/realtime/cache_block_stub.vhdl:6' bound to instance 'cache' of component 'cache_block' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:250]
+INFO: [Synth 8-638] synthesizing module 'cache_block' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/synth_1/.Xil/Vivado-4359-asus-pc/realtime/cache_block_stub.vhdl:18]
 	Parameter C_M_TARGET_SLAVE_BASE_ADDR bound to: 32'b01000000000000000000000000000000 
 	Parameter C_M_AXI_BURST_LEN bound to: 8 - type: integer 
 	Parameter C_M_AXI_ID_WIDTH bound to: 8 - type: integer 
@@ -116,13 +118,14 @@ INFO: [Synth 8-638] synthesizing module 'cache_block' [/home/vittorio/GitHub/Cus
 	Parameter C_M_AXI_WUSER_WIDTH bound to: 0 - type: integer 
 	Parameter C_M_AXI_RUSER_WIDTH bound to: 0 - type: integer 
 	Parameter C_M_AXI_BUSER_WIDTH bound to: 0 - type: integer 
-WARNING: [Synth 8-506] null port 'M_AXI_AWUSER' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:161]
-WARNING: [Synth 8-506] null port 'M_AXI_WUSER' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:167]
-WARNING: [Synth 8-506] null port 'M_AXI_BUSER' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:172]
-WARNING: [Synth 8-506] null port 'M_AXI_ARUSER' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:184]
-WARNING: [Synth 8-506] null port 'M_AXI_RUSER' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:191]
-INFO: [Synth 8-3491] module 'CustomCPU_v1_0_memory_bus' declared at '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0_memory_bus.vhd:5' bound to instance 'CustomCPU_v1_0_memory_bus_inst' of component 'CustomCPU_v1_0_memory_bus' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:258]
+WARNING: [Synth 8-506] null port 'M_AXI_AWUSER' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:162]
+WARNING: [Synth 8-506] null port 'M_AXI_WUSER' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:168]
+WARNING: [Synth 8-506] null port 'M_AXI_BUSER' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:173]
+WARNING: [Synth 8-506] null port 'M_AXI_ARUSER' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:185]
+WARNING: [Synth 8-506] null port 'M_AXI_RUSER' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:192]
+INFO: [Synth 8-3491] module 'CustomCPU_v1_0_memory_bus' declared at '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0_memory_bus.vhd:5' bound to instance 'CustomCPU_v1_0_memory_bus_inst' of component 'CustomCPU_v1_0_memory_bus' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:259]
 INFO: [Synth 8-638] synthesizing module 'CustomCPU_v1_0_memory_bus' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0_memory_bus.vhd:164]
+	Parameter transmission_burst_number bound to: 8 - type: integer 
 	Parameter C_M_TARGET_SLAVE_BASE_ADDR bound to: 32'b01000000000000000000000000000000 
 	Parameter C_M_AXI_BURST_LEN bound to: 8 - type: integer 
 	Parameter C_M_AXI_ID_WIDTH bound to: 8 - type: integer 
@@ -139,68 +142,64 @@ WARNING: [Synth 8-506] null port 'M_AXI_BUSER' ignored [/home/vittorio/GitHub/Cu
 WARNING: [Synth 8-506] null port 'M_AXI_ARUSER' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0_memory_bus.vhd:137]
 WARNING: [Synth 8-506] null port 'M_AXI_RUSER' ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0_memory_bus.vhd:154]
 INFO: [Synth 8-256] done synthesizing module 'CustomCPU_v1_0_memory_bus' (0#1) [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0_memory_bus.vhd:164]
-WARNING: [Synth 8-6778] Component port with null array found, Will be ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:293]
-WARNING: [Synth 8-6778] Component port with null array found, Will be ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:299]
-WARNING: [Synth 8-6778] Component port with null array found, Will be ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:304]
-WARNING: [Synth 8-6778] Component port with null array found, Will be ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:316]
-WARNING: [Synth 8-6778] Component port with null array found, Will be ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:323]
+WARNING: [Synth 8-6778] Component port with null array found, Will be ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:294]
+WARNING: [Synth 8-6778] Component port with null array found, Will be ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:300]
+WARNING: [Synth 8-6778] Component port with null array found, Will be ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:305]
+WARNING: [Synth 8-6778] Component port with null array found, Will be ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:317]
+WARNING: [Synth 8-6778] Component port with null array found, Will be ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:324]
 INFO: [Synth 8-256] done synthesizing module 'cache' (0#1) [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache.vhd:123]
-WARNING: [Synth 8-6778] Component port with null array found, Will be ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:299]
-WARNING: [Synth 8-6778] Component port with null array found, Will be ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:305]
-WARNING: [Synth 8-6778] Component port with null array found, Will be ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:310]
-WARNING: [Synth 8-6778] Component port with null array found, Will be ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:322]
-WARNING: [Synth 8-6778] Component port with null array found, Will be ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:329]
-INFO: [Synth 8-3491] module 'cache_register' declared at '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache_register.vhd:34' bound to instance 'reg' of component 'cache_register' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:334]
+WARNING: [Synth 8-6778] Component port with null array found, Will be ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:298]
+WARNING: [Synth 8-6778] Component port with null array found, Will be ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:304]
+WARNING: [Synth 8-6778] Component port with null array found, Will be ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:309]
+WARNING: [Synth 8-6778] Component port with null array found, Will be ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:321]
+WARNING: [Synth 8-6778] Component port with null array found, Will be ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:328]
+INFO: [Synth 8-3491] module 'cache_register' declared at '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache_register.vhd:34' bound to instance 'reg' of component 'cache_register' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:333]
 INFO: [Synth 8-638] synthesizing module 'cache_register' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache_register.vhd:59]
-	Parameter page_dimension bound to: 128 - type: integer 
-	Parameter data_address_dimension bound to: 4 - type: integer 
+	Parameter page_dimension bound to: 256 - type: integer 
+	Parameter data_address_dimension bound to: 5 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'cache_register' (0#1) [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/cache_register.vhd:59]
-WARNING: [Synth 8-614] signal 'data_memory_address' is read in the process but is not in the sensitivity list [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:600]
-WARNING: [Synth 8-614] signal 'loaded_page1' is read in the process but is not in the sensitivity list [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:600]
-WARNING: [Synth 8-614] signal 'data_memory_data_in' is read in the process but is not in the sensitivity list [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:600]
-WARNING: [Synth 8-614] signal 'loaded_page2' is read in the process but is not in the sensitivity list [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:600]
-WARNING: [Synth 8-614] signal 'register_data_out' is read in the process but is not in the sensitivity list [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:600]
-WARNING: [Synth 8-614] signal 'instruction_memory_address' is read in the process but is not in the sensitivity list [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:600]
-INFO: [Synth 8-256] done synthesizing module 'memory_interface' (0#1) [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:117]
-WARNING: [Synth 8-6778] Component port with null array found, Will be ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:383]
-WARNING: [Synth 8-6778] Component port with null array found, Will be ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:389]
-WARNING: [Synth 8-6778] Component port with null array found, Will be ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:394]
-WARNING: [Synth 8-6778] Component port with null array found, Will be ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:406]
-WARNING: [Synth 8-6778] Component port with null array found, Will be ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:413]
-INFO: [Synth 8-3491] module 'decode_stage' declared at '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/decode_stage.vhd:34' bound to instance 'decode' of component 'decode_stage' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:419]
-INFO: [Synth 8-638] synthesizing module 'decode_stage' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/decode_stage.vhd:60]
-INFO: [Synth 8-3491] module 'decode' declared at '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/decode.vhd:34' bound to instance 'decode_array' of component 'decode' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/decode_stage.vhd:114]
+WARNING: [Synth 8-614] signal 'data_memory_address' is read in the process but is not in the sensitivity list [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:604]
+WARNING: [Synth 8-614] signal 'loaded_page1' is read in the process but is not in the sensitivity list [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:604]
+WARNING: [Synth 8-614] signal 'data_memory_data_in' is read in the process but is not in the sensitivity list [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:604]
+WARNING: [Synth 8-614] signal 'cache_ready' is read in the process but is not in the sensitivity list [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:604]
+WARNING: [Synth 8-614] signal 'loaded_page2' is read in the process but is not in the sensitivity list [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:604]
+WARNING: [Synth 8-614] signal 'register_data_out' is read in the process but is not in the sensitivity list [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:604]
+WARNING: [Synth 8-614] signal 'instruction_memory_address' is read in the process but is not in the sensitivity list [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:604]
+INFO: [Synth 8-256] done synthesizing module 'memory_interface' (0#1) [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:116]
+WARNING: [Synth 8-6778] Component port with null array found, Will be ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:421]
+WARNING: [Synth 8-6778] Component port with null array found, Will be ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:427]
+WARNING: [Synth 8-6778] Component port with null array found, Will be ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:432]
+WARNING: [Synth 8-6778] Component port with null array found, Will be ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:444]
+WARNING: [Synth 8-6778] Component port with null array found, Will be ignored [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:451]
+INFO: [Synth 8-3491] module 'decode_stage' declared at '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/decode_stage.vhd:34' bound to instance 'decode' of component 'decode_stage' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:457]
+INFO: [Synth 8-638] synthesizing module 'decode_stage' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/decode_stage.vhd:64]
+INFO: [Synth 8-3491] module 'decode' declared at '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/decode.vhd:34' bound to instance 'decode_array' of component 'decode' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/decode_stage.vhd:118]
 INFO: [Synth 8-638] synthesizing module 'decode' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/decode.vhd:47]
 INFO: [Synth 8-256] done synthesizing module 'decode' (0#1) [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/decode.vhd:47]
-INFO: [Synth 8-3491] module 'register_file' declared at '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/register_file.vhd:34' bound to instance 'registers' of component 'register_file' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/decode_stage.vhd:123]
+INFO: [Synth 8-3491] module 'register_file' declared at '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/register_file.vhd:34' bound to instance 'registers' of component 'register_file' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/decode_stage.vhd:127]
 INFO: [Synth 8-638] synthesizing module 'register_file' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/register_file.vhd:54]
-INFO: [Synth 8-3491] module 'register_array' declared at '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/synth_1/.Xil/Vivado-29984-asus-pc/realtime/register_array_stub.vhdl:6' bound to instance 'registers' of component 'register_array' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/register_file.vhd:81]
-INFO: [Synth 8-638] synthesizing module 'register_array' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/synth_1/.Xil/Vivado-29984-asus-pc/realtime/register_array_stub.vhdl:20]
-WARNING: [Synth 8-614] signal 'address_a' is read in the process but is not in the sensitivity list [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/register_file.vhd:124]
-WARNING: [Synth 8-614] signal 'register_array_data_out_a' is read in the process but is not in the sensitivity list [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/register_file.vhd:124]
-WARNING: [Synth 8-614] signal 'address_b' is read in the process but is not in the sensitivity list [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/register_file.vhd:124]
-WARNING: [Synth 8-614] signal 'register_array_data_out_b' is read in the process but is not in the sensitivity list [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/register_file.vhd:124]
-WARNING: [Synth 8-614] signal 'register_input' is read in the process but is not in the sensitivity list [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/register_file.vhd:124]
-WARNING: [Synth 8-614] signal 'address_write' is read in the process but is not in the sensitivity list [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/register_file.vhd:124]
+INFO: [Synth 8-3491] module 'register_array' declared at '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/synth_1/.Xil/Vivado-4359-asus-pc/realtime/register_array_stub.vhdl:6' bound to instance 'registers' of component 'register_array' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/register_file.vhd:81]
+INFO: [Synth 8-638] synthesizing module 'register_array' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/synth_1/.Xil/Vivado-4359-asus-pc/realtime/register_array_stub.vhdl:20]
+WARNING: [Synth 8-614] signal 'register_input' is read in the process but is not in the sensitivity list [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/register_file.vhd:122]
+WARNING: [Synth 8-614] signal 'address_write' is read in the process but is not in the sensitivity list [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/register_file.vhd:122]
+WARNING: [Synth 8-614] signal 'address_a' is read in the process but is not in the sensitivity list [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/register_file.vhd:122]
+WARNING: [Synth 8-614] signal 'address_b' is read in the process but is not in the sensitivity list [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/register_file.vhd:122]
 INFO: [Synth 8-256] done synthesizing module 'register_file' (0#1) [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/register_file.vhd:54]
-INFO: [Synth 8-256] done synthesizing module 'decode_stage' (0#1) [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/decode_stage.vhd:60]
-INFO: [Synth 8-3491] module 'execute_stage' declared at '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/execute_stage.vhd:34' bound to instance 'execute' of component 'execute_stage' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:440]
+INFO: [Synth 8-256] done synthesizing module 'decode_stage' (0#1) [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/decode_stage.vhd:64]
+INFO: [Synth 8-3491] module 'execute_stage' declared at '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/execute_stage.vhd:34' bound to instance 'execute' of component 'execute_stage' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:480]
 INFO: [Synth 8-638] synthesizing module 'execute_stage' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/execute_stage.vhd:69]
 INFO: [Synth 8-3491] module 'ALU' declared at '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/ALU.vhd:34' bound to instance 'alu1' of component 'ALU' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/execute_stage.vhd:89]
 INFO: [Synth 8-638] synthesizing module 'ALU' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/ALU.vhd:48]
 INFO: [Synth 8-256] done synthesizing module 'ALU' (0#1) [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/ALU.vhd:48]
 INFO: [Synth 8-256] done synthesizing module 'execute_stage' (0#1) [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/execute_stage.vhd:69]
-INFO: [Synth 8-3491] module 'memory_access_stage' declared at '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_access_stage.vhd:34' bound to instance 'memory_access' of component 'memory_access_stage' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:468]
+INFO: [Synth 8-3491] module 'memory_access_stage' declared at '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_access_stage.vhd:34' bound to instance 'memory_access' of component 'memory_access_stage' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:508]
 INFO: [Synth 8-638] synthesizing module 'memory_access_stage' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_access_stage.vhd:72]
 INFO: [Synth 8-256] done synthesizing module 'memory_access_stage' (0#1) [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_access_stage.vhd:72]
+INFO: [Synth 8-3491] module 'pipeline_manager' declared at '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/pipeline_manager.vhd:34' bound to instance 'pipeline' of component 'pipeline_manager' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:543]
+INFO: [Synth 8-638] synthesizing module 'pipeline_manager' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/pipeline_manager.vhd:67]
+INFO: [Synth 8-256] done synthesizing module 'pipeline_manager' (0#1) [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/pipeline_manager.vhd:67]
 INFO: [Synth 8-256] done synthesizing module 'CustomCPU_v1_0' (0#1) [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:80]
-WARNING: [Synth 8-6014] Unused sequential element decode_pipeline_step_reg was removed.  [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:431]
-WARNING: [Synth 8-6014] Unused sequential element execute_pipeline_step_reg was removed.  [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:460]
-WARNING: [Synth 8-6014] Unused sequential element access_pipeline_step_reg was removed.  [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:495]
-WARNING: [Synth 8-6014] Unused sequential element decode_output_mask_reg was removed.  [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:436]
-WARNING: [Synth 8-6014] Unused sequential element execute_output_mask_reg was removed.  [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:464]
-WARNING: [Synth 8-6014] Unused sequential element access_output_mask_reg was removed.  [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:497]
-WARNING: [Synth 8-6014] Unused sequential element memory_step_reg was removed.  [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/imports/CustomCPU/IP/CustomCPU_1_0/hdl/CustomCPU_v1_0.vhd:364]
+WARNING: [Synth 8-6014] Unused sequential element register_load_enable_reg was removed.  [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/fetch_stage_controller.vhd:101]
 WARNING: [Synth 8-7129] Port data_access in module cache_register is either unconnected or has no load
 WARNING: [Synth 8-7129] Port M_AXI_AWREADY in module CustomCPU_v1_0_memory_bus is either unconnected or has no load
 WARNING: [Synth 8-7129] Port M_AXI_WREADY in module CustomCPU_v1_0_memory_bus is either unconnected or has no load
@@ -220,71 +219,57 @@ WARNING: [Synth 8-7129] Port M_AXI_RID[3] in module CustomCPU_v1_0_memory_bus is
 WARNING: [Synth 8-7129] Port M_AXI_RID[2] in module CustomCPU_v1_0_memory_bus is either unconnected or has no load
 WARNING: [Synth 8-7129] Port M_AXI_RID[1] in module CustomCPU_v1_0_memory_bus is either unconnected or has no load
 WARNING: [Synth 8-7129] Port M_AXI_RID[0] in module CustomCPU_v1_0_memory_bus is either unconnected or has no load
-WARNING: [Synth 8-7129] Port instruction_memory_address[31] in module memory_interface is either unconnected or has no load
-WARNING: [Synth 8-7129] Port instruction_memory_address[30] in module memory_interface is either unconnected or has no load
-WARNING: [Synth 8-7129] Port instruction_memory_address[29] in module memory_interface is either unconnected or has no load
-WARNING: [Synth 8-7129] Port data_memory_address[31] in module memory_interface is either unconnected or has no load
-WARNING: [Synth 8-7129] Port data_memory_address[30] in module memory_interface is either unconnected or has no load
-WARNING: [Synth 8-7129] Port data_memory_address[29] in module memory_interface is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 2120.500 ; gain = 472.238 ; free physical = 149 ; free virtual = 2308
+Finished RTL Elaboration : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2154.039 ; gain = 504.723 ; free physical = 521 ; free virtual = 5448
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 2135.344 ; gain = 487.082 ; free physical = 149 ; free virtual = 2310
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 2168.883 ; gain = 519.566 ; free physical = 520 ; free virtual = 5447
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 2135.344 ; gain = 487.082 ; free physical = 149 ; free virtual = 2310
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 2168.883 ; gain = 519.566 ; free physical = 520 ; free virtual = 5447
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00.14 ; elapsed = 00:00:00.14 . Memory (MB): peak = 2135.344 ; gain = 0.000 ; free physical = 149 ; free virtual = 2310
+Netlist sorting complete. Time (s): cpu = 00:00:00.29 ; elapsed = 00:00:00.29 . Memory (MB): peak = 2168.883 ; gain = 0.000 ; free physical = 513 ; free virtual = 5441
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.gen/sources_1/ip/cache_block/cache_block/cache_block_in_context.xdc] for cell 'memory/cache1/cache'
-Finished Parsing XDC File [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.gen/sources_1/ip/cache_block/cache_block/cache_block_in_context.xdc] for cell 'memory/cache1/cache'
 Parsing XDC File [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.gen/sources_1/ip/page_list/page_list/page_list_in_context.xdc] for cell 'memory/cache1/list'
 Finished Parsing XDC File [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.gen/sources_1/ip/page_list/page_list/page_list_in_context.xdc] for cell 'memory/cache1/list'
 Parsing XDC File [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.gen/sources_1/ip/register_array/register_array/register_array_in_context.xdc] for cell 'decode/registers/registers'
 Finished Parsing XDC File [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.gen/sources_1/ip/register_array/register_array/register_array_in_context.xdc] for cell 'decode/registers/registers'
+Parsing XDC File [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.gen/sources_1/ip/cache_block/cache_block/cache_block_in_context.xdc] for cell 'memory/cache1/cache'
+Finished Parsing XDC File [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.gen/sources_1/ip/cache_block/cache_block/cache_block_in_context.xdc] for cell 'memory/cache1/cache'
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2213.078 ; gain = 0.000 ; free physical = 135 ; free virtual = 2292
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2306.422 ; gain = 0.000 ; free physical = 461 ; free virtual = 5387
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2213.078 ; gain = 0.000 ; free physical = 135 ; free virtual = 2292
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2306.422 ; gain = 0.000 ; free physical = 460 ; free virtual = 5387
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:19 ; elapsed = 00:00:19 . Memory (MB): peak = 2213.078 ; gain = 564.816 ; free physical = 154 ; free virtual = 2234
+Finished Constraint Validation : Time (s): cpu = 00:00:26 ; elapsed = 00:00:28 . Memory (MB): peak = 2306.422 ; gain = 657.105 ; free physical = 461 ; free virtual = 5389
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg484-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:19 ; elapsed = 00:00:19 . Memory (MB): peak = 2213.078 ; gain = 564.816 ; free physical = 154 ; free virtual = 2234
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:26 ; elapsed = 00:00:28 . Memory (MB): peak = 2306.422 ; gain = 657.105 ; free physical = 461 ; free virtual = 5389
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property KEEP_HIERARCHY = SOFT for memory/cache1/cache. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for memory/cache1/list. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for decode/registers/registers. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for memory/cache1/cache. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:19 . Memory (MB): peak = 2213.078 ; gain = 564.816 ; free physical = 173 ; free virtual = 2253
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:26 ; elapsed = 00:00:28 . Memory (MB): peak = 2306.422 ; gain = 657.105 ; free physical = 461 ; free virtual = 5389
 ---------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Start Preparing Guide Design
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Finished Doing Graph Differ : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 2213.078 ; gain = 564.816 ; free physical = 179 ; free virtual = 2260
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Finished Preparing Guide Design : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 2213.078 ; gain = 564.816 ; free physical = 179 ; free virtual = 2260
----------------------------------------------------------------------------------
-INFO: [Synth 8-802] inferred FSM for state register 'current_state_reg' in module 'fetch_stage_controller'
 INFO: [Synth 8-802] inferred FSM for state register 'wa_current_state_reg' in module 'CustomCPU_v1_0_memory_bus'
 INFO: [Synth 8-802] inferred FSM for state register 'ra_current_state_reg' in module 'CustomCPU_v1_0_memory_bus'
 INFO: [Synth 8-802] inferred FSM for state register 'current_state_reg' in module 'memory_interface'
@@ -292,16 +277,7 @@ INFO: [Synth 8-802] inferred FSM for state register 'current_state_reg' in modul
 INFO: [Synth 8-802] inferred FSM for state register 'current_state_reg' in module 'decode_stage'
 INFO: [Synth 8-802] inferred FSM for state register 'current_state_reg' in module 'ALU'
 INFO: [Synth 8-802] inferred FSM for state register 'current_state_reg' in module 'execute_stage'
-INFO: [Synth 8-802] inferred FSM for state register 'current_state_reg' in module 'memory_access_stage'
----------------------------------------------------------------------------------------------------
-                   State |                     New Encoding |                Previous Encoding 
----------------------------------------------------------------------------------------------------
-                 iSTATE0 |                              001 |                               00
-                 iSTATE1 |                              010 |                               10
-                  iSTATE |                              100 |                               01
-*
----------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'current_state_reg' using encoding 'one-hot' in module 'fetch_stage_controller'
+INFO: [Synth 8-802] inferred FSM for state register 'current_state_reg' in module 'pipeline_manager'
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
@@ -320,7 +296,6 @@ INFO: [Synth 8-3354] encoded FSM with state register 'ra_current_state_reg' usin
 *
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'wa_current_state_reg' using encoding 'one-hot' in module 'CustomCPU_v1_0_memory_bus'
-WARNING: [Synth 8-327] inferring latch for variable 'instruction_memory_ready_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:611]
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
@@ -342,20 +317,21 @@ instruction_page2_request |                             1100 |                  
        instruction_latch |                             1111 |                             1111
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'current_state_reg' using encoding 'sequential' in module 'memory_interface'
-WARNING: [Synth 8-327] inferring latch for variable 'instruction_memory_data_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:775]
-WARNING: [Synth 8-327] inferring latch for variable 'data_memory_data_out_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:716]
-WARNING: [Synth 8-327] inferring latch for variable 'loaded_page2_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:383]
-WARNING: [Synth 8-327] inferring latch for variable 'loaded_page1_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:371]
-WARNING: [Synth 8-327] inferring latch for variable 'cache_address_in_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:281]
-WARNING: [Synth 8-327] inferring latch for variable 'cache_write_enable_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:285]
-WARNING: [Synth 8-327] inferring latch for variable 'cache_enable_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:286]
-WARNING: [Synth 8-327] inferring latch for variable 'register_page_number_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:339]
-WARNING: [Synth 8-327] inferring latch for variable 'register_page_access_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:340]
-WARNING: [Synth 8-327] inferring latch for variable 'register_write_enable_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:341]
-WARNING: [Synth 8-327] inferring latch for variable 'register_data_in_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:344]
-WARNING: [Synth 8-327] inferring latch for variable 'register_data_write_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:345]
-WARNING: [Synth 8-327] inferring latch for variable 'register_data_access_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:346]
-WARNING: [Synth 8-327] inferring latch for variable 'register_data_address_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:347]
+WARNING: [Synth 8-327] inferring latch for variable 'instruction_memory_ready_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:615]
+WARNING: [Synth 8-327] inferring latch for variable 'instruction_memory_data_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:791]
+WARNING: [Synth 8-327] inferring latch for variable 'loaded_page2_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:382]
+WARNING: [Synth 8-327] inferring latch for variable 'loaded_page1_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:370]
+WARNING: [Synth 8-327] inferring latch for variable 'data_memory_data_out_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:730]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_address_in_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:280]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_write_enable_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:284]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_enable_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:285]
+WARNING: [Synth 8-327] inferring latch for variable 'register_page_number_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:338]
+WARNING: [Synth 8-327] inferring latch for variable 'register_page_access_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:339]
+WARNING: [Synth 8-327] inferring latch for variable 'register_write_enable_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:340]
+WARNING: [Synth 8-327] inferring latch for variable 'register_data_in_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:343]
+WARNING: [Synth 8-327] inferring latch for variable 'register_data_write_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:344]
+WARNING: [Synth 8-327] inferring latch for variable 'register_data_access_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:345]
+WARNING: [Synth 8-327] inferring latch for variable 'register_data_address_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_interface.vhd:346]
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
@@ -365,8 +341,6 @@ WARNING: [Synth 8-327] inferring latch for variable 'register_data_address_reg' 
 *
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'current_state_reg' using encoding 'sequential' in module 'register_file'
-WARNING: [Synth 8-327] inferring latch for variable 'register_a_output_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/register_file.vhd:131]
-WARNING: [Synth 8-327] inferring latch for variable 'register_b_output_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/register_file.vhd:136]
 WARNING: [Synth 8-327] inferring latch for variable 'register_array_address_a_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/register_file.vhd:83]
 WARNING: [Synth 8-327] inferring latch for variable 'register_array_address_b_reg' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/register_file.vhd:86]
 ---------------------------------------------------------------------------------------------------
@@ -402,53 +376,47 @@ INFO: [Synth 8-3354] encoded FSM with state register 'current_state_reg' using e
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
-                  iSTATE |                               00 |                               00
-                 iSTATE1 |                               01 |                               01
-                 iSTATE0 |                               10 |                               10
+                 iSTATE0 |                              000 |                              000
+                 iSTATE1 |                              001 |                              001
+                 iSTATE3 |                              010 |                              101
+                 iSTATE2 |                              011 |                              110
+                 iSTATE5 |                              100 |                              100
+                 iSTATE4 |                              101 |                              010
+                  iSTATE |                              110 |                              011
 *
 ---------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'current_state_reg' using encoding 'sequential' in module 'memory_access_stage'
+INFO: [Synth 8-3354] encoded FSM with state register 'current_state_reg' using encoding 'sequential' in module 'pipeline_manager'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 2213.078 ; gain = 564.816 ; free physical = 194 ; free virtual = 2258
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2306.422 ; gain = 657.105 ; free physical = 450 ; free virtual = 5380
 ---------------------------------------------------------------------------------
-
-
-Incremental Synthesis Report Summary:
-
-1. Incremental synthesis run: no
-
-   Reason for not running incremental synthesis : synth_design options have changed between reference and incremental
-
-
-INFO: [Synth 8-7130] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
+	   2 Input   32 Bit       Adders := 2     
 	   3 Input   32 Bit       Adders := 1     
-	   2 Input   29 Bit       Adders := 2     
-	   2 Input   25 Bit       Adders := 2     
+	   2 Input   27 Bit       Adders := 2     
 	   2 Input    5 Bit       Adders := 1     
 +---XORs : 
 	   2 Input     32 Bit         XORs := 1     
 +---Registers : 
-	              128 Bit    Registers := 3     
-	               32 Bit    Registers := 25    
-	               20 Bit    Registers := 1     
-	                5 Bit    Registers := 6     
-	                4 Bit    Registers := 1     
-	                3 Bit    Registers := 1     
-	                2 Bit    Registers := 5     
-	                1 Bit    Registers := 37    
+	              256 Bit    Registers := 3     
+	               32 Bit    Registers := 33    
+	               22 Bit    Registers := 1     
+	                5 Bit    Registers := 12    
+	                4 Bit    Registers := 3     
+	                3 Bit    Registers := 2     
+	                2 Bit    Registers := 7     
+	                1 Bit    Registers := 49    
 +---Muxes : 
-	 128 Input  256 Bit        Muxes := 1     
-	   3 Input  256 Bit        Muxes := 2     
-	   2 Input  256 Bit        Muxes := 3     
+	 256 Input  512 Bit        Muxes := 1     
+	   3 Input  512 Bit        Muxes := 2     
+	   2 Input  512 Bit        Muxes := 3     
+	   4 Input  512 Bit        Muxes := 1     
+	   2 Input  256 Bit        Muxes := 8     
+	   5 Input  256 Bit        Muxes := 1     
 	   4 Input  256 Bit        Muxes := 1     
-	   2 Input  128 Bit        Muxes := 8     
-	   5 Input  128 Bit        Muxes := 1     
-	   4 Input  128 Bit        Muxes := 1     
 	   2 Input   32 Bit        Muxes := 17    
 	   4 Input   32 Bit        Muxes := 4     
 	   3 Input   32 Bit        Muxes := 2     
@@ -456,32 +424,39 @@ Detailed RTL Component Info :
 	   7 Input   32 Bit        Muxes := 1     
 	   9 Input   32 Bit        Muxes := 2     
 	  11 Input   32 Bit        Muxes := 2     
-	  16 Input   25 Bit        Muxes := 3     
+	  16 Input   27 Bit        Muxes := 3     
+	  16 Input    5 Bit        Muxes := 1     
 	   3 Input    5 Bit        Muxes := 1     
 	   2 Input    5 Bit        Muxes := 5     
 	   4 Input    5 Bit        Muxes := 1     
 	   7 Input    5 Bit        Muxes := 1     
 	   9 Input    5 Bit        Muxes := 1     
-	  16 Input    4 Bit        Muxes := 1     
-	  44 Input    4 Bit        Muxes := 1     
+	  46 Input    4 Bit        Muxes := 1     
 	   3 Input    4 Bit        Muxes := 1     
 	   8 Input    4 Bit        Muxes := 1     
-	   2 Input    4 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 3     
+	   7 Input    4 Bit        Muxes := 1     
+	   4 Input    4 Bit        Muxes := 1     
 	   3 Input    3 Bit        Muxes := 5     
-	   2 Input    3 Bit        Muxes := 3     
+	   2 Input    3 Bit        Muxes := 9     
 	   8 Input    3 Bit        Muxes := 2     
 	   6 Input    3 Bit        Muxes := 1     
-	   2 Input    2 Bit        Muxes := 8     
+	   7 Input    3 Bit        Muxes := 1     
+	   9 Input    3 Bit        Muxes := 1     
+	   2 Input    2 Bit        Muxes := 12    
 	   4 Input    2 Bit        Muxes := 2     
 	   3 Input    2 Bit        Muxes := 3     
-	   2 Input    1 Bit        Muxes := 116   
-	   4 Input    1 Bit        Muxes := 15    
-	   3 Input    1 Bit        Muxes := 8     
+	   5 Input    2 Bit        Muxes := 1     
+	   4 Input    1 Bit        Muxes := 31    
+	   3 Input    1 Bit        Muxes := 15    
+	   2 Input    1 Bit        Muxes := 130   
 	   5 Input    1 Bit        Muxes := 7     
-	  16 Input    1 Bit        Muxes := 22    
-	   7 Input    1 Bit        Muxes := 1     
-	   6 Input    1 Bit        Muxes := 1     
+	  16 Input    1 Bit        Muxes := 24    
+	   7 Input    1 Bit        Muxes := 13    
 	  11 Input    1 Bit        Muxes := 4     
+	  10 Input    1 Bit        Muxes := 14    
+	   9 Input    1 Bit        Muxes := 1     
+	   6 Input    1 Bit        Muxes := 2     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -498,48 +473,26 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
-WARNING: [Synth 8-3936] Found unconnected internal register 'memory_access/data_memory_address_reg' and it is trimmed from '32' to '29' bits. [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.srcs/sources_1/new/memory_access_stage.vhd:120]
-WARNING: [Synth 8-7129] Port data_access in module cache_register is either unconnected or has no load
-WARNING: [Synth 8-7129] Port M_AXI_AWREADY in module CustomCPU_v1_0_memory_bus is either unconnected or has no load
-WARNING: [Synth 8-7129] Port M_AXI_WREADY in module CustomCPU_v1_0_memory_bus is either unconnected or has no load
-WARNING: [Synth 8-7129] Port M_AXI_BID[7] in module CustomCPU_v1_0_memory_bus is either unconnected or has no load
-WARNING: [Synth 8-7129] Port M_AXI_BID[6] in module CustomCPU_v1_0_memory_bus is either unconnected or has no load
-WARNING: [Synth 8-7129] Port M_AXI_BID[5] in module CustomCPU_v1_0_memory_bus is either unconnected or has no load
-WARNING: [Synth 8-7129] Port M_AXI_BID[4] in module CustomCPU_v1_0_memory_bus is either unconnected or has no load
-WARNING: [Synth 8-7129] Port M_AXI_BID[3] in module CustomCPU_v1_0_memory_bus is either unconnected or has no load
-WARNING: [Synth 8-7129] Port M_AXI_BID[2] in module CustomCPU_v1_0_memory_bus is either unconnected or has no load
-WARNING: [Synth 8-7129] Port M_AXI_BID[1] in module CustomCPU_v1_0_memory_bus is either unconnected or has no load
-WARNING: [Synth 8-7129] Port M_AXI_BID[0] in module CustomCPU_v1_0_memory_bus is either unconnected or has no load
-WARNING: [Synth 8-7129] Port M_AXI_RID[7] in module CustomCPU_v1_0_memory_bus is either unconnected or has no load
-WARNING: [Synth 8-7129] Port M_AXI_RID[6] in module CustomCPU_v1_0_memory_bus is either unconnected or has no load
-WARNING: [Synth 8-7129] Port M_AXI_RID[5] in module CustomCPU_v1_0_memory_bus is either unconnected or has no load
-WARNING: [Synth 8-7129] Port M_AXI_RID[4] in module CustomCPU_v1_0_memory_bus is either unconnected or has no load
-WARNING: [Synth 8-7129] Port M_AXI_RID[3] in module CustomCPU_v1_0_memory_bus is either unconnected or has no load
-WARNING: [Synth 8-7129] Port M_AXI_RID[2] in module CustomCPU_v1_0_memory_bus is either unconnected or has no load
-WARNING: [Synth 8-7129] Port M_AXI_RID[1] in module CustomCPU_v1_0_memory_bus is either unconnected or has no load
-WARNING: [Synth 8-7129] Port M_AXI_RID[0] in module CustomCPU_v1_0_memory_bus is either unconnected or has no load
-WARNING: [Synth 8-3332] Sequential element (memory/register_data_access_reg) is unused and will be removed from module CustomCPU_v1_0.
-WARNING: [Synth 8-3332] Sequential element (decode/registers/FSM_sequential_current_state_reg[0]) is unused and will be removed from module CustomCPU_v1_0.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:41 ; elapsed = 00:00:42 . Memory (MB): peak = 2213.078 ; gain = 564.816 ; free physical = 224 ; free virtual = 2300
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:10 ; elapsed = 00:01:12 . Memory (MB): peak = 2306.422 ; gain = 657.105 ; free physical = 391 ; free virtual = 5341
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:49 ; elapsed = 00:00:50 . Memory (MB): peak = 2213.078 ; gain = 564.816 ; free physical = 128 ; free virtual = 2268
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:17 ; elapsed = 00:01:19 . Memory (MB): peak = 2306.422 ; gain = 657.105 ; free physical = 389 ; free virtual = 5339
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:49 ; elapsed = 00:00:50 . Memory (MB): peak = 2213.078 ; gain = 564.816 ; free physical = 140 ; free virtual = 2263
+Finished Timing Optimization : Time (s): cpu = 00:01:17 ; elapsed = 00:01:19 . Memory (MB): peak = 2306.422 ; gain = 657.105 ; free physical = 389 ; free virtual = 5339
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:50 ; elapsed = 00:00:52 . Memory (MB): peak = 2213.078 ; gain = 564.816 ; free physical = 124 ; free virtual = 2248
+Finished Technology Mapping : Time (s): cpu = 00:01:19 ; elapsed = 00:01:21 . Memory (MB): peak = 2306.422 ; gain = 657.105 ; free physical = 388 ; free virtual = 5339
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -557,37 +510,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:57 ; elapsed = 00:00:58 . Memory (MB): peak = 2213.078 ; gain = 564.816 ; free physical = 125 ; free virtual = 2244
+Finished IO Insertion : Time (s): cpu = 00:01:26 ; elapsed = 00:01:28 . Memory (MB): peak = 2306.422 ; gain = 657.105 ; free physical = 385 ; free virtual = 5332
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:57 ; elapsed = 00:00:58 . Memory (MB): peak = 2213.078 ; gain = 564.816 ; free physical = 125 ; free virtual = 2244
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:26 ; elapsed = 00:01:28 . Memory (MB): peak = 2306.422 ; gain = 657.105 ; free physical = 385 ; free virtual = 5332
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:57 ; elapsed = 00:00:59 . Memory (MB): peak = 2213.078 ; gain = 564.816 ; free physical = 124 ; free virtual = 2244
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:26 ; elapsed = 00:01:28 . Memory (MB): peak = 2306.422 ; gain = 657.105 ; free physical = 385 ; free virtual = 5331
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:57 ; elapsed = 00:00:59 . Memory (MB): peak = 2213.078 ; gain = 564.816 ; free physical = 124 ; free virtual = 2244
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:26 ; elapsed = 00:01:28 . Memory (MB): peak = 2306.422 ; gain = 657.105 ; free physical = 385 ; free virtual = 5331
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:57 ; elapsed = 00:00:59 . Memory (MB): peak = 2213.078 ; gain = 564.816 ; free physical = 124 ; free virtual = 2244
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:27 ; elapsed = 00:01:29 . Memory (MB): peak = 2306.422 ; gain = 657.105 ; free physical = 384 ; free virtual = 5331
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:57 ; elapsed = 00:00:59 . Memory (MB): peak = 2213.078 ; gain = 564.816 ; free physical = 124 ; free virtual = 2244
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:27 ; elapsed = 00:01:29 . Memory (MB): peak = 2306.422 ; gain = 657.105 ; free physical = 384 ; free virtual = 5331
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -610,45 +563,44 @@ Report Cell Usage:
 |2     |page_list_bbox      |     1|
 |3     |register_array_bbox |     1|
 |4     |BUFG                |     4|
-|5     |CARRY4              |    94|
+|5     |CARRY4              |    98|
 |6     |LUT1                |     7|
-|7     |LUT2                |   131|
-|8     |LUT3                |   287|
-|9     |LUT4                |   215|
-|10    |LUT5                |   165|
-|11    |LUT6                |  1275|
-|12    |MUXF7               |    24|
-|13    |FDRE                |  1611|
-|14    |FDSE                |    16|
-|15    |LD                  |   258|
+|7     |LUT2                |   174|
+|8     |LUT3                |   551|
+|9     |LUT4                |   218|
+|10    |LUT5                |   278|
+|11    |LUT6                |  2012|
+|12    |MUXF7               |   186|
+|13    |FDRE                |  2583|
+|14    |FDSE                |    22|
+|15    |LD                  |   218|
 |16    |IBUF                |    38|
 |17    |OBUF                |   174|
 +------+--------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:57 ; elapsed = 00:00:59 . Memory (MB): peak = 2213.078 ; gain = 564.816 ; free physical = 124 ; free virtual = 2244
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:27 ; elapsed = 00:01:29 . Memory (MB): peak = 2306.422 ; gain = 657.105 ; free physical = 384 ; free virtual = 5331
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 42 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:54 ; elapsed = 00:00:55 . Memory (MB): peak = 2213.078 ; gain = 487.082 ; free physical = 124 ; free virtual = 2244
-Synthesis Optimization Complete : Time (s): cpu = 00:00:57 ; elapsed = 00:00:59 . Memory (MB): peak = 2213.086 ; gain = 564.816 ; free physical = 124 ; free virtual = 2244
+Synthesis finished with 0 errors, 0 critical warnings and 18 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:20 ; elapsed = 00:01:22 . Memory (MB): peak = 2306.422 ; gain = 519.566 ; free physical = 384 ; free virtual = 5331
+Synthesis Optimization Complete : Time (s): cpu = 00:01:27 ; elapsed = 00:01:29 . Memory (MB): peak = 2306.430 ; gain = 657.105 ; free physical = 384 ; free virtual = 5331
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.05 . Memory (MB): peak = 2213.086 ; gain = 0.000 ; free physical = 404 ; free virtual = 2524
-INFO: [Netlist 29-17] Analyzing 376 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00.07 ; elapsed = 00:00:00.07 . Memory (MB): peak = 2306.430 ; gain = 0.000 ; free physical = 662 ; free virtual = 5609
+INFO: [Netlist 29-17] Analyzing 502 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
-INFO: [Opt 31-138] Pushed 1 inverter(s) to 64 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2213.086 ; gain = 0.000 ; free physical = 403 ; free virtual = 2524
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2306.430 ; gain = 0.000 ; free physical = 662 ; free virtual = 5608
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 258 instances were transformed.
-  LD => LDCE: 194 instances
-  LD => LDCE (inverted pins: G): 64 instances
+  A total of 218 instances were transformed.
+  LD => LDCE: 218 instances
 
-Synth Design complete | Checksum: 162a2fe6
+Synth Design complete | Checksum: c709d9ee
 INFO: [Common 17-83] Releasing license: Synthesis
-84 Infos, 137 Warnings, 0 Critical Warnings and 0 Errors encountered.
+87 Infos, 100 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:08 ; elapsed = 00:01:05 . Memory (MB): peak = 2213.086 ; gain = 877.355 ; free physical = 403 ; free virtual = 2524
-INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 1872.897; main = 1550.494; forked = 382.757
-INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3191.180; main = 2213.082; forked = 978.098
+synth_design: Time (s): cpu = 00:01:40 ; elapsed = 00:01:37 . Memory (MB): peak = 2306.430 ; gain = 975.707 ; free physical = 662 ; free virtual = 5608
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 1942.174; main = 1608.854; forked = 382.436
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3284.527; main = 2306.426; forked = 978.102
 INFO: [Common 17-1381] The checkpoint '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/synth_1/CustomCPU_v1_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file CustomCPU_v1_0_utilization_synth.rpt -pb CustomCPU_v1_0_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Fri Jul 21 16:46:03 2023...
+INFO: [Common 17-206] Exiting Vivado at Sun Jul 23 21:32:27 2023...

@@ -37,27 +37,27 @@ end cpu_fetch_testbench;
 
 architecture Behavioral of cpu_fetch_testbench is
     component CustomCPU_v1_0 is
-        generic (
-            -- Users to add parameters here
-    
-            -- User parameters ends
-            -- Do not modify the parameters beyond this line
-    
-            address_dimension: integer := 32;
-            data_dimension: integer := 32;
-            
-            -- Parameters of Axi Master Bus Interface memory_bus
-            C_memory_bus_TARGET_SLAVE_BASE_ADDR	: std_logic_vector	:= x"40000000";
-            C_memory_bus_BURST_LEN	: integer	:= 8;
-            C_memory_bus_ID_WIDTH	: integer	:= 8;
-            C_memory_bus_ADDR_WIDTH	: integer	:= 32;
-            C_memory_bus_DATA_WIDTH	: integer	:= 32;
-            C_memory_bus_AWUSER_WIDTH	: integer	:= 0;
-            C_memory_bus_ARUSER_WIDTH	: integer	:= 0;
-            C_memory_bus_WUSER_WIDTH	: integer	:= 0;
-            C_memory_bus_RUSER_WIDTH	: integer	:= 0;
-            C_memory_bus_BUSER_WIDTH	: integer	:= 0
-        );
+         generic (
+		-- Users to add parameters here
+
+		-- User parameters ends
+		-- Do not modify the parameters beyond this line
+
+        address_dimension: integer := 32;
+        data_dimension: integer := 32;
+        
+		-- Parameters of Axi Master Bus Interface memory_bus
+		C_memory_bus_TARGET_SLAVE_BASE_ADDR	: std_logic_vector	:= x"40000000";
+        C_memory_bus_BURST_LEN	: integer	:= 8;
+        C_memory_bus_ID_WIDTH	: integer	:= 8;
+        C_memory_bus_ADDR_WIDTH	: integer	:= 32;
+        C_memory_bus_DATA_WIDTH	: integer	:= 32;
+        C_memory_bus_AWUSER_WIDTH	: integer	:= 0;
+        C_memory_bus_ARUSER_WIDTH	: integer	:= 0;
+        C_memory_bus_WUSER_WIDTH	: integer	:= 0;
+        C_memory_bus_RUSER_WIDTH	: integer	:= 0;
+        C_memory_bus_BUSER_WIDTH	: integer	:= 0
+	   );
         port (
             -- Users to add ports here
     
@@ -66,8 +66,8 @@ architecture Behavioral of cpu_fetch_testbench is
             reset: in std_logic;
             memory_bus_aclk	: out std_logic;
             memory_bus_aresetn	: out std_logic;
-            memory_bus_awid	: out std_logic_vector(C_memory_bus_ID_WIDTH-1 downto 0);
-            memory_bus_awaddr	: out std_logic_vector(C_memory_bus_ADDR_WIDTH-1 downto 0);
+            memory_bus_awid	: out std_logic_vector(7 downto 0);
+            memory_bus_awaddr	: out std_logic_vector(31 downto 0);
             memory_bus_awlen	: out std_logic_vector(7 downto 0);
             memory_bus_awsize	: out std_logic_vector(2 downto 0);
             memory_bus_awburst	: out std_logic_vector(1 downto 0);
@@ -75,22 +75,22 @@ architecture Behavioral of cpu_fetch_testbench is
             memory_bus_awcache	: out std_logic_vector(3 downto 0);
             memory_bus_awprot	: out std_logic_vector(2 downto 0);
             memory_bus_awqos	: out std_logic_vector(3 downto 0);
-            memory_bus_awuser	: out std_logic_vector(C_memory_bus_AWUSER_WIDTH-1 downto 0);
+            memory_bus_awuser	: out std_logic_vector(-1 downto 0);
             memory_bus_awvalid	: out std_logic;
             memory_bus_awready	: in std_logic;
-            memory_bus_wdata	: out std_logic_vector(C_memory_bus_DATA_WIDTH-1 downto 0);
-            memory_bus_wstrb	: out std_logic_vector(C_memory_bus_DATA_WIDTH/8-1 downto 0);
+            memory_bus_wdata	: out std_logic_vector(31 downto 0);
+            memory_bus_wstrb	: out std_logic_vector(3 downto 0);
             memory_bus_wlast	: out std_logic;
-            memory_bus_wuser	: out std_logic_vector(C_memory_bus_WUSER_WIDTH-1 downto 0);
+            memory_bus_wuser	: out std_logic_vector(-1 downto 0);
             memory_bus_wvalid	: out std_logic;
             memory_bus_wready	: in std_logic;
-            memory_bus_bid	: in std_logic_vector(C_memory_bus_ID_WIDTH-1 downto 0);
+            memory_bus_bid	: in std_logic_vector(7 downto 0);
             memory_bus_bresp	: in std_logic_vector(1 downto 0);
-            memory_bus_buser	: in std_logic_vector(C_memory_bus_BUSER_WIDTH-1 downto 0);
+            memory_bus_buser	: in std_logic_vector(-1 downto 0);
             memory_bus_bvalid	: in std_logic;
             memory_bus_bready	: out std_logic;
-            memory_bus_arid	: out std_logic_vector(C_memory_bus_ID_WIDTH-1 downto 0);
-            memory_bus_araddr	: out std_logic_vector(C_memory_bus_ADDR_WIDTH-1 downto 0);
+            memory_bus_arid	: out std_logic_vector(7 downto 0);
+            memory_bus_araddr	: out std_logic_vector(31 downto 0);
             memory_bus_arlen	: out std_logic_vector(7 downto 0);
             memory_bus_arsize	: out std_logic_vector(2 downto 0);
             memory_bus_arburst	: out std_logic_vector(1 downto 0);
@@ -98,14 +98,14 @@ architecture Behavioral of cpu_fetch_testbench is
             memory_bus_arcache	: out std_logic_vector(3 downto 0);
             memory_bus_arprot	: out std_logic_vector(2 downto 0);
             memory_bus_arqos	: out std_logic_vector(3 downto 0);
-            memory_bus_aruser	: out std_logic_vector(C_memory_bus_ARUSER_WIDTH-1 downto 0);
+            memory_bus_aruser	: out std_logic_vector(-1 downto 0);
             memory_bus_arvalid	: out std_logic;
             memory_bus_arready	: in std_logic;
-            memory_bus_rid	: in std_logic_vector(C_memory_bus_ID_WIDTH-1 downto 0);
-            memory_bus_rdata	: in std_logic_vector(C_memory_bus_DATA_WIDTH-1 downto 0);
+            memory_bus_rid	: in std_logic_vector(7 downto 0);
+            memory_bus_rdata	: in std_logic_vector(31 downto 0);
             memory_bus_rresp	: in std_logic_vector(1 downto 0);
             memory_bus_rlast	: in std_logic;
-            memory_bus_ruser	: in std_logic_vector(C_memory_bus_RUSER_WIDTH-1 downto 0);
+            memory_bus_ruser	: in std_logic_vector(-1 downto 0);
             memory_bus_rvalid	: in std_logic;
             memory_bus_rready	: out std_logic
         );
@@ -196,7 +196,9 @@ architecture Behavioral of cpu_fetch_testbench is
     
     signal rsta_busy, rstb_busy: std_logic;
 begin
-    ram: block_ram port map (
+    ram: block_ram
+    
+    port map (
         rsta_busy => rsta_busy,
         rstb_busy => rstb_busy,
         s_aclk=> memory_bus_aclk,
@@ -231,7 +233,24 @@ begin
         s_axi_rvalid =>memory_bus_rvalid,
         s_axi_rready =>memory_bus_rready
     );
-    cpu1: CustomCPU_v1_0 port map (
+    cpu1: CustomCPU_v1_0 
+    generic map (
+        address_dimension=> 32,
+        data_dimension=> 32,
+        
+		-- Parameters of Axi Master Bus Interface memory_bus
+		C_memory_bus_TARGET_SLAVE_BASE_ADDR	=>x"40000000",
+        C_memory_bus_BURST_LEN=> 8,
+        C_memory_bus_ID_WIDTH=> 8,
+        C_memory_bus_ADDR_WIDTH=>32,
+        C_memory_bus_DATA_WIDTH=> 32,
+        C_memory_bus_AWUSER_WIDTH=> 0,
+        C_memory_bus_ARUSER_WIDTH=> 0,
+        C_memory_bus_WUSER_WIDTH=>0,
+        C_memory_bus_RUSER_WIDTH=> 0,
+        C_memory_bus_BUSER_WIDTH=> 0
+    )
+    port map (
         clk => clk,
         reset => reset,
         memory_bus_aclk	 => memory_bus_aclk,
@@ -292,7 +311,7 @@ begin
         reset <= '0';
         wait for 40ns;
         reset <= '1';
-        wait for 2000ns;
+        wait for 4000ns;
         
     end process;
 end Behavioral;

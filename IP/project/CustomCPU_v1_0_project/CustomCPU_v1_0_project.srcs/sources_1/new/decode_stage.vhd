@@ -47,6 +47,7 @@ entity decode_stage is
     decode_stage_ready: out std_logic; 
     pipeline_step: in std_logic;
     output_mask: in std_logic;
+    input_hold: in std_logic;
     
     register_writeback_address: in std_logic_vector(4 downto 0);
     register_writeback_data: in std_logic_vector(31 downto 0);
@@ -140,12 +141,7 @@ begin
     
     register_address_a <= decode_register_a;
     register_address_b <= decode_register_b;
-    register_write_request <= register_writeback_request;
-    register_address_write <= register_writeback_address;
-    register_write_data <= register_writeback_data;
-    register_write_request <= register_writeback_request;
     
-    decode_instruction_in <= instruction_in;
     process (clk) is 
     begin 
         if (rising_edge(clk)) then
@@ -155,31 +151,42 @@ begin
             else
                 if (output_mask = '0') then 
                     if (current_state = step_wait) then
-                        register_read_request <= '0';
-                        register_enable<='0';
                         if (pipeline_step = '1') then
+                            register_write_request <= register_writeback_request;
+                            register_address_write <= register_writeback_address;
+                            register_write_data <= register_writeback_data;
+                            register_write_request <= register_writeback_request;
+                            if (input_hold='0') then 
+                                decode_instruction_in <= instruction_in;
+                                new_program_counter_out <= new_program_counter_in;
+                            end if;
                             current_state <= register_data_request;
+                            register_read_request <= '1';
+                            register_enable <= '1';
                             decode_stage_ready <= '0';
                         else 
+                            register_enable <= '0';
+                            register_read_request <= '1';
                             decode_stage_ready <= '1';
                         end if;
                     elsif (current_state = register_data_request) then
-                        register_read_request <= '1';
-                        register_enable<='1';
+                        
+                        register_enable<='0';
                         current_state <= register_data_receive;
                     elsif (current_state = register_data_receive) then 
-                        register_a <= register_a_data;
-                        register_b <= register_b_data;
-                        register_a_address_out <= register_address_a;
-                        register_b_address_out <= register_address_b;
-                        register_dest <= decode_register_dest;
-                        immediate_operand <= decode_immediate;
-                        instruction_type <= decode_instruction_type;
-                        alu_control <= decode_alu_control;
-                        register_enable<='0';
-                        register_read_request <= '0';
-                        new_program_counter_out <= new_program_counter_in;
                         if (register_ready='1') then 
+                            register_read_request <= '0';
+                            register_a <= register_a_data;
+                            register_b <= register_b_data;
+                            register_a_address_out <= register_address_a;
+                            register_b_address_out <= register_address_b;
+                            register_dest <= decode_register_dest;
+                            immediate_operand <= decode_immediate;
+                            instruction_type <= decode_instruction_type;
+                            alu_control <= decode_alu_control;
+                            register_enable<='0';
+                            register_read_request <= '0';
+                            
                             current_state <= step_wait;
                         end if;  
                                                                                                    
