@@ -100,6 +100,7 @@ begin
     process is 
     begin   
         reset<='0';
+        data_write_mode <="00";
         wait for 40ns;
         reset<='1';
         data_access <= '0';

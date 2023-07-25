@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="decode_stage_testbench_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="decode_stage_testbench" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="15.797 ns"></ZoomStartTime>
+      <ZoomEndTime time="976.312 ns"></ZoomEndTime>
+      <Cursor1Time time="0.000 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="196"></NameColumnWidth>
+      <ValueColumnWidth column_width="84"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="14" />
+   <wvobject type="logic" fp_name="/decode_stage_testbench/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/decode_stage_testbench/reset">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/decode_stage_testbench/pipeline_step">
+      <obj_property name="ElementShortName">pipeline_step</obj_property>
+      <obj_property name="ObjectShortName">pipeline_step</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/decode_stage_testbench/decode_stage_ready">
+      <obj_property name="ElementShortName">decode_stage_ready</obj_property>
+      <obj_property name="ObjectShortName">decode_stage_ready</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/decode_stage_testbench/register_writeback_request">
+      <obj_property name="ElementShortName">register_writeback_request</obj_property>
+      <obj_property name="ObjectShortName">register_writeback_request</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/decode_stage_testbench/instruction_in">
+      <obj_property name="ElementShortName">instruction_in[31:0]</obj_property>
+      <obj_property name="ObjectShortName">instruction_in[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/decode_stage_testbench/register_a">
+      <obj_property name="ElementShortName">register_a[31:0]</obj_property>
+      <obj_property name="ObjectShortName">register_a[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/decode_stage_testbench/register_a_address_out">
+      <obj_property name="ElementShortName">register_a_address_out[4:0]</obj_property>
+      <obj_property name="ObjectShortName">register_a_address_out[4:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/decode_stage_testbench/register_b">
+      <obj_property name="ElementShortName">register_b[31:0]</obj_property>
+      <obj_property name="ObjectShortName">register_b[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/decode_stage_testbench/register_b_address_out">
+      <obj_property name="ElementShortName">register_b_address_out[4:0]</obj_property>
+      <obj_property name="ObjectShortName">register_b_address_out[4:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/decode_stage_testbench/register_dest">
+      <obj_property name="ElementShortName">register_dest[4:0]</obj_property>
+      <obj_property name="ObjectShortName">register_dest[4:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/decode_stage_testbench/immediate_operand">
+      <obj_property name="ElementShortName">immediate_operand[31:0]</obj_property>
+      <obj_property name="ObjectShortName">immediate_operand[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/decode_stage_testbench/alu_control">
+      <obj_property name="ElementShortName">alu_control[4:0]</obj_property>
+      <obj_property name="ObjectShortName">alu_control[4:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/decode_stage_testbench/instruction_type">
+      <obj_property name="ElementShortName">instruction_type[3:0]</obj_property>
+      <obj_property name="ObjectShortName">instruction_type[3:0]</obj_property>
+   </wvobject>
+</wave_config>

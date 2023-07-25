@@ -11,7 +11,7 @@
     ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 
 source page_list.tcl -notrace
-create_project: Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1333.695 ; gain = 0.023 ; free physical = 701 ; free virtual = 5024
+create_project: Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1338.598 ; gain = 0.023 ; free physical = 123 ; free virtual = 3312
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/vittorio/GitHub/CustomCPU/IP/CustomCPU_1_0'.
 WARNING: [IP_Flow 19-2207] Repository '/home/vittorio/GitHub/CustomCPU/IP/CustomCPU_1_0' already exists; ignoring attempt to add it again.
@@ -25,9 +25,9 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020
 INFO: [Device 21-403] Loading part xc7z020clg484-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 21615
+INFO: [Synth 8-7075] Helper process launched with PID 68431
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 2025.059 ; gain = 377.770 ; free physical = 191 ; free virtual = 4147
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2024.961 ; gain = 377.801 ; free physical = 134 ; free virtual = 2367
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'page_list' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.gen/sources_1/ip/page_list/synth/page_list.vhd:69]
 	Parameter C_FAMILY bound to: zynq - type: string 
@@ -60,13 +60,10 @@ INFO: [Synth 8-638] synthesizing module 'page_list' [/home/vittorio/GitHub/Custo
 	Parameter C_REG_A_D_INPUTS bound to: 0 - type: integer 
 	Parameter C_REG_DPRA_INPUT bound to: 0 - type: integer 
 	Parameter C_SYNC_ENABLE bound to: 1 - type: integer 
-	Parameter C_WIDTH bound to: 22 - type: integer 
+	Parameter C_WIDTH bound to: 19 - type: integer 
 	Parameter C_PARSER_TYPE bound to: 1 - type: integer 
 INFO: [Synth 8-3491] module 'dist_mem_gen_v8_0_13' declared at '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.gen/sources_1/ip/page_list/hdl/dist_mem_gen_v8_0_vhsyn_rfs.vhd:3237' bound to instance 'U0' of component 'dist_mem_gen_v8_0_13' [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.gen/sources_1/ip/page_list/synth/page_list.vhd:135]
 INFO: [Synth 8-256] done synthesizing module 'page_list' (0#1) [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.gen/sources_1/ip/page_list/synth/page_list.vhd:69]
-WARNING: [Synth 8-7129] Port qspo[21] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[20] in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qspo[19] in module spram is either unconnected or has no load
 WARNING: [Synth 8-7129] Port qspo[18] in module spram is either unconnected or has no load
 WARNING: [Synth 8-7129] Port qspo[17] in module spram is either unconnected or has no load
 WARNING: [Synth 8-7129] Port qspo[16] in module spram is either unconnected or has no load
@@ -90,9 +87,6 @@ WARNING: [Synth 8-7129] Port i_ce in module spram is either unconnected or has n
 WARNING: [Synth 8-7129] Port qspo_ce in module spram is either unconnected or has no load
 WARNING: [Synth 8-7129] Port qspo_rst in module spram is either unconnected or has no load
 WARNING: [Synth 8-7129] Port qspo_srst in module spram is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dpo[21] in module dist_mem_gen_v8_0_13_synth is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dpo[20] in module dist_mem_gen_v8_0_13_synth is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dpo[19] in module dist_mem_gen_v8_0_13_synth is either unconnected or has no load
 WARNING: [Synth 8-7129] Port dpo[18] in module dist_mem_gen_v8_0_13_synth is either unconnected or has no load
 WARNING: [Synth 8-7129] Port dpo[17] in module dist_mem_gen_v8_0_13_synth is either unconnected or has no load
 WARNING: [Synth 8-7129] Port dpo[16] in module dist_mem_gen_v8_0_13_synth is either unconnected or has no load
@@ -112,9 +106,6 @@ WARNING: [Synth 8-7129] Port dpo[3] in module dist_mem_gen_v8_0_13_synth is eith
 WARNING: [Synth 8-7129] Port dpo[2] in module dist_mem_gen_v8_0_13_synth is either unconnected or has no load
 WARNING: [Synth 8-7129] Port dpo[1] in module dist_mem_gen_v8_0_13_synth is either unconnected or has no load
 WARNING: [Synth 8-7129] Port dpo[0] in module dist_mem_gen_v8_0_13_synth is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qdpo[21] in module dist_mem_gen_v8_0_13_synth is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qdpo[20] in module dist_mem_gen_v8_0_13_synth is either unconnected or has no load
-WARNING: [Synth 8-7129] Port qdpo[19] in module dist_mem_gen_v8_0_13_synth is either unconnected or has no load
 WARNING: [Synth 8-7129] Port qdpo[18] in module dist_mem_gen_v8_0_13_synth is either unconnected or has no load
 WARNING: [Synth 8-7129] Port qdpo[17] in module dist_mem_gen_v8_0_13_synth is either unconnected or has no load
 WARNING: [Synth 8-7129] Port qdpo[16] in module dist_mem_gen_v8_0_13_synth is either unconnected or has no load
@@ -159,18 +150,18 @@ WARNING: [Synth 8-7129] Port qdpo_rst in module dist_mem_gen_v8_0_13 is either u
 WARNING: [Synth 8-7129] Port qspo_srst in module dist_mem_gen_v8_0_13 is either unconnected or has no load
 WARNING: [Synth 8-7129] Port qdpo_srst in module dist_mem_gen_v8_0_13 is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2095.965 ; gain = 448.676 ; free physical = 155 ; free virtual = 4077
+Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 2095.867 ; gain = 448.707 ; free physical = 123 ; free virtual = 2276
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 2113.777 ; gain = 466.488 ; free physical = 152 ; free virtual = 4074
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 2113.680 ; gain = 466.520 ; free physical = 144 ; free virtual = 2279
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 2113.777 ; gain = 466.488 ; free physical = 152 ; free virtual = 4074
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 2113.680 ; gain = 466.520 ; free physical = 144 ; free virtual = 2280
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2113.777 ; gain = 0.000 ; free physical = 152 ; free virtual = 4074
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2113.680 ; gain = 0.000 ; free physical = 144 ; free virtual = 2280
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -181,38 +172,38 @@ Parsing XDC File [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_proj
 Finished Parsing XDC File [/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/page_list_synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2188.512 ; gain = 0.000 ; free physical = 150 ; free virtual = 4064
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2180.414 ; gain = 0.000 ; free physical = 139 ; free virtual = 2252
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2188.512 ; gain = 0.000 ; free physical = 150 ; free virtual = 4064
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2180.414 ; gain = 0.000 ; free physical = 139 ; free virtual = 2252
 INFO: [Designutils 20-5008] Incremental synthesis strategy off
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 2188.512 ; gain = 541.223 ; free physical = 144 ; free virtual = 4052
+Finished Constraint Validation : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 2180.414 ; gain = 533.254 ; free physical = 131 ; free virtual = 2243
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg484-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 2188.512 ; gain = 541.223 ; free physical = 144 ; free virtual = 4052
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 2180.414 ; gain = 533.254 ; free physical = 131 ; free virtual = 2243
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 Applied set_property KEEP_HIERARCHY = SOFT for U0. (constraint file  /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/page_list_synth_1/dont_touch.xdc, line 9).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 2188.512 ; gain = 541.223 ; free physical = 144 ; free virtual = 4052
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 2180.414 ; gain = 533.254 ; free physical = 131 ; free virtual = 2243
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 2188.512 ; gain = 541.223 ; free physical = 143 ; free virtual = 4051
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 2180.414 ; gain = 533.254 ; free physical = 129 ; free virtual = 2242
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Registers : 
-	               22 Bit    Registers := 1     
+	               19 Bit    Registers := 1     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -229,15 +220,24 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
-WARNING: [Synth 8-7129] Port dpo[21] in module dist_mem_gen_v8_0_13 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dpo[20] in module dist_mem_gen_v8_0_13 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dpo[19] in module dist_mem_gen_v8_0_13 is either unconnected or has no load
 WARNING: [Synth 8-7129] Port dpo[18] in module dist_mem_gen_v8_0_13 is either unconnected or has no load
 WARNING: [Synth 8-7129] Port dpo[17] in module dist_mem_gen_v8_0_13 is either unconnected or has no load
 WARNING: [Synth 8-7129] Port dpo[16] in module dist_mem_gen_v8_0_13 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port dpo[15] in module dist_mem_gen_v8_0_13 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port dpo[14] in module dist_mem_gen_v8_0_13 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port dpo[13] in module dist_mem_gen_v8_0_13 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port dpo[12] in module dist_mem_gen_v8_0_13 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port dpo[11] in module dist_mem_gen_v8_0_13 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port dpo[10] in module dist_mem_gen_v8_0_13 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port dpo[9] in module dist_mem_gen_v8_0_13 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port dpo[8] in module dist_mem_gen_v8_0_13 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port dpo[7] in module dist_mem_gen_v8_0_13 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port dpo[6] in module dist_mem_gen_v8_0_13 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port dpo[5] in module dist_mem_gen_v8_0_13 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port dpo[4] in module dist_mem_gen_v8_0_13 is either unconnected or has no load
 INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 2188.512 ; gain = 541.223 ; free physical = 147 ; free virtual = 4051
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 2180.414 ; gain = 533.254 ; free physical = 127 ; free virtual = 2241
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -247,7 +247,7 @@ Distributed RAM: Preliminary Mapping Report (see note below)
 +------------+-----------------------------------------------------------+-----------+----------------------+----------------+
 |Module Name | RTL Object                                                | Inference | Size (Depth x Width) | Primitives     | 
 +------------+-----------------------------------------------------------+-----------+----------------------+----------------+
-|U0          | synth_options.dist_mem_inst/gen_sp_ram.spram_inst/ram_reg | Implied   | 64 x 22              | RAM64X1S x 22  | 
+|U0          | synth_options.dist_mem_inst/gen_sp_ram.spram_inst/ram_reg | Implied   | 64 x 19              | RAM64X1S x 19  | 
 +------------+-----------------------------------------------------------+-----------+----------------------+----------------+
 
 Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
@@ -258,13 +258,13 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 2188.512 ; gain = 541.223 ; free physical = 145 ; free virtual = 4048
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:27 ; elapsed = 00:00:29 . Memory (MB): peak = 2180.414 ; gain = 533.254 ; free physical = 135 ; free virtual = 2226
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 2188.512 ; gain = 541.223 ; free physical = 145 ; free virtual = 4048
+Finished Timing Optimization : Time (s): cpu = 00:00:27 ; elapsed = 00:00:29 . Memory (MB): peak = 2180.414 ; gain = 533.254 ; free physical = 135 ; free virtual = 2226
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -274,7 +274,7 @@ Distributed RAM: Final Mapping Report
 +------------+-----------------------------------------------------------+-----------+----------------------+----------------+
 |Module Name | RTL Object                                                | Inference | Size (Depth x Width) | Primitives     | 
 +------------+-----------------------------------------------------------+-----------+----------------------+----------------+
-|U0          | synth_options.dist_mem_inst/gen_sp_ram.spram_inst/ram_reg | Implied   | 64 x 22              | RAM64X1S x 22  | 
+|U0          | synth_options.dist_mem_inst/gen_sp_ram.spram_inst/ram_reg | Implied   | 64 x 19              | RAM64X1S x 19  | 
 +------------+-----------------------------------------------------------+-----------+----------------------+----------------+
 
 ---------------------------------------------------------------------------------
@@ -284,7 +284,7 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 2188.512 ; gain = 541.223 ; free physical = 145 ; free virtual = 4048
+Finished Technology Mapping : Time (s): cpu = 00:00:27 ; elapsed = 00:00:29 . Memory (MB): peak = 2180.414 ; gain = 533.254 ; free physical = 135 ; free virtual = 2226
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -302,37 +302,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2188.512 ; gain = 541.223 ; free physical = 144 ; free virtual = 4046
+Finished IO Insertion : Time (s): cpu = 00:00:33 ; elapsed = 00:00:35 . Memory (MB): peak = 2180.414 ; gain = 533.254 ; free physical = 131 ; free virtual = 2222
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2188.512 ; gain = 541.223 ; free physical = 144 ; free virtual = 4046
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:33 ; elapsed = 00:00:35 . Memory (MB): peak = 2180.414 ; gain = 533.254 ; free physical = 131 ; free virtual = 2222
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2188.512 ; gain = 541.223 ; free physical = 144 ; free virtual = 4046
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:33 ; elapsed = 00:00:35 . Memory (MB): peak = 2180.414 ; gain = 533.254 ; free physical = 131 ; free virtual = 2222
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2188.512 ; gain = 541.223 ; free physical = 144 ; free virtual = 4046
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:33 ; elapsed = 00:00:35 . Memory (MB): peak = 2180.414 ; gain = 533.254 ; free physical = 131 ; free virtual = 2222
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2188.512 ; gain = 541.223 ; free physical = 144 ; free virtual = 4046
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:33 ; elapsed = 00:00:35 . Memory (MB): peak = 2180.414 ; gain = 533.254 ; free physical = 131 ; free virtual = 2222
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2188.512 ; gain = 541.223 ; free physical = 144 ; free virtual = 4046
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:33 ; elapsed = 00:00:35 . Memory (MB): peak = 2180.414 ; gain = 533.254 ; free physical = 131 ; free virtual = 2222
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -348,36 +348,36 @@ Report Cell Usage:
 +------+---------+------+
 |      |Cell     |Count |
 +------+---------+------+
-|1     |RAM64X1S |    22|
-|2     |FDRE     |    22|
+|1     |RAM64X1S |    19|
+|2     |FDRE     |    19|
 +------+---------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2188.512 ; gain = 541.223 ; free physical = 144 ; free virtual = 4046
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:33 ; elapsed = 00:00:35 . Memory (MB): peak = 2180.414 ; gain = 533.254 ; free physical = 131 ; free virtual = 2222
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 81 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:30 ; elapsed = 00:00:30 . Memory (MB): peak = 2188.512 ; gain = 466.488 ; free physical = 144 ; free virtual = 4046
-Synthesis Optimization Complete : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2188.520 ; gain = 541.223 ; free physical = 144 ; free virtual = 4046
+Synthesis finished with 0 errors, 0 critical warnings and 72 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 2180.414 ; gain = 466.520 ; free physical = 130 ; free virtual = 2221
+Synthesis Optimization Complete : Time (s): cpu = 00:00:33 ; elapsed = 00:00:35 . Memory (MB): peak = 2180.422 ; gain = 533.254 ; free physical = 130 ; free virtual = 2221
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2188.520 ; gain = 0.000 ; free physical = 357 ; free virtual = 4259
-INFO: [Netlist 29-17] Analyzing 22 Unisim elements for replacement
-INFO: [Netlist 29-28] Unisim Transformation completed in 4 CPU seconds
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2180.422 ; gain = 0.000 ; free physical = 128 ; free virtual = 2225
+INFO: [Netlist 29-17] Analyzing 19 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2188.520 ; gain = 0.000 ; free physical = 412 ; free virtual = 4314
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2180.422 ; gain = 0.000 ; free physical = 406 ; free virtual = 2503
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 22 instances were transformed.
-  RAM64X1S => RAM64X1S (RAMS64E): 22 instances
+  A total of 19 instances were transformed.
+  RAM64X1S => RAM64X1S (RAMS64E): 19 instances
 
-Synth Design complete | Checksum: 7e317956
+Synth Design complete | Checksum: cfd5a053
 INFO: [Common 17-83] Releasing license: Synthesis
 24 Infos, 102 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:42 ; elapsed = 00:00:39 . Memory (MB): peak = 2188.520 ; gain = 854.824 ; free physical = 412 ; free virtual = 4314
-INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 1785.482; main = 1471.703; forked = 367.744
-INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3153.738; main = 2188.516; forked = 965.223
+synth_design: Time (s): cpu = 00:00:44 ; elapsed = 00:00:44 . Memory (MB): peak = 2180.422 ; gain = 841.824 ; free physical = 406 ; free virtual = 2503
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 1785.863; main = 1452.675; forked = 381.011
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3203.762; main = 2180.418; forked = 1023.344
 INFO: [Common 17-1381] The checkpoint '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/page_list_synth_1/page_list.dcp' has been generated.
-INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP page_list, cache-ID = d35862b477f32970
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP page_list, cache-ID = d499e6db6b441934
 INFO: [Coretcl 2-1174] Renamed 3 cell refs.
 INFO: [Common 17-1381] The checkpoint '/home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/page_list_synth_1/page_list.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file page_list_utilization_synth.rpt -pb page_list_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sat Jul 22 12:35:17 2023...
+INFO: [Common 17-206] Exiting Vivado at Mon Jul 24 18:37:15 2023...

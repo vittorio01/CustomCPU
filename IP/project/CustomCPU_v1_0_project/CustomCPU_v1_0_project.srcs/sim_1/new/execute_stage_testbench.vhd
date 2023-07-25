@@ -151,7 +151,7 @@ begin
         alu_control <= "00000";                 --R type 
         wait for 20ns;
         pipeline_step <= '0';
-        wait for 80ns;
+        wait for 150ns;
         pipeline_step <='1';
         register_a <= x"00001111";
         register_b <= x"11110000";
@@ -160,17 +160,7 @@ begin
         alu_control <= "01000";                 -- I type arithmetic
         wait for 20ns;
         pipeline_step <= '0';
-        wait for 80ns;
-        pipeline_step <='1';
-        register_a <= x"00011111";
-        register_b <= x"00000011";
-        immediate_operand <= x"00000002";
-        register_output_address_in <= "00010";
-        instruction_type <= "1000";             -- R type shift
-        alu_control <= "00001";
-        wait for 20ns;
-        pipeline_step <= '0';
-        wait for 80ns;
+        wait for 150ns;
         pipeline_step <='1';
         register_a <= x"00000001";
         register_b <= x"11110000";
@@ -181,7 +171,7 @@ begin
         alu_control <= "00001";
         wait for 20ns;
         pipeline_step <= '0';
-        wait for 80ns;
+        wait for 150ns;
         pipeline_step <='1';
         register_a <= x"0000000A";
         register_b <= x"11110000";
@@ -191,7 +181,7 @@ begin
         alu_control <= "00001";
         wait for 20ns;
         pipeline_step <= '0';
-        wait for 80ns;
+        wait for 150ns;
         pipeline_step <='1';
         register_a <= x"00001111";
         register_b <= x"11110000";
@@ -202,7 +192,7 @@ begin
         alu_control <= "00000";
         wait for 20ns;
         pipeline_step<= '0';
-        wait for 80ns;
+        wait for 200ns;
         pipeline_step <='1';
         register_a <= x"00000001";
         register_b <= x"11110000";
@@ -213,7 +203,7 @@ begin
         alu_control <= "00001";
         wait for 20ns;
         pipeline_step <= '0';
-        wait for 80ns;
+        wait for 150ns;
         pipeline_step <='1';
         register_a <= x"00000001";
         register_b <= x"11110000";
@@ -224,7 +214,7 @@ begin
         alu_control <= "00000";
         wait for 20ns;
         pipeline_step <= '0';
-        wait for 80ns;
+        wait for 150ns;
         pipeline_step <='1';
         register_a <= x"00000001";
         register_b <= x"11110000";
@@ -235,7 +225,7 @@ begin
         alu_control <= "00001";
         wait for 20ns;
         pipeline_step <= '0';
-        wait for 80ns;
+        wait for 150ns;
         pipeline_step <='1';
         register_a <= x"00000001";
         register_b <= x"11110000";

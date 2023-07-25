@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="cache_testbench_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="cache_testbench" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="206.001 ns"></ZoomEndTime>
+      <Cursor1Time time="0.000 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="196"></NameColumnWidth>
+      <ValueColumnWidth column_width="96"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="24" />
+   <wvobject type="logic" fp_name="/cache_testbench/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/cache_testbench/reset">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/cache_testbench/cache1/transmission_write_start">
+      <obj_property name="ElementShortName">transmission_write_start</obj_property>
+      <obj_property name="ObjectShortName">transmission_write_start</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/cache_testbench/cache1/transmission_read_start">
+      <obj_property name="ElementShortName">transmission_read_start</obj_property>
+      <obj_property name="ObjectShortName">transmission_read_start</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/cache_testbench/cache1/transmission_write_started">
+      <obj_property name="ElementShortName">transmission_write_started</obj_property>
+      <obj_property name="ObjectShortName">transmission_write_started</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/cache_testbench/cache1/transmission_read_response">
+      <obj_property name="ElementShortName">transmission_read_response[1:0]</obj_property>
+      <obj_property name="ObjectShortName">transmission_read_response[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/cache_testbench/cache1/transmission_write_address">
+      <obj_property name="ElementShortName">transmission_write_address[31:0]</obj_property>
+      <obj_property name="ObjectShortName">transmission_write_address[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/cache_testbench/cache1/transmission_read_started">
+      <obj_property name="ElementShortName">transmission_read_started</obj_property>
+      <obj_property name="ObjectShortName">transmission_read_started</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/cache_testbench/cache1/transmission_read_address">
+      <obj_property name="ElementShortName">transmission_read_address[31:0]</obj_property>
+      <obj_property name="ObjectShortName">transmission_read_address[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/cache_testbench/cache1/transmission_write_response">
+      <obj_property name="ElementShortName">transmission_write_response[1:0]</obj_property>
+      <obj_property name="ObjectShortName">transmission_write_response[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/cache_testbench/memory_bus_awaddr">
+      <obj_property name="ElementShortName">memory_bus_awaddr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">memory_bus_awaddr[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/cache_testbench/memory_bus_wdata">
+      <obj_property name="ElementShortName">memory_bus_wdata[31:0]</obj_property>
+      <obj_property name="ObjectShortName">memory_bus_wdata[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/cache_testbench/memory_bus_awvalid">
+      <obj_property name="ElementShortName">memory_bus_awvalid</obj_property>
+      <obj_property name="ObjectShortName">memory_bus_awvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/cache_testbench/memory_bus_awready">
+      <obj_property name="ElementShortName">memory_bus_awready</obj_property>
+      <obj_property name="ObjectShortName">memory_bus_awready</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/cache_testbench/memory_bus_wlast">
+      <obj_property name="ElementShortName">memory_bus_wlast</obj_property>
+      <obj_property name="ObjectShortName">memory_bus_wlast</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/cache_testbench/memory_bus_wvalid">
+      <obj_property name="ElementShortName">memory_bus_wvalid</obj_property>
+      <obj_property name="ObjectShortName">memory_bus_wvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/cache_testbench/memory_bus_wready">
+      <obj_property name="ElementShortName">memory_bus_wready</obj_property>
+      <obj_property name="ObjectShortName">memory_bus_wready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/cache_testbench/memory_bus_araddr">
+      <obj_property name="ElementShortName">memory_bus_araddr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">memory_bus_araddr[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/cache_testbench/memory_bus_arvalid">
+      <obj_property name="ElementShortName">memory_bus_arvalid</obj_property>
+      <obj_property name="ObjectShortName">memory_bus_arvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/cache_testbench/memory_bus_arready">
+      <obj_property name="ElementShortName">memory_bus_arready</obj_property>
+      <obj_property name="ObjectShortName">memory_bus_arready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/cache_testbench/memory_bus_rdata">
+      <obj_property name="ElementShortName">memory_bus_rdata[31:0]</obj_property>
+      <obj_property name="ObjectShortName">memory_bus_rdata[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/cache_testbench/memory_bus_rlast">
+      <obj_property name="ElementShortName">memory_bus_rlast</obj_property>
+      <obj_property name="ObjectShortName">memory_bus_rlast</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/cache_testbench/memory_bus_rvalid">
+      <obj_property name="ElementShortName">memory_bus_rvalid</obj_property>
+      <obj_property name="ObjectShortName">memory_bus_rvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/cache_testbench/memory_bus_rready">
+      <obj_property name="ElementShortName">memory_bus_rready</obj_property>
+      <obj_property name="ObjectShortName">memory_bus_rready</obj_property>
+   </wvobject>
+</wave_config>

@@ -10,15 +10,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="3,665.001 ns"></ZoomEndTime>
-      <Cursor1Time time="600.000 ns"></Cursor1Time>
+      <ZoomStartTime time="1,900.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="2,338.001 ns"></ZoomEndTime>
+      <Cursor1Time time="2,265.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="208"></NameColumnWidth>
+      <NameColumnWidth column_width="200"></NameColumnWidth>
       <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="79" />
+   <WVObjectSize size="49" />
    <wvobject type="logic" fp_name="/cpu_fetch_testbench/clk">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -31,49 +31,21 @@
       <obj_property name="ElementShortName">current_state</obj_property>
       <obj_property name="ObjectShortName">current_state</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/cpu_fetch_testbench/cpu1/fetch_pipeline_step">
-      <obj_property name="ElementShortName">fetch_pipeline_step</obj_property>
-      <obj_property name="ObjectShortName">fetch_pipeline_step</obj_property>
-   </wvobject>
-   <wvobject type="other" fp_name="/cpu_fetch_testbench/cpu1/fetch_stage/current_state">
-      <obj_property name="ElementShortName">current_state</obj_property>
-      <obj_property name="ObjectShortName">current_state</obj_property>
-   </wvobject>
    <wvobject type="logic" fp_name="/cpu_fetch_testbench/cpu1/fetch_stage_ready">
       <obj_property name="ElementShortName">fetch_stage_ready</obj_property>
       <obj_property name="ObjectShortName">fetch_stage_ready</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/cpu_fetch_testbench/cpu1/fetch_output_mask">
-      <obj_property name="ElementShortName">fetch_output_mask</obj_property>
-      <obj_property name="ObjectShortName">fetch_output_mask</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/cpu_fetch_testbench/cpu1/fetch_new_address">
-      <obj_property name="ElementShortName">fetch_new_address[31:0]</obj_property>
-      <obj_property name="ObjectShortName">fetch_new_address[31:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/cpu_fetch_testbench/cpu1/fetch_instruction_out">
-      <obj_property name="ElementShortName">fetch_instruction_out[31:0]</obj_property>
-      <obj_property name="ObjectShortName">fetch_instruction_out[31:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/cpu_fetch_testbench/cpu1/access_register_writeback_address">
-      <obj_property name="ElementShortName">access_register_writeback_address[4:0]</obj_property>
-      <obj_property name="ObjectShortName">access_register_writeback_address[4:0]</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/cpu_fetch_testbench/cpu1/access_register_writeback_enable">
-      <obj_property name="ElementShortName">access_register_writeback_enable</obj_property>
-      <obj_property name="ObjectShortName">access_register_writeback_enable</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/cpu_fetch_testbench/cpu1/access_register_writeback_data">
-      <obj_property name="ElementShortName">access_register_writeback_data[31:0]</obj_property>
-      <obj_property name="ObjectShortName">access_register_writeback_data[31:0]</obj_property>
-   </wvobject>
-   <wvobject type="other" fp_name="/cpu_fetch_testbench/cpu1/decode/registers/current_state">
-      <obj_property name="ElementShortName">current_state</obj_property>
-      <obj_property name="ObjectShortName">current_state</obj_property>
+   <wvobject type="logic" fp_name="/cpu_fetch_testbench/cpu1/fetch_pipeline_step">
+      <obj_property name="ElementShortName">fetch_pipeline_step</obj_property>
+      <obj_property name="ObjectShortName">fetch_pipeline_step</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/cpu_fetch_testbench/cpu1/decode_stage_ready">
       <obj_property name="ElementShortName">decode_stage_ready</obj_property>
       <obj_property name="ObjectShortName">decode_stage_ready</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/cpu_fetch_testbench/cpu1/fetch_output_mask">
+      <obj_property name="ElementShortName">fetch_output_mask</obj_property>
+      <obj_property name="ObjectShortName">fetch_output_mask</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/cpu_fetch_testbench/cpu1/decode_pipeline_step">
       <obj_property name="ElementShortName">decode_pipeline_step</obj_property>
@@ -83,21 +55,53 @@
       <obj_property name="ElementShortName">decode_output_mask</obj_property>
       <obj_property name="ObjectShortName">decode_output_mask</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/cpu_fetch_testbench/cpu1/decode/input_hold">
-      <obj_property name="ElementShortName">input_hold</obj_property>
-      <obj_property name="ObjectShortName">input_hold</obj_property>
+   <wvobject type="logic" fp_name="/cpu_fetch_testbench/cpu1/execute_stage_ready">
+      <obj_property name="ElementShortName">execute_stage_ready</obj_property>
+      <obj_property name="ObjectShortName">execute_stage_ready</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/cpu_fetch_testbench/cpu1/execute_pipeline_step">
+      <obj_property name="ElementShortName">execute_pipeline_step</obj_property>
+      <obj_property name="ObjectShortName">execute_pipeline_step</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/cpu_fetch_testbench/cpu1/execute_output_mask">
+      <obj_property name="ElementShortName">execute_output_mask</obj_property>
+      <obj_property name="ObjectShortName">execute_output_mask</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/cpu_fetch_testbench/cpu1/access_stage_ready">
+      <obj_property name="ElementShortName">access_stage_ready</obj_property>
+      <obj_property name="ObjectShortName">access_stage_ready</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/cpu_fetch_testbench/cpu1/access_pipeline_step">
+      <obj_property name="ElementShortName">access_pipeline_step</obj_property>
+      <obj_property name="ObjectShortName">access_pipeline_step</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/cpu_fetch_testbench/cpu1/access_output_mask">
+      <obj_property name="ElementShortName">access_output_mask</obj_property>
+      <obj_property name="ObjectShortName">access_output_mask</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/cpu_fetch_testbench/cpu1/fetch_load_enable">
+      <obj_property name="ElementShortName">fetch_load_enable</obj_property>
+      <obj_property name="ObjectShortName">fetch_load_enable</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/cpu_fetch_testbench/cpu1/decode/registers/current_state">
+      <obj_property name="ElementShortName">current_state</obj_property>
+      <obj_property name="ObjectShortName">current_state</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/cpu_fetch_testbench/cpu1/fetch_address_in">
+      <obj_property name="ElementShortName">fetch_address_in[31:0]</obj_property>
+      <obj_property name="ObjectShortName">fetch_address_in[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/cpu_fetch_testbench/cpu1/fetch_new_address">
+      <obj_property name="ElementShortName">fetch_new_address[31:0]</obj_property>
+      <obj_property name="ObjectShortName">fetch_new_address[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/cpu_fetch_testbench/cpu1/fetch_instruction_out">
+      <obj_property name="ElementShortName">fetch_instruction_out[31:0]</obj_property>
+      <obj_property name="ObjectShortName">fetch_instruction_out[31:0]</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/cpu_fetch_testbench/cpu1/decode_register_a">
       <obj_property name="ElementShortName">decode_register_a[31:0]</obj_property>
       <obj_property name="ObjectShortName">decode_register_a[31:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/cpu_fetch_testbench/cpu1/decode_register_a_address">
-      <obj_property name="ElementShortName">decode_register_a_address[4:0]</obj_property>
-      <obj_property name="ObjectShortName">decode_register_a_address[4:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/cpu_fetch_testbench/cpu1/decode_register_b_address">
-      <obj_property name="ElementShortName">decode_register_b_address[4:0]</obj_property>
-      <obj_property name="ObjectShortName">decode_register_b_address[4:0]</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/cpu_fetch_testbench/cpu1/decode_register_b">
       <obj_property name="ElementShortName">decode_register_b[31:0]</obj_property>
@@ -119,45 +123,33 @@
       <obj_property name="ElementShortName">decode_instruction_type[3:0]</obj_property>
       <obj_property name="ObjectShortName">decode_instruction_type[3:0]</obj_property>
    </wvobject>
+   <wvobject type="array" fp_name="/cpu_fetch_testbench/cpu1/decode_register_a_address">
+      <obj_property name="ElementShortName">decode_register_a_address[4:0]</obj_property>
+      <obj_property name="ObjectShortName">decode_register_a_address[4:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/cpu_fetch_testbench/cpu1/decode_register_b_address">
+      <obj_property name="ElementShortName">decode_register_b_address[4:0]</obj_property>
+      <obj_property name="ObjectShortName">decode_register_b_address[4:0]</obj_property>
+   </wvobject>
    <wvobject type="array" fp_name="/cpu_fetch_testbench/cpu1/decode_new_program_counter">
       <obj_property name="ElementShortName">decode_new_program_counter[31:0]</obj_property>
       <obj_property name="ObjectShortName">decode_new_program_counter[31:0]</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/cpu_fetch_testbench/cpu1/execute_pipeline_step">
-      <obj_property name="ElementShortName">execute_pipeline_step</obj_property>
-      <obj_property name="ObjectShortName">execute_pipeline_step</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/cpu_fetch_testbench/cpu1/execute_stage_ready">
-      <obj_property name="ElementShortName">execute_stage_ready</obj_property>
-      <obj_property name="ObjectShortName">execute_stage_ready</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/cpu_fetch_testbench/cpu1/execute_output_mask">
-      <obj_property name="ElementShortName">execute_output_mask</obj_property>
-      <obj_property name="ObjectShortName">execute_output_mask</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/cpu_fetch_testbench/cpu1/execute/alu_output">
-      <obj_property name="ElementShortName">alu_output[31:0]</obj_property>
-      <obj_property name="ObjectShortName">alu_output[31:0]</obj_property>
-   </wvobject>
-   <wvobject type="other" fp_name="/cpu_fetch_testbench/cpu1/execute/alu1/current_state">
-      <obj_property name="ElementShortName">current_state</obj_property>
-      <obj_property name="ObjectShortName">current_state</obj_property>
-   </wvobject>
-   <wvobject type="other" fp_name="/cpu_fetch_testbench/cpu1/execute/current_state">
-      <obj_property name="ElementShortName">current_state</obj_property>
-      <obj_property name="ObjectShortName">current_state</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/cpu_fetch_testbench/cpu1/execute_new_program_counter">
-      <obj_property name="ElementShortName">execute_new_program_counter[31:0]</obj_property>
-      <obj_property name="ObjectShortName">execute_new_program_counter[31:0]</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/cpu_fetch_testbench/cpu1/execute_alu_output">
       <obj_property name="ElementShortName">execute_alu_output[31:0]</obj_property>
       <obj_property name="ObjectShortName">execute_alu_output[31:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/cpu_fetch_testbench/cpu1/execute_register_output_address">
-      <obj_property name="ElementShortName">execute_register_output_address[4:0]</obj_property>
-      <obj_property name="ObjectShortName">execute_register_output_address[4:0]</obj_property>
+   <wvobject type="array" fp_name="/cpu_fetch_testbench/cpu1/execute_register_output_address_in">
+      <obj_property name="ElementShortName">execute_register_output_address_in[4:0]</obj_property>
+      <obj_property name="ObjectShortName">execute_register_output_address_in[4:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/cpu_fetch_testbench/cpu1/execute_new_program_counter">
+      <obj_property name="ElementShortName">execute_new_program_counter[31:0]</obj_property>
+      <obj_property name="ObjectShortName">execute_new_program_counter[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/cpu_fetch_testbench/cpu1/execute_register_writeback_enable">
+      <obj_property name="ElementShortName">execute_register_writeback_enable</obj_property>
+      <obj_property name="ObjectShortName">execute_register_writeback_enable</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/cpu_fetch_testbench/cpu1/execute_data_memory_address">
       <obj_property name="ElementShortName">execute_data_memory_address[31:0]</obj_property>
@@ -175,145 +167,25 @@
       <obj_property name="ElementShortName">execute_branch_enable</obj_property>
       <obj_property name="ObjectShortName">execute_branch_enable</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/cpu_fetch_testbench/cpu1/access_pipeline_step">
-      <obj_property name="ElementShortName">access_pipeline_step</obj_property>
-      <obj_property name="ObjectShortName">access_pipeline_step</obj_property>
+   <wvobject type="array" fp_name="/cpu_fetch_testbench/cpu1/access_register_writeback_address">
+      <obj_property name="ElementShortName">access_register_writeback_address[4:0]</obj_property>
+      <obj_property name="ObjectShortName">access_register_writeback_address[4:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/cpu_fetch_testbench/cpu1/access_output_mask">
-      <obj_property name="ElementShortName">access_output_mask</obj_property>
-      <obj_property name="ObjectShortName">access_output_mask</obj_property>
+   <wvobject type="logic" fp_name="/cpu_fetch_testbench/cpu1/access_register_writeback_enable">
+      <obj_property name="ElementShortName">access_register_writeback_enable</obj_property>
+      <obj_property name="ObjectShortName">access_register_writeback_enable</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/cpu_fetch_testbench/cpu1/access_stage_ready">
-      <obj_property name="ElementShortName">access_stage_ready</obj_property>
-      <obj_property name="ObjectShortName">access_stage_ready</obj_property>
+   <wvobject type="array" fp_name="/cpu_fetch_testbench/cpu1/access_register_writeback_data">
+      <obj_property name="ElementShortName">access_register_writeback_data[31:0]</obj_property>
+      <obj_property name="ObjectShortName">access_register_writeback_data[31:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/cpu_fetch_testbench/cpu1/fetch_load_enable">
-      <obj_property name="ElementShortName">fetch_load_enable</obj_property>
-      <obj_property name="ObjectShortName">fetch_load_enable</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/cpu_fetch_testbench/cpu1/fetch_address_in">
-      <obj_property name="ElementShortName">fetch_address_in[31:0]</obj_property>
-      <obj_property name="ObjectShortName">fetch_address_in[31:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/cpu_fetch_testbench/memory_bus_awaddr">
-      <obj_property name="ElementShortName">memory_bus_awaddr[31:0]</obj_property>
-      <obj_property name="ObjectShortName">memory_bus_awaddr[31:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/cpu_fetch_testbench/memory_bus_awlen">
-      <obj_property name="ElementShortName">memory_bus_awlen[7:0]</obj_property>
-      <obj_property name="ObjectShortName">memory_bus_awlen[7:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/cpu_fetch_testbench/memory_bus_awsize">
-      <obj_property name="ElementShortName">memory_bus_awsize[2:0]</obj_property>
-      <obj_property name="ObjectShortName">memory_bus_awsize[2:0]</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/cpu_fetch_testbench/memory_bus_awvalid">
-      <obj_property name="ElementShortName">memory_bus_awvalid</obj_property>
-      <obj_property name="ObjectShortName">memory_bus_awvalid</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/cpu_fetch_testbench/memory_bus_awready">
-      <obj_property name="ElementShortName">memory_bus_awready</obj_property>
-      <obj_property name="ObjectShortName">memory_bus_awready</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/cpu_fetch_testbench/memory_bus_wdata">
-      <obj_property name="ElementShortName">memory_bus_wdata[31:0]</obj_property>
-      <obj_property name="ObjectShortName">memory_bus_wdata[31:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/cpu_fetch_testbench/memory_bus_wstrb">
-      <obj_property name="ElementShortName">memory_bus_wstrb[3:0]</obj_property>
-      <obj_property name="ObjectShortName">memory_bus_wstrb[3:0]</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/cpu_fetch_testbench/memory_bus_wlast">
-      <obj_property name="ElementShortName">memory_bus_wlast</obj_property>
-      <obj_property name="ObjectShortName">memory_bus_wlast</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/cpu_fetch_testbench/memory_bus_wuser">
-      <obj_property name="ElementShortName">memory_bus_wuser[-1:0]</obj_property>
-      <obj_property name="ObjectShortName">memory_bus_wuser[-1:0]</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/cpu_fetch_testbench/memory_bus_wvalid">
-      <obj_property name="ElementShortName">memory_bus_wvalid</obj_property>
-      <obj_property name="ObjectShortName">memory_bus_wvalid</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/cpu_fetch_testbench/memory_bus_wready">
-      <obj_property name="ElementShortName">memory_bus_wready</obj_property>
-      <obj_property name="ObjectShortName">memory_bus_wready</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/cpu_fetch_testbench/memory_bus_bvalid">
-      <obj_property name="ElementShortName">memory_bus_bvalid</obj_property>
-      <obj_property name="ObjectShortName">memory_bus_bvalid</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/cpu_fetch_testbench/memory_bus_bready">
-      <obj_property name="ElementShortName">memory_bus_bready</obj_property>
-      <obj_property name="ObjectShortName">memory_bus_bready</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/cpu_fetch_testbench/memory_bus_arid">
-      <obj_property name="ElementShortName">memory_bus_arid[7:0]</obj_property>
-      <obj_property name="ObjectShortName">memory_bus_arid[7:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/cpu_fetch_testbench/memory_bus_araddr">
-      <obj_property name="ElementShortName">memory_bus_araddr[31:0]</obj_property>
-      <obj_property name="ObjectShortName">memory_bus_araddr[31:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/cpu_fetch_testbench/memory_bus_arlen">
-      <obj_property name="ElementShortName">memory_bus_arlen[7:0]</obj_property>
-      <obj_property name="ObjectShortName">memory_bus_arlen[7:0]</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/cpu_fetch_testbench/memory_bus_arvalid">
-      <obj_property name="ElementShortName">memory_bus_arvalid</obj_property>
-      <obj_property name="ObjectShortName">memory_bus_arvalid</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/cpu_fetch_testbench/memory_bus_arready">
-      <obj_property name="ElementShortName">memory_bus_arready</obj_property>
-      <obj_property name="ObjectShortName">memory_bus_arready</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/cpu_fetch_testbench/memory_bus_rid">
-      <obj_property name="ElementShortName">memory_bus_rid[7:0]</obj_property>
-      <obj_property name="ObjectShortName">memory_bus_rid[7:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/cpu_fetch_testbench/memory_bus_rdata">
-      <obj_property name="ElementShortName">memory_bus_rdata[31:0]</obj_property>
-      <obj_property name="ObjectShortName">memory_bus_rdata[31:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/cpu_fetch_testbench/memory_bus_rresp">
-      <obj_property name="ElementShortName">memory_bus_rresp[1:0]</obj_property>
-      <obj_property name="ObjectShortName">memory_bus_rresp[1:0]</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/cpu_fetch_testbench/memory_bus_rlast">
-      <obj_property name="ElementShortName">memory_bus_rlast</obj_property>
-      <obj_property name="ObjectShortName">memory_bus_rlast</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/cpu_fetch_testbench/memory_bus_rvalid">
-      <obj_property name="ElementShortName">memory_bus_rvalid</obj_property>
-      <obj_property name="ObjectShortName">memory_bus_rvalid</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/cpu_fetch_testbench/memory_bus_rready">
-      <obj_property name="ElementShortName">memory_bus_rready</obj_property>
-      <obj_property name="ObjectShortName">memory_bus_rready</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/cpu_fetch_testbench/cpu1/data_memory_direction">
-      <obj_property name="ElementShortName">data_memory_direction</obj_property>
-      <obj_property name="ObjectShortName">data_memory_direction</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/cpu_fetch_testbench/cpu1/data_memory_write_mode">
-      <obj_property name="ElementShortName">data_memory_write_mode[1:0]</obj_property>
-      <obj_property name="ObjectShortName">data_memory_write_mode[1:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/cpu_fetch_testbench/cpu1/data_memory_address">
-      <obj_property name="ElementShortName">data_memory_address[31:0]</obj_property>
-      <obj_property name="ObjectShortName">data_memory_address[31:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/cpu_fetch_testbench/cpu1/data_memory_data_in">
-      <obj_property name="ElementShortName">data_memory_data_in[31:0]</obj_property>
-      <obj_property name="ObjectShortName">data_memory_data_in[31:0]</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/cpu_fetch_testbench/cpu1/memory/instruction_memory_request">
+   <wvobject type="logic" fp_name="/cpu_fetch_testbench/cpu1/instruction_memory_request">
       <obj_property name="ElementShortName">instruction_memory_request</obj_property>
       <obj_property name="ObjectShortName">instruction_memory_request</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/cpu_fetch_testbench/cpu1/fetch_stage/instruction_ready">
-      <obj_property name="ElementShortName">instruction_ready</obj_property>
-      <obj_property name="ObjectShortName">instruction_ready</obj_property>
+   <wvobject type="logic" fp_name="/cpu_fetch_testbench/cpu1/instruction_memory_ready">
+      <obj_property name="ElementShortName">instruction_memory_ready</obj_property>
+      <obj_property name="ObjectShortName">instruction_memory_ready</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/cpu_fetch_testbench/cpu1/data_memory_request">
       <obj_property name="ElementShortName">data_memory_request</obj_property>
@@ -323,16 +195,24 @@
       <obj_property name="ElementShortName">data_memory_ready</obj_property>
       <obj_property name="ObjectShortName">data_memory_ready</obj_property>
    </wvobject>
-   <wvobject type="other" fp_name="/cpu_fetch_testbench/cpu1/memory_access/current_state">
-      <obj_property name="ElementShortName">current_state</obj_property>
-      <obj_property name="ObjectShortName">current_state</obj_property>
+   <wvobject type="logic" fp_name="/cpu_fetch_testbench/cpu1/memory_bus_awvalid">
+      <obj_property name="ElementShortName">memory_bus_awvalid</obj_property>
+      <obj_property name="ObjectShortName">memory_bus_awvalid</obj_property>
    </wvobject>
-   <wvobject type="other" fp_name="/cpu_fetch_testbench/cpu1/memory/current_state">
-      <obj_property name="ElementShortName">current_state</obj_property>
-      <obj_property name="ObjectShortName">current_state</obj_property>
+   <wvobject type="array" fp_name="/cpu_fetch_testbench/cpu1/memory_bus_wdata">
+      <obj_property name="ElementShortName">memory_bus_wdata[31:0]</obj_property>
+      <obj_property name="ObjectShortName">memory_bus_wdata[31:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/cpu_fetch_testbench/cpu1/memory/cache_ready">
-      <obj_property name="ElementShortName">cache_ready</obj_property>
-      <obj_property name="ObjectShortName">cache_ready</obj_property>
+   <wvobject type="logic" fp_name="/cpu_fetch_testbench/cpu1/memory_bus_arvalid">
+      <obj_property name="ElementShortName">memory_bus_arvalid</obj_property>
+      <obj_property name="ObjectShortName">memory_bus_arvalid</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/cpu_fetch_testbench/memory_bus_rdata">
+      <obj_property name="ElementShortName">memory_bus_rdata[31:0]</obj_property>
+      <obj_property name="ObjectShortName">memory_bus_rdata[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/cpu_fetch_testbench/memory_bus_araddr">
+      <obj_property name="ElementShortName">memory_bus_araddr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">memory_bus_araddr[31:0]</obj_property>
    </wvobject>
 </wave_config>

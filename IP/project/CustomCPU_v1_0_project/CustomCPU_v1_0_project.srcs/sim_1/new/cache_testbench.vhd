@@ -54,7 +54,7 @@ entity cache_testbench is
 end cache_testbench;
 
 architecture Behavioral of cache_testbench is
-    component block_ram IS
+    component blk_mem_gen_0 IS
       PORT (
         rsta_busy : OUT STD_LOGIC;
         rstb_busy : OUT STD_LOGIC;
@@ -90,7 +90,7 @@ architecture Behavioral of cache_testbench is
         s_axi_rvalid : OUT STD_LOGIC;
         s_axi_rready : IN STD_LOGIC
       );
-    end component block_ram;
+    end component blk_mem_gen_0;
     component cache is
         generic (
             -- Users to add parameters here
@@ -235,7 +235,7 @@ architecture Behavioral of cache_testbench is
         
         signal rsta_busy, rstb_busy: std_logic;
 begin
-    ram: block_ram port map (
+    ram: blk_mem_gen_0 port map (
         rsta_busy => rsta_busy,
         rstb_busy => rstb_busy,
         s_aclk=> memory_bus_aclk,
@@ -349,7 +349,13 @@ begin
         reset <= '1';
         enable <= '0';
         wait for 10ns;
-        address_in <= x"100000";
+        address_in <= x"000000";
+        write_enable <= '0';
+        enable <= '1';
+        wait for 10ns; 
+        enable <= '0';
+        wait for 300ns;
+        address_in <= x"000001";
         data_in <= x"0000111122223333444455556666777788889999aaaabbbbccccddddeeeeffff";
         write_enable <=  '1';
         enable <= '1';
@@ -357,7 +363,6 @@ begin
         enable <= '0';
         wait for 300ns;
         address_in <= x"000000";
-        
         write_enable <= '0';
         enable <= '1';
         wait for 10ns;

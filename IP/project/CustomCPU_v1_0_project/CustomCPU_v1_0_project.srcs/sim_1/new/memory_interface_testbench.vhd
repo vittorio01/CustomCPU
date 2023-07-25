@@ -67,7 +67,6 @@ architecture Behavioral of memory_interface_testbench is
         data_memory_address: in std_logic_vector(address_dimension-1 downto 0);
         data_memory_direction: in std_logic;
         data_memory_write_mode: in std_logic_vector(1 downto 0);
-        step: in std_logic;
         
         memory_bus_aclk	: in std_logic;
         memory_bus_aresetn	: in std_logic;
@@ -119,7 +118,7 @@ architecture Behavioral of memory_interface_testbench is
         reset: in std_logic
       );
     end component memory_interface;
-    component block_ram IS
+    component blk_mem_gen_0 IS
       PORT (
         rsta_busy : OUT STD_LOGIC;
         rstb_busy : OUT STD_LOGIC;
@@ -155,9 +154,9 @@ architecture Behavioral of memory_interface_testbench is
         s_axi_rvalid : OUT STD_LOGIC;
         s_axi_rready : IN STD_LOGIC
       );
-    end component block_ram;
+    end component blk_mem_gen_0;
     
-    signal clk,reset, step,instruction_memory_request,instruction_memory_ready,data_memory_request,data_memory_ready, data_memory_direction: std_logic;
+    signal clk,reset, instruction_memory_request,instruction_memory_ready,data_memory_request,data_memory_ready, data_memory_direction: std_logic;
     signal instruction_memory_data: std_logic_vector (31 downto 0);
     signal instruction_memory_address: std_logic_vector (31 downto 0);
     signal data_memory_data_in: std_logic_vector (31 downto 0);
@@ -212,7 +211,7 @@ architecture Behavioral of memory_interface_testbench is
     
     signal rsta_busy, rstb_busy: std_logic;
 begin
-    ram: block_ram port map (
+    ram: blk_mem_gen_0 port map (
         rsta_busy => rsta_busy,
         rstb_busy => rstb_busy,
         s_aclk=> memory_bus_aclk,
@@ -263,7 +262,7 @@ begin
         data_memory_write_mode => data_memory_write_mode,
         clk => clk,
         reset => reset,
-        step => step,
+
         memory_bus_aclk	 => memory_bus_aclk,
             memory_bus_aresetn => memory_bus_aresetn,
             memory_bus_awid => memory_bus_awid,
@@ -310,7 +309,7 @@ begin
             memory_bus_rready => memory_bus_rready
         
     );
-    data_memory_write_mode <= "11";
+    data_memory_write_mode <= "00";
     process is 
     begin
         clk <= '1';
@@ -333,7 +332,7 @@ begin
         data_memory_data_in <= x"00010010";
         wait for 20ns;
         data_memory_request <= '0';
-        wait for 600ns;
+        wait for 800ns;
         instruction_memory_request <= '1';
         instruction_memory_address <= x"00000000";
         wait for 20ns;

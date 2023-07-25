@@ -2,7 +2,7 @@
 -- Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2023.1 (lin64) Build 3865809 Sun May  7 15:04:56 MDT 2023
--- Date        : Sun Jul 23 21:29:38 2023
+-- Date        : Tue Jul 25 23:44:22 2023
 -- Host        : asus-pc running 64-bit Linux Mint 21.2
 -- Command     : write_vhdl -force -mode synth_stub
 --               /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/blk_mem_gen_0_synth_1/blk_mem_gen_0_stub.vhdl

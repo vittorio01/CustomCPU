@@ -261,6 +261,7 @@ architecture Behavioral of memory_interface is
                     data_page2_load,
                     write_data,
                     write_page1_send, 
+                    write_page2_request,
                     write_page2_send,
                     read_data,
                     data_latch,
@@ -353,6 +354,7 @@ begin
         constant address_range: integer:=cache_offset_address_dimension+cache_page_address_dimension;
         variable data_address: std_logic_vector((cache_offset_address_dimension+cache_page_address_dimension-1) downto 0);
         variable offset1,offset2: std_logic_vector(address_range-1 downto 0);
+        variable next_ready: std_logic;
         begin 
         if (rising_edge(clk)) then
             if (reset='0') then 
@@ -441,6 +443,7 @@ begin
                         page1_loaded<='1';
                         if (cache_ready='1') then 
                             if (offset_overflow='1') then
+                                next_ready:='0';
                                 current_state <= data_page2_request;
                             else 
                                 if (data_memory_direction = '1') then
@@ -466,7 +469,8 @@ begin
                     when write_page1_send => 
                         if (cache_ready='1') then 
                             if (offset_overflow = '1') then 
-                                current_state <= write_page2_send;
+                                next_ready:='0';
+                                current_state <= write_page2_request;
                             else
                                 if (instruction_memory_request = '1') then
                                     data_address(address_range-1 downto 0):=instruction_memory_address(address_range-1 downto 0);
@@ -500,6 +504,8 @@ begin
                                 end if;
                             end if;
                         end if;
+                    when write_page2_request => 
+                        current_state <= write_page2_request;
                     when write_page2_send =>
                         if (cache_ready='1') then 
                             if (instruction_memory_request = '1') then
@@ -695,11 +701,25 @@ begin
                 register_page_number<='0';
                 register_data_access <='0';
                 register_data_write<='0';
-
-            when write_page2_send => 
+            when write_page2_request => 
                 cache_address_in <= loaded_page2;
                 cache_write_enable<='1';
                 cache_enable<='1';
+                if (cache_ready='1') then
+                    data_memory_ready <= '1';
+                else 
+                    data_memory_ready <= '0';
+                end if;
+                instruction_memory_ready<='0';
+                register_page_access <= '1';
+                register_write_enable <='0';
+                register_page_number<='1';
+                register_data_access <='1';
+                register_data_write<='0';
+            when write_page2_send => 
+                cache_address_in <= loaded_page2;
+                cache_write_enable<='1';
+                cache_enable<='0';
                 if (cache_ready='1') then
                     data_memory_ready <= '1';
                 else 

@@ -38,6 +38,8 @@ end decode_stage_testbench;
 architecture Behavioral of decode_stage_testbench is
     component decode_stage is
       Port (
+        new_program_counter_in: in std_logic_vector(31 downto 0);
+        new_program_counter_out: out std_logic_vector(31 downto 0);
         instruction_in: in std_logic_vector(31 downto 0);
         register_a: out std_logic_vector(31 downto 0);
         register_b: out std_logic_vector(31 downto 0);
@@ -48,11 +50,15 @@ architecture Behavioral of decode_stage_testbench is
         
         decode_stage_ready: out std_logic; 
         pipeline_step: in std_logic;
+        output_mask: in std_logic;
         
         register_writeback_address: in std_logic_vector(4 downto 0);
         register_writeback_data: in std_logic_vector(31 downto 0);
         register_writeback_request: in std_logic;
         
+        register_a_address_out: out std_logic_vector(4 downto 0);
+        register_b_address_out: out std_logic_vector(4 downto 0);
+        input_hold: in std_logic;
         clk: in std_logic; 
         reset: in std_logic
       );
@@ -65,14 +71,18 @@ architecture Behavioral of decode_stage_testbench is
     signal immediate_operand: std_logic_vector(31 downto 0);
     signal alu_control: std_logic_vector(4 downto 0);
     signal instruction_type: std_logic_vector(3 downto 0);
-    
+    signal register_a_address_out: std_logic_vector(4 downto 0);
+    signal register_b_address_out: std_logic_vector(4 downto 0);
+    signal input_hold: std_logic;
+    signal output_mask: std_logic;
     signal decode_stage_ready: std_logic; 
     signal pipeline_step: std_logic;
     
     signal register_writeback_address: std_logic_vector(4 downto 0);
     signal register_writeback_data: std_logic_vector(31 downto 0);
     signal register_writeback_request: std_logic;
-    
+    signal new_program_counter_in: std_logic_vector(31 downto 0);
+    signal new_program_counter_out: std_logic_vector(31 downto 0);
     signal clk: std_logic; 
     signal reset: std_logic;
 begin
@@ -91,7 +101,12 @@ begin
         register_writeback_address => register_writeback_address,
         register_writeback_data => register_writeback_data,
         register_writeback_request => register_writeback_request,
-        
+        register_a_address_out => register_a_address_out,
+        register_b_address_out =>register_b_address_out,
+        input_hold => input_hold,
+        output_mask => output_mask,
+        new_program_counter_in => new_program_counter_in,
+        new_program_counter_out => new_program_counter_out,
         clk => clk, 
         reset => reset
     );
@@ -105,6 +120,8 @@ begin
     
     process is 
     begin 
+        output_mask <= '0';
+        input_hold <= '0';
         reset <= '0';
         pipeline_step<='0';
         register_writeback_request <= '0';

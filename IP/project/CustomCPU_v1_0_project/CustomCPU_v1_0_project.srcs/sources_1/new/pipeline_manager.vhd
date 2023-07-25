@@ -294,6 +294,8 @@ begin
                         when step9 => 
                             if (access_stage_ready = '1' and fetch_stage_ready='1') then
                                 access_stage_mask <= '1';
+                                execute_stage_mask <= '1';
+                                decode_stage_mask <= '1';
                                 current_state <= step;
                             end if;
                     end case;

@@ -3,12 +3,12 @@
 # SW Build 3865809 on Sun May  7 15:04:56 MDT 2023
 # IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
 # SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
-# Start of session at: Sat Jul 22 12:34:20 2023
-# Process ID: 21575
+# Start of session at: Mon Jul 24 18:36:13 2023
+# Process ID: 68375
 # Current directory: /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/page_list_synth_1
 # Command line: vivado -log page_list.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source page_list.tcl
 # Log file: /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/page_list_synth_1/page_list.vds
 # Journal file: /home/vittorio/GitHub/CustomCPU/IP/project/CustomCPU_v1_0_project/CustomCPU_v1_0_project.runs/page_list_synth_1/vivado.jou
-# Running On: asus-pc, OS: Linux, CPU Frequency: 1280.461 MHz, CPU Physical cores: 2, Host memory: 8180 MB
+# Running On: asus-pc, OS: Linux, CPU Frequency: 2400.000 MHz, CPU Physical cores: 2, Host memory: 8180 MB
 #-----------------------------------------------------------
 source page_list.tcl -notrace

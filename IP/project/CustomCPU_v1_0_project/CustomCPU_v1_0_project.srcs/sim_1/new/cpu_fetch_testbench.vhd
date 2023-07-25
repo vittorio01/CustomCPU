@@ -110,7 +110,7 @@ architecture Behavioral of cpu_fetch_testbench is
             memory_bus_rready	: out std_logic
         );
     end component CustomCPU_v1_0;
-    component block_ram IS
+    component blk_mem_gen_0 IS
       PORT (
         rsta_busy : OUT STD_LOGIC;
         rstb_busy : OUT STD_LOGIC;
@@ -146,7 +146,7 @@ architecture Behavioral of cpu_fetch_testbench is
         s_axi_rvalid : OUT STD_LOGIC;
         s_axi_rready : IN STD_LOGIC
       );
-    end component block_ram;
+    end component blk_mem_gen_0;
     signal clk, reset: std_logic;
 
     signal memory_bus_aclk	: std_logic;
@@ -196,7 +196,7 @@ architecture Behavioral of cpu_fetch_testbench is
     
     signal rsta_busy, rstb_busy: std_logic;
 begin
-    ram: block_ram
+    ram: blk_mem_gen_0
     
     port map (
         rsta_busy => rsta_busy,
@@ -302,16 +302,16 @@ begin
     process is
     begin 
         clk <= '0';
-        wait for 10ns;
+        wait for 5ns;
         clk <= '1';
-        wait for 10ns;
+        wait for 5ns;
     end process;
     process is 
     begin 
         reset <= '0';
         wait for 40ns;
         reset <= '1';
-        wait for 4000ns;
+        wait for 15000ns;
         
     end process;
 end Behavioral;

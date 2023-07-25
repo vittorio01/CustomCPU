@@ -56,6 +56,8 @@ architecture Behavioral of memory_access_testbench is
         memory_read_enable: in std_logic;
         register_writeback_enable: in std_logic;
         
+        branch_enable: in std_logic;
+        pc_address_load_enable: out std_logic;
         
         data_in: in std_logic_vector(31 downto 0);
         register_writeback_address_in: in std_logic_vector(4 downto 0);
@@ -76,6 +78,7 @@ architecture Behavioral of memory_access_testbench is
         
         pipeline_step: in std_logic;
         memory_access_stage_ready: out std_logic;
+        output_mask: in std_logic;
         
         clk: in std_logic;
         reset: in std_logic
@@ -102,7 +105,6 @@ architecture Behavioral of memory_access_testbench is
         data_memory_address: in std_logic_vector(address_dimension-1 downto 0);
         data_memory_direction: in std_logic;
         data_memory_write_mode: in std_logic_vector(1 downto 0);
-        step: in std_logic;
         
         memory_bus_aclk	: in std_logic;
         memory_bus_aresetn	: in std_logic;
@@ -154,7 +156,7 @@ architecture Behavioral of memory_access_testbench is
         reset: in std_logic
       );
     end component memory_interface;
-    component block_ram IS
+    component blk_mem_gen_0 IS
       PORT (
         rsta_busy : OUT STD_LOGIC;
         rstb_busy : OUT STD_LOGIC;
@@ -190,7 +192,7 @@ architecture Behavioral of memory_access_testbench is
         s_axi_rvalid : OUT STD_LOGIC;
         s_axi_rready : IN STD_LOGIC
       );
-    end component block_ram;
+    end component blk_mem_gen_0;
     signal new_program_counter_in: std_logic_vector(31 downto 0):=(others => '0');
     signal new_program_counter_out: std_logic_vector(31 downto 0);
     
@@ -271,9 +273,10 @@ architecture Behavioral of memory_access_testbench is
     signal memory_bus_rready	:std_logic;
     
     signal rsta_busy, rstb_busy: std_logic;
+    signal branch_enable,output_mask: std_logic;
 
 begin
-    ram: block_ram port map (
+    ram: blk_mem_gen_0 port map (
         rsta_busy => rsta_busy,
         rstb_busy => rstb_busy,
         s_aclk=> memory_bus_aclk,
@@ -324,7 +327,6 @@ begin
         data_memory_write_mode => data_memory_write_mode,
         clk => clk,
         reset => reset,
-        step => step,
         memory_bus_aclk	 => memory_bus_aclk,
         memory_bus_aresetn => memory_bus_aresetn,
         memory_bus_awid => memory_bus_awid,
@@ -374,12 +376,12 @@ begin
     mem_access: memory_access_stage port map (
         new_program_counter_in => new_program_counter_in,
         new_program_counter_out => new_program_counter_out,
-        
+        output_mask=> output_mask,
         memory_write_enable => memory_write_enable,
         memory_read_enable => memory_read_enable,
         register_writeback_enable => register_writeback_enable,
         
-        
+        branch_enable => branch_enable,
         data_in => data_in,
         register_writeback_address_in => register_writeback_address_in,
         register_writeback_address_out => register_writeback_address_out,
@@ -406,6 +408,7 @@ begin
     step <= pipeline_step;
     instruction_memory_request <= '1';
     instruction_memory_address <= new_program_counter_in;
+    output_mask <= '0';
     process is 
     begin 
         clk <= '1';
@@ -419,6 +422,7 @@ begin
     begin 
         reset <= '0';
         pipeline_step <='0';
+        branch_enable <='0';
         register_writeback_address_in <= "01101";
         wait for 10ns;
         new_program_counter_in <= std_logic_vector(program_counter);
@@ -446,6 +450,7 @@ begin
         wait for 200ns;
         pipeline_step <= '1';
         new_program_counter_in <= std_logic_vector(program_counter);
+        branch_enable <= '1';
         program_counter:=program_counter+1;
         memory_write_enable <= '0';
         memory_read_enable<= '1';

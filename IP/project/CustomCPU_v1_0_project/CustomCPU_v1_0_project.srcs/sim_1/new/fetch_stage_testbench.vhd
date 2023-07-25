@@ -58,9 +58,10 @@ architecture Behavioral of fetch_stage_testbench is
       
       instruction_request: out std_logic;
       instruction_ready: in std_logic;
-      
+      address_load_enable: in std_logic;
       fetch_stage_ready: out std_logic;
       instruction_in: in std_logic_vector(instruction_width-1 downto 0);
+      output_mask: in std_logic;
       
       new_address: out std_logic_Vector(address_width-1 downto 0);
       instruction_out: out std_logic_vector(instruction_width-1 downto 0);
@@ -90,7 +91,6 @@ architecture Behavioral of fetch_stage_testbench is
         data_memory_address: in std_logic_vector(address_dimension-1 downto 0);
         data_memory_direction: in std_logic;
         data_memory_write_mode: in std_logic_vector(1 downto 0);
-        step: in std_logic;
         
         memory_bus_aclk	: in std_logic;
         memory_bus_aresetn	: in std_logic;
@@ -142,7 +142,7 @@ architecture Behavioral of fetch_stage_testbench is
         reset: in std_logic
       );
     end component memory_interface;
-    component block_ram IS
+    component blk_mem_gen_0 IS
       PORT (
         rsta_busy : OUT STD_LOGIC;
         rstb_busy : OUT STD_LOGIC;
@@ -178,7 +178,7 @@ architecture Behavioral of fetch_stage_testbench is
         s_axi_rvalid : OUT STD_LOGIC;
         s_axi_rready : IN STD_LOGIC
       );
-    end component block_ram;
+    end component blk_mem_gen_0;
     signal address_in: std_logic_vector(31 downto 0);
     signal pipeline_step: std_logic;
       
@@ -190,11 +190,12 @@ architecture Behavioral of fetch_stage_testbench is
       
     signal new_address: std_logic_Vector(31 downto 0);
     signal instruction_out: std_logic_vector(31 downto 0);
-      
+    signal output_mask: std_logic;
+    signal address_load_enable: std_logic;
     signal clk: std_logic;
     signal reset: std_logic;
     
-    signal step,instruction_memory_request,instruction_memory_ready,data_memory_request,data_memory_ready, data_memory_direction: std_logic;
+    signal instruction_memory_request,instruction_memory_ready,data_memory_request,data_memory_ready, data_memory_direction: std_logic;
     signal instruction_memory_data: std_logic_vector (31 downto 0);
     signal instruction_memory_address: std_logic_vector (31 downto 0);
     signal data_memory_data_in: std_logic_vector (31 downto 0);
@@ -251,7 +252,7 @@ architecture Behavioral of fetch_stage_testbench is
     
 
 begin
-     ram: block_ram port map (
+     ram: blk_mem_gen_0 port map (
         rsta_busy => rsta_busy,
         rstb_busy => rstb_busy,
         s_aclk=> memory_bus_aclk,
@@ -302,7 +303,6 @@ begin
         data_memory_write_mode => data_memory_write_mode,
         clk => clk,
         reset => reset,
-        step => step,
         memory_bus_aclk	 => memory_bus_aclk,
             memory_bus_aresetn => memory_bus_aresetn,
             memory_bus_awid => memory_bus_awid,
@@ -359,16 +359,16 @@ begin
         fetch_stage_ready => fetch_stage_ready,
         instruction_in => instruction_in,
         new_address => new_address,
-        instruction_out => instruction_out
+        instruction_out => instruction_out,
+        output_mask => output_mask,
+        address_load_enable => address_load_enable
     );
-    address_in <= new_address;
     instruction_memory_request <= instruction_request;
     instruction_ready <= instruction_memory_ready;
     instruction_in <= instruction_memory_data;
-    instruction_memory_address <= address_in;
+    instruction_memory_address <= new_address;
     
     data_memory_request <='0';
-
     process is
     begin
         clk <= '1';
@@ -382,18 +382,24 @@ begin
     begin 
         reset <= '0';
         pipeline_step <='0';
-        step <= '0';
-        wait for 40ns;
+        address_load_enable <= '0';
+        output_mask <= '1';
+        wait for 20ns;
         reset <= '1';
-     
-        for i in 0 to 15 loop 
+        wait for 40ns;
+        output_mask<='0';
+        
+        for i in 0 to 3 loop 
             pipeline_step <='1';
-            step <= '1';
             wait for 10ns;
             pipeline_step <= '0';
-            step <= '0';
-            wait for 300ns;
+            wait for 400ns;
         end loop;
+        address_in <= x"12345678";
+        address_load_enable <= '1';
+        wait for 50ns;
+        address_load_enable <= '0';
+        wait for 300ns;
         
     end process;
 end Behavioral;

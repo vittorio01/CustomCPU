@@ -138,7 +138,7 @@ architecture arch_imp of CustomCPU_v1_0 is
       Generic (
         address_dimension: integer := 32;
         data_dimension: integer := 32;
-        cache_page_address_dimension: integer := 27;
+        cache_page_address_dimension: integer := 24;
         cache_data_dimension: integer:= 256;
         cache_offset_address_dimension : integer := 5;
         cache_address_dimension: integer := 6;

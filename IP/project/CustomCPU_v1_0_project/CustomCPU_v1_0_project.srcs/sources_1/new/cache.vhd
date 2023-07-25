@@ -207,7 +207,7 @@ architecture Behavioral of cache is
     component page_list is 
       PORT (
         a : IN STD_LOGIC_VECTOR(cache_address_dimension-1 DOWNTO 0);
-        d : IN STD_LOGIC_VECTOR(memory_address_dimension-cache_address_dimension DOWNTO 0);
+        d : IN STD_LOGIC_VECTOR(18 DOWNTO 0);
         clk : IN STD_LOGIC;
         we : IN STD_LOGIC;
         spo : OUT STD_LOGIC_VECTOR(memory_address_dimension-cache_address_dimension DOWNTO 0)
@@ -378,7 +378,7 @@ CustomCPU_v1_0_memory_bus_inst : CustomCPU_v1_0_memory_bus
 	           elsif (current_state = memory_read) then
 	               if (transmission_read_start='0') then
 	                   transmission_read_start<='1';
-                       transmission_read_address<=(address_in & memory_low_address);--memory_low_address);
+                       transmission_read_address<=(address_in & memory_low_address & "000");--memory_low_address);
 	                   transmission_read_start <= '1'; 
 	                   memory_current_word_number:=0;
 	               else 
@@ -402,7 +402,7 @@ CustomCPU_v1_0_memory_bus_inst : CustomCPU_v1_0_memory_bus
 	               if (transmission_write_start='0') then
 	                   memory_current_word_number:=0;
 	                   transmission_write_start<='1';
-                       transmission_write_address<=(address_in & memory_low_address); --memory_low_address);
+                       transmission_write_address<=(address_in & memory_low_address & "000"); --memory_low_address);
 	                   transmission_write_start <= '1'; 
 	               else 
 	                   if (transmission_write_started='1' and memory_current_word_number < memory_transfer_number) then
